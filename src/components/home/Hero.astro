@@ -57,11 +57,21 @@ import { url } from '../../data/site';
     transform: translateZ(0);
   }
   .hero__video {
+    /*
+      Size the drawing to the free space between the headline and the bottom line.
+      In the video frame the drawing spans 11%-88% of the height, so the frame is
+      placed so those edges land just clear of the text blocks.
+    */
+    --hh: max(600px, min(calc(var(--vh) * 100 - var(--header-h)), calc(var(--vw) * 60)));
+    --above: calc(clamp(32px, calc(var(--vh) * 6), 64px) + 47px + 18px);
+    --below: calc(clamp(28px, calc(var(--vh) * 5), 56px) + 44px + clamp(16px, calc(var(--vh) * 2), 22px) + 31px + 18px);
+    --frame: calc((var(--hh) - var(--above) - var(--below)) / 0.77);
     position: absolute;
-    inset: 0;
+    left: 0;
+    right: 0;
+    top: calc(var(--above) - var(--frame) * 0.11);
     width: 100%;
-    height: 100%;
-    padding: clamp(64px, calc(var(--vh) * 13), 128px) 0;
+    height: var(--frame);
     object-fit: contain;
     object-position: center;
   }
@@ -142,7 +152,7 @@ import { url } from '../../data/site';
   @media (max-width: 720px) {
     .hero { height: auto; min-height: 0; display: flex; flex-direction: column; }
     .hero__zoom { position: static; transform: none; order: 2; }
-    .hero__video { position: static; height: auto; aspect-ratio: 1600 / 1000; padding: 0; }
+    .hero__video { position: static; height: auto; aspect-ratio: 1 / 1; object-fit: cover; padding: 0; }
     .hero__head, .hero__foot { position: static; }
     .hero__head { order: 1; }
     .hero__foot { order: 3; padding-top: 8px; }
