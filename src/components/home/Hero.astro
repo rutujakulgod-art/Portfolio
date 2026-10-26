@@ -49,10 +49,10 @@ import { url } from '../../data/site';
     overflow: hidden;
 
     /*
-      Layout of the drawing. It is sized so that even at full zoom (1.3x) it stays
+      Layout of the drawing. It is sized so that even at full zoom (1.2x) it stays
       clear of the headline above and the bottom line and button below.
     */
-    --zoom: 1.3;
+    --zoom: 1.2;
     --hh: max(600px, min(calc(var(--vh) * 100 - var(--header-h)), calc(var(--vw) * 60)));
     --head: calc(clamp(32px, calc(var(--vh) * 6), 64px) + 47px);        /* headline block */
     --foot-pad: clamp(14px, calc(var(--vh) * 2), 24px);                   /* space under the button */
@@ -157,8 +157,8 @@ import { url } from '../../data/site';
   @keyframes herozoom {
     0% { transform: translateZ(0) scale(1); }
     47% { transform: translateZ(0) scale(1); animation-timing-function: cubic-bezier(.45, 0, .2, 1); }
-    91% { transform: translateZ(0) scale(1.3); }
-    100% { transform: translateZ(0) scale(1.3); }
+    91% { transform: translateZ(0) scale(1.2); }
+    100% { transform: translateZ(0) scale(1.2); }
   }
 
   @media (max-width: 720px) {
