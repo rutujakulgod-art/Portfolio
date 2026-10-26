@@ -3,23 +3,14 @@
  * Selected Work: intro column on the left, bento of case-study cards on the right.
  * The first case study is the tall card; the other two stack beside it.
  */
-import Button from '../Button.astro';
 import { caseStudies, url } from '../../data/site';
 ---
 <section class="section wk" id="work" aria-labelledby="work-title">
   <div class="wrap wk__grid">
 
     <div class="wk__intro">
-      <p class="eyebrow">Selected Work</p>
-      <h2 id="work-title" class="wk__h2">Complex systems, made clear.</h2>
+      <h2 id="work-title" class="eyebrow">Selected Work</h2>
       <p class="wk__lede">Enterprise SaaS, design systems and data products, designed end to end from research to handoff.</p>
-      <div class="wk__actions">
-        <Button href={url('about/#lets-talk')}>Get in touch</Button>
-        <a class="wk__ghost" href={url('about/')}>
-          About me
-          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 10 4M5 4h5v5" /></svg>
-        </a>
-      </div>
       <p class="wk__note"><span aria-hidden="true"></span>Research led. Built to scale.</p>
     </div>
 
@@ -60,15 +51,6 @@ import { caseStudies, url } from '../../data/site';
     padding: 24px 0 8px;
     min-width: 0;
   }
-  .wk__h2 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: clamp(40px, 4vw, 58px);
-    line-height: 1.04;
-    letter-spacing: -0.025em;
-    text-wrap: balance;
-  }
   .wk__lede {
     margin: 0;
     max-width: 380px;
@@ -76,22 +58,6 @@ import { caseStudies, url } from '../../data/site';
     line-height: 1.55;
     color: var(--ink-muted);
   }
-  .wk__actions { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 12px; }
-  .wk__ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    height: 44px;
-    padding: 0 18px;
-    border-radius: var(--radius-button);
-    border: 1px solid var(--line-strong);
-    color: var(--ink);
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: border-color .2s ease, background-color .2s ease;
-  }
-  .wk__ghost:hover { border-color: var(--line-dashed); background: var(--surface-sand); }
   .wk__note {
     margin: auto 0 0;
     padding-top: 32px;
