@@ -48,6 +48,9 @@ import { url } from '../../data/site';
   .hero__zoom {
     position: absolute;
     inset: 0;
+    /* The video's white background multiplies away into the page colour,
+       so no box shows on any screen or colour profile. */
+    mix-blend-mode: multiply;
     transform-origin: 50% 48%;
     will-change: transform;
     backface-visibility: hidden;
