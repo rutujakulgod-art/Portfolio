@@ -1,0 +1,94 @@
+---
+import { m } from '../../../data/recruitment-media';
+---
+<section aria-label="Research overview" style="box-sizing: border-box; width: 100%; display: flex; align-items: center; background: #F7F7F4; color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(1280px + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">Research and discovery</span>
+      <h2 style="margin: 0; max-width: 640px; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Four research tracks that shaped the platform</h2>
+      <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">Research combined competitive analysis, technical feasibility, and direct conversations with the people who would use the platform every day, spanning market research, API and integration feasibility, user interviews, and role identification across a live recruitment firm.</p>
+    </div>
+
+    <ol class="tracks" aria-label="Research tracks" style="list-style: none; margin: 0; padding: 0;">
+
+      <li style="box-sizing: border-box; border-radius: var(--radius-card); background: #FFFFFF; border: 1px solid #EBE8E4; overflow: hidden; display: flex; flex-direction: column;">
+        <div style="position: relative; aspect-ratio: 1 / 0.9; overflow: hidden; background: linear-gradient(160deg, #D6E7FA 0%, #F2F7FD 100%);">
+          <img src={m('683419212b0d3fe7c2795c5a9fb41495')} alt="Zoho Recruit organization overview screen" style="position: absolute; left: 14%; top: 18%; width: 125%; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 12px 30px rgba(10,44,85,0.14); display: block;">
+          <img src={m('d5a63651cb583f9bc0279031f22c81f5')} alt="Keka Hire duplicate candidate settings screen" style="position: absolute; left: 6%; top: 52%; width: 110%; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 16px 36px rgba(10,44,85,0.18); display: block;">
+        </div>
+        <div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #68615A;">01</span>
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 19px; font-weight: 500; color: #251F19;">Market research</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #68615A;">Competitive analysis of Keka Hire, Zoho Recruit and Glider AI to set baseline expectations.</p>
+        </div>
+      </li>
+
+      <li style="box-sizing: border-box; border-radius: var(--radius-card); background: #FFFFFF; border: 1px solid #EBE8E4; overflow: hidden; display: flex; flex-direction: column;">
+        <div style="aspect-ratio: 1 / 0.9; box-sizing: border-box; padding: 0 9%; display: flex; flex-direction: column; justify-content: center; gap: 10px; background: linear-gradient(160deg, #C9DDF6 0%, #EEF4FC 100%);">
+          <div style="box-sizing: border-box; padding: 14px 16px; border-radius: 12px; background: #FFFFFF; border: 1px solid #D3E2F3; box-shadow: 0 8px 22px rgba(10,44,85,0.10); display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: #FCEBC2; color: #7A5300; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 12px;">HM</span>
+              <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 14px; font-weight: 500; color: #251F19;">Hiring Manager</span>
+                <span style="font-size: 12px; color: #68615A;">Interview note</span>
+              </div>
+            </div>
+            <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #4F4740;">All requisitions and approvals are tracked manually in Excel.</p>
+          </div>
+          <div style="box-sizing: border-box; padding: 9px 14px; border-radius: 10px; background: rgba(255,255,255,0.65); border: 1px solid #D3E2F3; font-size: 13px; color: #68615A;">2 Hiring Managers, 3 Sourcing Recruiters</div>
+        </div>
+        <div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #68615A;">02</span>
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 19px; font-weight: 500; color: #251F19;">User research</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #68615A;">Interviews with 2 Hiring Managers and 3 Sourcing Recruiters about their day-to-day workflows.</p>
+        </div>
+      </li>
+
+      <li style="box-sizing: border-box; border-radius: var(--radius-card); background: #FFFFFF; border: 1px solid #EBE8E4; overflow: hidden; display: flex; flex-direction: column;">
+        <div style="aspect-ratio: 1 / 0.9; box-sizing: border-box; padding: 0 9%; display: flex; flex-direction: column; justify-content: center; gap: 10px; background: linear-gradient(200deg, #BFD6F2 0%, #F0F6FD 100%);">
+          <div style="box-sizing: border-box; padding: 14px 16px; border-radius: 12px; background: #FFFFFF; border: 1px solid #D3E2F3; box-shadow: 0 8px 22px rgba(10,44,85,0.10); display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 12px; color: #68615A;">Thu, 10:00 to 10:45 AM</span>
+            <span style="font-size: 14px; font-weight: 500; color: #251F19;">Interview with candidate</span>
+            <span style="font-size: 12px; color: #68615A;">Panel: Hiring Manager</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <span style="flex: 1; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; background: rgba(255,255,255,0.7); border: 1px solid #D3E2F3; font-size: 13px; color: var(--accent);">Google Calendar</span>
+            <span style="flex: 1; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; background: rgba(255,255,255,0.7); border: 1px solid #D3E2F3; font-size: 13px; color: var(--accent);">Outlook</span>
+          </div>
+          <div style="box-sizing: border-box; padding: 9px 14px; border-radius: 10px; background: #FFF4E5; border: 1px solid #F5D9AE; font-size: 13px; color: #7A4B00;">Double booking found. Confirm a new slot.</div>
+        </div>
+        <div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #68615A;">03</span>
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 19px; font-weight: 500; color: #251F19;">Technical feasibility</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #68615A;">How calendar APIs handle OAuth, availability and two-way sync for interview scheduling.</p>
+        </div>
+      </li>
+
+      <li style="box-sizing: border-box; border-radius: var(--radius-card); background: #FFFFFF; border: 1px solid #EBE8E4; overflow: hidden; display: flex; flex-direction: column;">
+        <div style="aspect-ratio: 1 / 0.9; box-sizing: border-box; padding: 0 8%; display: flex; flex-direction: column; justify-content: center; gap: 8px; background: linear-gradient(160deg, #D3DEF5 0%, #F3F6FC 100%);">
+          <span style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.75); font-size: 12px; color: #68615A;">Who uses the platform</span>
+          <ul aria-label="Roles" style="list-style: none; margin: 0; padding: 6px; border-radius: 12px; background: #FFFFFF; border: 1px solid #D3E2F3; box-shadow: 0 8px 22px rgba(10,44,85,0.10); display: flex; flex-direction: column;">
+            <li style="display: flex; align-items: center; gap: 10px; padding: 6px 8px;"><span style="width: 26px; height: 26px; flex-shrink: 0; border-radius: 999px; background: #DCEAF9; color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 10px;">PA</span><span style="font-size: 13px; color: #251F19;">Platform Admin</span></li>
+            <li style="display: flex; align-items: center; gap: 10px; padding: 6px 8px;"><span style="width: 26px; height: 26px; flex-shrink: 0; border-radius: 999px; background: #D2EFF7; color: #0B5F78; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 10px;">TA</span><span style="font-size: 13px; color: #251F19;">Tenant Admin</span></li>
+            <li style="display: flex; align-items: center; gap: 10px; padding: 6px 8px;"><span style="width: 26px; height: 26px; flex-shrink: 0; border-radius: 999px; background: #D3F0E4; color: #0B6B47; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 10px;">BA</span><span style="font-size: 13px; color: #251F19;">Business Admin</span></li>
+            <li style="display: flex; align-items: center; gap: 10px; padding: 6px 8px;"><span style="width: 26px; height: 26px; flex-shrink: 0; border-radius: 999px; background: #FCEBC2; color: #7A5300; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 10px;">HM</span><span style="font-size: 13px; color: #251F19;">Hiring Manager</span></li>
+            <li style="display: flex; align-items: center; gap: 10px; padding: 6px 8px;"><span style="width: 26px; height: 26px; flex-shrink: 0; border-radius: 999px; background: #E6E1F7; color: #47367F; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 10px;">SR</span><span style="font-size: 13px; color: #251F19;">Sourcing Recruiter</span></li>
+          </ul>
+        </div>
+        <div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #68615A;">04</span>
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 19px; font-weight: 500; color: #251F19;">Users and roles</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #68615A;">Mapping how a recruitment firm works end to end to identify five distinct roles.</p>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<style>
+.tracks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width: 1100px){.tracks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 640px){.tracks{grid-template-columns:minmax(0,1fr)}}
+</style>

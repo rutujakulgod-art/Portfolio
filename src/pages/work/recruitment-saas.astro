@@ -1,0 +1,40 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import Main from '../../components/case/recruitment/Main.astro';
+import Problem from '../../components/case/recruitment/Problem.astro';
+import Research from '../../components/case/recruitment/Research.astro';
+import Market from '../../components/case/recruitment/Market.astro';
+import Personas from '../../components/case/recruitment/Personas.astro';
+import Feasibility from '../../components/case/recruitment/Feasibility.astro';
+import Roles from '../../components/case/recruitment/Roles.astro';
+import IA from '../../components/case/recruitment/IA.astro';
+import Flows from '../../components/case/recruitment/Flows.astro';
+import Tradeoff from '../../components/case/recruitment/Tradeoff.astro';
+import Solutions from '../../components/case/recruitment/Solutions.astro';
+import Impact from '../../components/case/recruitment/Impact.astro';
+import Reflection from '../../components/case/recruitment/Reflection.astro';
+import { caseStudies } from '../../data/site';
+
+const study = caseStudies.find((c) => c.slug === 'recruitment-saas')!;
+---
+<CaseStudyLayout
+  title="Recruitment SaaS"
+  description="From scattered spreadsheets to one hiring platform for five roles: a multi-tenant recruitment SaaS case study."
+  accent={study.accent}
+>
+  <div class="cs" style="--accent-hover: #164A85">
+    <Main />
+    <Problem />
+    <Research />
+    <Market />
+    <Personas />
+    <Feasibility />
+    <Roles />
+    <IA />
+    <Flows />
+    <Tradeoff />
+    <Solutions />
+    <Impact />
+    <Reflection />
+  </div>
+</CaseStudyLayout>

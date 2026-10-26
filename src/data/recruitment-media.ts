@@ -1,0 +1,43 @@
+import { url } from './site';
+
+/**
+ * Images and videos for the Recruitment SaaS case study, stored in
+ * public/media/recruitment/. Keys are the asset ids from the original
+ * case-study canvas; values are the file names in that folder.
+ */
+const files: Record<string, string> = {
+  '0454afa0d90c9d0b4af57d24d9cd39a8': '0454afa0d90c9d0b4af57d24d9cd39a8.jpg',
+  '1385db2733741d81aa457efb02b77051': '1385db2733741d81aa457efb02b77051.mp4',
+  '1edfe65b51a0397417eddd49c534ad41': '1edfe65b51a0397417eddd49c534ad41.jpg',
+  '2dfaa991341ae15a6f1a60f9cfa1932b': '2dfaa991341ae15a6f1a60f9cfa1932b.jpg',
+  '33981246f96909f0708fce47740448e1': '33981246f96909f0708fce47740448e1.jpg',
+  '34205672fdfe5a4fb48fff1d12ace9cd': '34205672fdfe5a4fb48fff1d12ace9cd.jpg',
+  '3960fdb898ce4ff0b133ece2763246b5': '3960fdb898ce4ff0b133ece2763246b5.jpg',
+  '3c130b755157a42485acf9d88bef98e2': '3c130b755157a42485acf9d88bef98e2.jpg',
+  '416cb73ecd3f3f9c7d565d32c98f5d57': '416cb73ecd3f3f9c7d565d32c98f5d57.jpg',
+  '538a1533f04b4e26d11bc8aa54ef6edf': '538a1533f04b4e26d11bc8aa54ef6edf.jpg',
+  '610825fac59bdd2e3af020cf47af8f66': '610825fac59bdd2e3af020cf47af8f66.mp4',
+  '64d12dd68f08eab7439aa788523e1575': '64d12dd68f08eab7439aa788523e1575.jpg',
+  '658f80ba187c9db406c76aedc8cb4854': '658f80ba187c9db406c76aedc8cb4854.jpg',
+  '683419212b0d3fe7c2795c5a9fb41495': '683419212b0d3fe7c2795c5a9fb41495.jpg',
+  '7104f36091196e0af3d5c4401a92d996': '7104f36091196e0af3d5c4401a92d996.jpg',
+  '8890cfa4f7bc0dbdbf15f805f056b3fc': '8890cfa4f7bc0dbdbf15f805f056b3fc.jpg',
+  '8aa7d1551c81fa98d5ddfd776a8efcb6': '8aa7d1551c81fa98d5ddfd776a8efcb6.jpg',
+  '946d67bf88ba243235bb6e1a483030f0': '946d67bf88ba243235bb6e1a483030f0.jpg',
+  '9992bead4d3d7b220d415fbb31567710': '9992bead4d3d7b220d415fbb31567710.jpg',
+  'bd2666879cd2cea69b72991de29297df': 'bd2666879cd2cea69b72991de29297df.png',
+  'c8d1d180d234011d2f0c5d5e3e0349e5': 'c8d1d180d234011d2f0c5d5e3e0349e5.mp4',
+  'd2239c9e29036c7dacd878de15773dab': 'd2239c9e29036c7dacd878de15773dab.jpg',
+  'd31b5618a51274c6744e0f42fd4e3e9d': 'd31b5618a51274c6744e0f42fd4e3e9d.jpg',
+  'd5585f981513cfb9030914c963366b70': 'd5585f981513cfb9030914c963366b70.jpg',
+  'd5a63651cb583f9bc0279031f22c81f5': 'd5a63651cb583f9bc0279031f22c81f5.jpg',
+  'd5c6465768f77830fdc6f7e92fef6130': 'd5c6465768f77830fdc6f7e92fef6130.jpg',
+  'd737b813e863ed776341a8f20cb5687b': 'd737b813e863ed776341a8f20cb5687b.jpg',
+  'dd50ea8876b033d0e9d6cae97f5959c9': 'dd50ea8876b033d0e9d6cae97f5959c9.jpg',
+  'e7f01bf566a3bf9ccc52760e24f46571': 'e7f01bf566a3bf9ccc52760e24f46571.jpg',
+  'e933c4f20959438ae496b8289334d7f9': 'e933c4f20959438ae496b8289334d7f9.mp4',
+  'f87a463b8e7bf83fd5120dc6a52e8093': 'f87a463b8e7bf83fd5120dc6a52e8093.jpg',
+  'fe50a86a437c6811ea8c688d8f1dcded': 'fe50a86a437c6811ea8c688d8f1dcded.jpg',
+};
+
+export const m = (id: string) => url(`media/recruitment/${files[id] ?? id}`);

@@ -1,0 +1,118 @@
+---
+import { m } from '../../../data/recruitment-media';
+---
+<section aria-label="Market research" style="box-sizing: border-box; width: 100%; background: #F7F7F4; color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(1280px + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">01 Market research</span>
+      <h2 style="margin: 0; max-width: 720px; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Competitive analysis across hiring and evaluation platforms</h2>
+      <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">Studied Keka Hire, Zoho Recruit and Glider AI and catalogued their features to understand baseline expectations before designing our own workflows.</p>
+    </div>
+
+    <div role="tablist" aria-label="Competitors" data-tabs style="display: flex; flex-wrap: wrap; gap: 6px; align-self: flex-start; padding: 5px; border-radius: 999px; background: #FFFFFF; border: 1px solid #EBE8E4;">
+      <button class="tabbtn" type="button" role="tab" aria-selected="true" data-tab="keka" id="mk-tab-keka" aria-controls="mk-panel-keka" style="min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Keka Hire</button>
+        <button class="tabbtn" type="button" role="tab" aria-selected="false" data-tab="zoho" id="mk-tab-zoho" aria-controls="mk-panel-zoho" style="min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Zoho Recruit</button>
+        <button class="tabbtn" type="button" role="tab" aria-selected="false" data-tab="glider" id="mk-tab-glider" aria-controls="mk-panel-glider" style="min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Glider AI</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="mk-panel-keka" data-panel="keka" aria-labelledby="mk-tab-keka" aria-label="Keka Hire">
+        <div style="position: relative; aspect-ratio: 16 / 11; border-radius: var(--radius-card); overflow: hidden; background: linear-gradient(160deg, #D6E7FA 0%, #F2F7FD 100%); border: 1px solid #E4E0DD;">
+          <img src={m('d5a63651cb583f9bc0279031f22c81f5')} alt="Keka Hire duplicate candidate profile settings" style="position: absolute; left: 6%; top: 8%; width: 100%; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 12px 30px rgba(10,44,85,0.14); display: block;">
+          <img src={m('8890cfa4f7bc0dbdbf15f805f056b3fc')} alt="Keka Hire create job posting form" style="position: absolute; left: 16%; top: 50%; width: 100%; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 18px 40px rgba(10,44,85,0.18); display: block;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 30px); font-weight: 500; letter-spacing: -0.02em; color: #251F19;">Keka Hire</h3>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column;">
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Resume parsing and screening</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Flexible pipeline workflows</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Automated interview scheduling with calendar-based availability matching</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Mobile review and approval</li>
+            <li style="padding: 14px 0 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">HRIS and payroll integration</li>
+          </ul>
+        </div>
+      </div>
+
+    <div class="panel" role="tabpanel" id="mk-panel-zoho" data-panel="zoho" aria-labelledby="mk-tab-zoho" hidden aria-label="Zoho Recruit">
+        <div style="position: relative; aspect-ratio: 16 / 11; border-radius: var(--radius-card); overflow: hidden; background: linear-gradient(200deg, #BFD6F2 0%, #F0F6FD 100%); border: 1px solid #E4E0DD;">
+          <img src={m('683419212b0d3fe7c2795c5a9fb41495')} alt="Zoho Recruit organization overview with pipeline view" style="position: absolute; left: 6%; top: 8%; width: 100%; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 12px 30px rgba(10,44,85,0.14); display: block;">
+          <img src={m('d2239c9e29036c7dacd878de15773dab')} alt="Zoho Recruit hiring pipeline stage settings" style="position: absolute; left: 16%; top: 48%; width: 100%; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 18px 40px rgba(10,44,85,0.18); display: block;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 30px); font-weight: 500; letter-spacing: -0.02em; color: #251F19;">Zoho Recruit</h3>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column;">
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Combined ATS and recruitment CRM</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Multi-org and staffing agency support</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Client portals</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Candidate sourcing across job boards</li>
+            <li style="padding: 14px 0 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Zia AI-assisted screening and candidate scoring</li>
+          </ul>
+        </div>
+      </div>
+
+    <div class="panel" role="tabpanel" id="mk-panel-glider" data-panel="glider" aria-labelledby="mk-tab-glider" hidden aria-label="Glider AI">
+        <div style="position: relative; aspect-ratio: 16 / 11; border-radius: var(--radius-card); overflow: hidden; background: linear-gradient(160deg, #C9DDF6 0%, #EEF4FC 100%); border: 1px solid #E4E0DD;">
+          <img src={m('e7f01bf566a3bf9ccc52760e24f46571')} alt="Glider AI live interviews by job" style="position: absolute; left: 6%; top: 8%; width: 92%; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 12px 30px rgba(10,44,85,0.14); display: block;">
+          <img src={m('658f80ba187c9db406c76aedc8cb4854')} alt="Glider AI evaluated candidates with profile match scores" style="position: absolute; left: 16%; top: 54%; width: 100%; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 18px 40px rgba(10,44,85,0.18); display: block;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 30px); font-weight: 500; letter-spacing: -0.02em; color: #251F19;">Glider AI</h3>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column;">
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Skill-based technical and behavioral assessments in an in-browser IDE</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">AI-driven candidate ranking against role requirements</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Interview-panel scheduling</li>
+            <li style="padding: 14px 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">Proctoring</li>
+            <li style="padding: 14px 0 0; border-top: 1px solid #EBE8E4; font-size: 16px; line-height: 1.5; color: #251F19;">ATS and HRMS integrations</li>
+          </ul>
+        </div>
+      </div>
+
+    <div style="box-sizing: border-box; margin-top: clamp(8px, 2vw, 24px); padding: clamp(28px, 4vw, 48px); border-radius: var(--radius-card); background: var(--accent); color: #FFFFFF; display: flex; flex-direction: column; gap: 28px;">
+      <h3 style="margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 500; letter-spacing: -0.02em; color: #FFFFFF;">What this meant for our design</h3>
+      <ol class="take" style="list-style: none; margin: 0; padding: 0;">
+        <li style="box-sizing: border-box; padding: 4px clamp(0px, 2vw, 28px) 4px 0; display: flex; flex-direction: column; gap: 8px;">
+          <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #FFFFFF;">Catch duplicates before submission</h4>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.78);">Keka treats duplicate handling as an admin setting. We moved the check into the recruiter's upload flow, so ownership is settled before a profile exists.</p>
+        </li>
+        <li style="box-sizing: border-box; padding: 4px clamp(0px, 2vw, 28px); display: flex; flex-direction: column; gap: 8px;">
+          <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #FFFFFF;">One pipeline, filtered by role</h4>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.78);">Zoho's stage-by-stage pipeline set the baseline. We kept a single pipeline view and filtered what each of the five roles can see and act on.</p>
+        </li>
+        <li style="box-sizing: border-box; padding: 4px 0 4px clamp(0px, 2vw, 28px); display: flex; flex-direction: column; gap: 8px;">
+          <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #FFFFFF;">Scheduling built on real availability</h4>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.78);">Keka and Glider both automate interview scheduling. That pushed us to study calendar APIs before designing any scheduling screens.</p>
+        </li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.panel{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4vw,64px);align-items:center}
+.take{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.take>li+li{border-left:1px solid rgba(255,255,255,0.16)}
+@media (max-width: 900px){
+.panel{grid-template-columns:minmax(0,1fr)}
+.take{grid-template-columns:minmax(0,1fr)}
+.take>li+li{border-left:0;border-top:1px solid rgba(255,255,255,0.16)}
+}
+.tabbtn{cursor:pointer;transition:background .2s ease,color .2s ease}
+.tabbtn:active{transform:scale(0.98)}
+.tabbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tabbtn{background:transparent;color:#4F4740}
+.tabbtn[aria-selected="true"]{background:var(--accent);color:#FFFFFF}
+.panel[hidden]{display:none}
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((list) => {
+    const root = list.parentElement!;
+    const tabs = Array.from(list.querySelectorAll<HTMLButtonElement>('[data-tab]'));
+    const show = (id: string) => {
+      tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === id)));
+      root.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== id; });
+    };
+    tabs.forEach((t) => t.addEventListener('click', () => show(t.dataset.tab!)));
+  });
+</script>

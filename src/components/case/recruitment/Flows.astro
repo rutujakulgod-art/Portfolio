@@ -1,0 +1,160 @@
+---
+import { m } from '../../../data/recruitment-media';
+---
+<section aria-label="Key user flows" style="box-sizing: border-box; width: 100%; background: #F7F7F4; color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(1280px + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(40px, 5vw, 64px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">Key user flows</span>
+      <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Flows that carry the whole platform</h2>
+    </div>
+
+    <article aria-label="Flow 01: Tenant management" style="display: flex; flex-direction: column; gap: clamp(24px, 3vw, 36px);">
+      <div class="fhead">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px 5px 5px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E4E0DD; box-shadow: 0 1px 2px rgba(10,44,85,0.05); font-size: 14px; font-weight: 500; color: #251F19;"><span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 999px; background: #D2EFF7; color: #0B5F78; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 10px;">TA</span>Tenant Admin and Tenant Business Admin</span>
+          <h3 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 2.8vw, 38px); line-height: 1.12; letter-spacing: -0.025em; color: #251F19;"><span style="color: #756D64;">01</span> Tenant management</h3>
+        </div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #68615A;">Admins manage tenants via dashboards with filters, status actions, and right-side progressive form panels, enabling fast scanning, inline editing, and scalable management without page navigation.</p>
+      </div>
+
+      <div style="box-sizing: border-box; padding: clamp(12px, 2.4vw, 32px); border-radius: 24px; border: 1px solid #D3E2F3; background: linear-gradient(160deg, #BCD6F4 0%, #DCEAFA 55%, #F2F7FD 100%);">
+        <video src={m('e933c4f20959438ae496b8289334d7f9')} poster={m('d31b5618a51274c6744e0f42fd4e3e9d')} autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" controls="controls" aria-label="Screen recording of the tenant management flow" style="display: block; width: 100%; height: auto; aspect-ratio: 1280 / 624; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 20px 50px rgba(10,44,85,0.16); background: #FFFFFF;"></video>
+      </div>
+
+      <ol class="thumbs" aria-label="Key moments" style="list-style: none; margin: 0; padding: 0;">
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('d31b5618a51274c6744e0f42fd4e3e9d')} alt="All Units table with sortable columns and status on the right" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">1</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Fast scanning</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Sortable columns, with status pinned to the right side.</p>
+              </div>
+            </div>
+          </li>
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('1edfe65b51a0397417eddd49c534ad41')} alt="Unit card pinned on the left while the All Users panel loads on the right" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">2</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Context follows you</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">The unit card stays pinned while the sub panel changes.</p>
+              </div>
+            </div>
+          </li>
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('0454afa0d90c9d0b4af57d24d9cd39a8')} alt="Unit card menu open with View Sub Units, View Groups and View Cost Centers" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">3</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Inline actions</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Manage sub units, groups and cost centers without leaving the list view.</p>
+              </div>
+            </div>
+          </li>
+      </ol>
+    </article>
+
+    <article aria-label="Flow 02: Hiring project creation" style="margin-top: clamp(24px, 4vw, 56px); padding-top: clamp(56px, 7vw, 104px); border-top: 1px solid #EBE8E4; display: flex; flex-direction: column; gap: clamp(24px, 3vw, 36px);">
+      <div class="fhead">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px 5px 5px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E4E0DD; box-shadow: 0 1px 2px rgba(10,44,85,0.05); font-size: 14px; font-weight: 500; color: #251F19;"><span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 999px; background: #FCEBC2; color: #7A5300; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 10px;">HM</span>Hiring Manager</span>
+          <h3 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 2.8vw, 38px); line-height: 1.12; letter-spacing: -0.025em; color: #251F19;"><span style="color: #756D64;">02</span> Hiring project creation</h3>
+        </div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #68615A;">Step-by-step guided flow with templates, auto-population, and field validation, reducing cognitive load across a complex multi-step configuration without losing user control.</p>
+      </div>
+
+      <div style="box-sizing: border-box; padding: clamp(12px, 2.4vw, 32px); border-radius: 24px; border: 1px solid #D3E2F3; background: linear-gradient(200deg, #BCD6F4 0%, #DCEAFA 55%, #F2F7FD 100%);">
+        <video src={m('1385db2733741d81aa457efb02b77051')} poster={m('fe50a86a437c6811ea8c688d8f1dcded')} autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" controls="controls" aria-label="Screen recording of the hiring project creation flow" style="display: block; width: 100%; height: auto; aspect-ratio: 1280 / 608; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 20px 50px rgba(10,44,85,0.16); background: #FFFFFF;"></video>
+      </div>
+
+      <ol class="thumbs" aria-label="Key moments" style="list-style: none; margin: 0; padding: 0;">
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('fe50a86a437c6811ea8c688d8f1dcded')} alt="Create a Hiring Project dialog with two cards: Use Default HP Layout and Select HP Layout" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">1</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Card layout</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Two clear cards: start from the default layout or pick an existing one.</p>
+              </div>
+            </div>
+          </li>
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('34205672fdfe5a4fb48fff1d12ace9cd')} alt="Select HP Layout dialog listing saved hiring project layout templates" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">2</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Templated layouts</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Standardized layout templates create structured job postings in a few clicks.</p>
+              </div>
+            </div>
+          </li>
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('946d67bf88ba243235bb6e1a483030f0')} alt="My Hiring Projects list with a confirmation that the new project was added" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">3</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Managing project team</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">The new project lands in My Hiring Projects, ready to add and manage its team.</p>
+              </div>
+            </div>
+          </li>
+      </ol>
+    </article>
+
+    <article aria-label="Flow 03: Candidate management" style="margin-top: clamp(24px, 4vw, 56px); padding-top: clamp(56px, 7vw, 104px); border-top: 1px solid #EBE8E4; display: flex; flex-direction: column; gap: clamp(24px, 3vw, 36px);">
+      <div class="fhead">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px 5px 5px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E4E0DD; box-shadow: 0 1px 2px rgba(10,44,85,0.05); font-size: 14px; font-weight: 500; color: #251F19;"><span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 999px; background: #E6E1F7; color: #47367F; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 10px;">SR</span>Sourcing Recruiter</span>
+          <h3 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 2.8vw, 38px); line-height: 1.12; letter-spacing: -0.025em; color: #251F19;"><span style="color: #756D64;">03</span> Candidate management</h3>
+        </div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #68615A;">Resume upload followed by an automated duplicate check and ownership logic, surfacing three distinct decision paths with clear prompts so recruiters always know what to do next.</p>
+      </div>
+
+      <div style="box-sizing: border-box; padding: clamp(12px, 2.4vw, 32px); border-radius: 24px; border: 1px solid #D3E2F3; background: linear-gradient(160deg, #BCD6F4 0%, #DCEAFA 55%, #F2F7FD 100%);">
+        <video src={m('c8d1d180d234011d2f0c5d5e3e0349e5')} poster={m('d5c6465768f77830fdc6f7e92fef6130')} autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" controls="controls" aria-label="Screen recording of the candidate management flow" style="display: block; width: 100%; height: auto; aspect-ratio: 1280 / 610; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 20px 50px rgba(10,44,85,0.16); background: #FFFFFF;"></video>
+      </div>
+
+      <ol class="thumbs" aria-label="Key moments" style="list-style: none; margin: 0; padding: 0;">
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('d5c6465768f77830fdc6f7e92fef6130')} alt="Add Candidate form with an inline warning that the phone number must be exactly 10 digits" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">1</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Warning states</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Inline warnings flag missing or invalid details before a profile is submitted.</p>
+              </div>
+            </div>
+          </li>
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('d5585f981513cfb9030914c963366b70')} alt="Duplicate Check Completed dialog confirming no matching candidate records were found" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">2</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Duplicate checks</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">A verification check runs before a profile is created, so the same candidate is never submitted twice.</p>
+              </div>
+            </div>
+          </li>
+          <li style="display: flex; flex-direction: column; gap: 14px;">
+            <img src={m('2dfaa991341ae15a6f1a60f9cfa1932b')} alt="Submissions list showing status per candidate and who submitted each one" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #E4E0DD; box-shadow: 0 8px 24px rgba(10,44,85,0.08); background: #FFFFFF;">
+            <div style="display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: start;">
+              <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px;">3</span>
+              <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                <h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Ownership transparency</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Every submission shows its status and who submitted it, right in the candidate row.</p>
+              </div>
+            </div>
+          </li>
+      </ol>
+    </article>
+
+  </div>
+</section>
+
+<style>
+.fhead{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);align-items:end}
+.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+@media (max-width: 900px){.fhead{grid-template-columns:minmax(0,1fr)}.thumbs{grid-template-columns:minmax(0,1fr)}}
+</style>

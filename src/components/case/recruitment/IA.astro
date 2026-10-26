@@ -1,0 +1,49 @@
+---
+import { m } from '../../../data/recruitment-media';
+---
+<section aria-label="UX strategy and information architecture" style="box-sizing: border-box; width: 100%; background: #F7F7F4; color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(1280px + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">UX strategy</span>
+      <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Architecture settled before a single screen</h2>
+    </div>
+
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px;">
+      <div style="box-sizing: border-box; border-radius: 24px; background: #F4F3EF; border: 1px solid #E4E0DD; padding: clamp(12px, 2vw, 24px); overflow-x: auto;">
+        <img src={m('bd2666879cd2cea69b72991de29297df')} alt="Information architecture of the IASS platform: Platform and Tenant branches with admin, business, recruitment, team, vendor and seat modules and their capabilities" style="display: block; width: 100%; min-width: 760px; height: auto; border-radius: 12px;">
+      </div>
+      <figcaption style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 14px; line-height: 1.5; color: #68615A;">
+        <span>Detailed information architecture: every module mapped to a system level and owner role.</span>
+        <a href={m('bd2666879cd2cea69b72991de29297df')} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; padding: 4px 0;">Open full size</a>
+      </figcaption>
+    </figure>
+
+    <div class="band" style="box-sizing: border-box; padding: clamp(24px, 4vw, 48px); border-radius: 24px; background: rgba(227, 238, 250, 0.55); border: 1px solid rgba(208, 225, 245, 0.8);">
+      <div style="display: flex; flex-direction: column; gap: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #251F19;">Approach</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B342D;">Used progressive disclosure, modular design, and reusable patterns. A shared component system was built, then permission-filtered at the component level, keeping the design system lean and the UX consistent across all 5 roles.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #251F19;">IA foundation</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B342D;">Architecture settled before any screen was designed. Every module maps to a clear system level, a primary owner role, and downstream dependencies.</p>
+        </div>
+      </div>
+      <ul class="prin" aria-label="Principles" style="list-style: none; margin: 0; padding: 0;">
+          <li style="box-sizing: border-box; padding: 22px; border-radius: 16px; background: #FFFFFF; border: 1px solid #EBE8E4; display: flex; flex-direction: column; gap: 14px;"><span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 12px; background: #E3EEFA; color: var(--accent); display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 13l9 5 9-5"></path></svg></span><div style="display: flex; flex-direction: column; gap: 4px;"><h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Consistency</h4><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Tables, filters and side panels reused across all modules</p></div></li>
+          <li style="box-sizing: border-box; padding: 22px; border-radius: 16px; background: #FFFFFF; border: 1px solid #EBE8E4; display: flex; flex-direction: column; gap: 14px;"><span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 12px; background: #E3EEFA; color: var(--accent); display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg></span><div style="display: flex; flex-direction: column; gap: 4px;"><h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Scalability</h4><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Patterns hold for N tenants at enterprise scale</p></div></li>
+          <li style="box-sizing: border-box; padding: 22px; border-radius: 16px; background: #FFFFFF; border: 1px solid #EBE8E4; display: flex; flex-direction: column; gap: 14px;"><span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 12px; background: #E3EEFA; color: var(--accent); display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"></path></svg></span><div style="display: flex; flex-direction: column; gap: 4px;"><h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">System status</h4><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Every state visible at every level</p></div></li>
+          <li style="box-sizing: border-box; padding: 22px; border-radius: 16px; background: #FFFFFF; border: 1px solid #EBE8E4; display: flex; flex-direction: column; gap: 14px;"><span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 12px; background: #E3EEFA; color: var(--accent); display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></span><div style="display: flex; flex-direction: column; gap: 4px;"><h4 style="margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #251F19;">Error prevention</h4><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">Validation and duplicate detection upstream</p></div></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.band{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:start}
+.prin{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width: 900px){.band{grid-template-columns:minmax(0,1fr)}}
+@media (max-width: 520px){.prin{grid-template-columns:minmax(0,1fr)}}
+</style>

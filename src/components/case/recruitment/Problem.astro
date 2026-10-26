@@ -1,0 +1,53 @@
+---
+---
+<section aria-label="Problem and goal" style="box-sizing: border-box; width: 100%; display: flex; align-items: center; background: #F7F7F4; color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div class="pg" style="box-sizing: border-box; width: 100%; max-width: calc(1280px + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter);">
+
+    <article class="card" style="box-sizing: border-box; padding: clamp(28px, 4vw, 56px); border-radius: var(--radius-card); background: #FFFFFF; border: 1px solid #EBE8E4; ">
+        <p style="margin: 0; font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">The problem</p>
+        <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.12; letter-spacing: -0.025em; color: #251F19;">Hiring lived in spreadsheets and inboxes</h2>
+        <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.65; color: #68615A;">Hiring processes were fragmented across tools: ATS systems, spreadsheets, and emails. Workflows lacked standardization, were hard to scale across teams and vendors, and provided no visibility across hiring stages.</p>
+      <ul style="list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column;">
+        <li style="display: flex; flex-direction: column; gap: 6px; padding: 20px 0; border-top: 1px solid #EBE8E4;">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #251F19;">Fragmented toolchain</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #68615A;">ATS, spreadsheets, email and vendor portals, with no sync across any of them.</p>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 6px; padding: 20px 0; border-top: 1px solid #EBE8E4;">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #251F19;">No visibility</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #68615A;">No pipeline view. Status lived in inboxes and spreadsheet rows.</p>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 6px; padding: 20px 0 0; border-top: 1px solid #EBE8E4;">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #251F19;">Poor scalability</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #68615A;">Workflows couldn't scale across teams, vendors, or hiring stages.</p>
+        </li>
+      </ul>
+    </article>
+
+    <article class="card" style="box-sizing: border-box; padding: clamp(28px, 4vw, 56px); border-radius: var(--radius-card); background: var(--accent); color: #FFFFFF; ">
+        <p style="margin: 0; font-family: var(--font-display); font-size: 15px; font-weight: 600; color: #A9C4E4;">The goal</p>
+        <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.12; letter-spacing: -0.025em; color: #FFFFFF;">One system for every role, stage and tenant</h2>
+        <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.82);">Design a scalable, role-based multi-tenant platform to streamline hiring setup and candidate sourcing, unifying management, org hierarchies, and multi-channel sourcing into one coherent system.</p>
+      <ul style="list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column;">
+        <li style="display: flex; flex-direction: column; gap: 6px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.18);">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #FFFFFF;">Unified pipeline</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.78);">One platform. Every stage, every role, every tenant, connected.</p>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 6px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.18);">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #FFFFFF;">Role-appropriate UI</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.78);">Each person sees exactly what they need. Nothing more.</p>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 6px; padding: 20px 0 0; border-top: 1px solid rgba(255,255,255,0.18);">
+          <h3 style="margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: #FFFFFF;">Built for N tenants</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.78);">Architecture that holds at enterprise scale from day one.</p>
+        </li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<style>
+.pg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:16px}
+.card{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:18px}
+@media (max-width: 900px){.pg{grid-template-columns:minmax(0,1fr)}}
+</style>

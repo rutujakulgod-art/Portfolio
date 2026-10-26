@@ -1,0 +1,57 @@
+---
+import { m } from '../../../data/recruitment-media';
+---
+<section aria-label="Trade-off decisions" style="box-sizing: border-box; width: 100%; background: #F7F7F4; color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(1280px + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">Trade-off decisions</span>
+    </div>
+
+    <div style="box-sizing: border-box; padding: clamp(24px, 3vw, 36px) clamp(24px, 3.4vw, 44px); border-radius: var(--radius-card); background: #FFFFFF; border: 1px solid #EBE8E4; display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 14px; font-weight: 500; color: #68615A;">The decision</span>
+      <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; letter-spacing: -0.02em; color: #251F19;">Show data in a modal instead of rerouting to a new page</h2>
+    </div>
+
+    <div class="cmp">
+      <article class="opt" aria-label="Chosen approach">
+        <span style="justify-self: start; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; background: var(--accent); color: #FFFFFF; font-size: 14px; font-weight: 500;"><span style="width: 22px; height: 22px; border-radius: 999px; background: #FFFFFF; color: var(--accent); display: inline-flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Chosen approach</span>
+        <div style="box-sizing: border-box; padding: clamp(14px, 2.4vw, 28px); border-radius: var(--radius-card); border: 1px solid #D3E2F3; background: linear-gradient(160deg, #BCD6F4 0%, #DCEAFA 55%, #F2F7FD 100%);">
+          <img src={m('538a1533f04b4e26d11bc8aa54ef6edf')} alt="Assign Sourcing Recruiter modal opened over the hiring project page" style="display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: center top; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 16px 40px rgba(10,44,85,0.14); background: #FFFFFF;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <h4 style="margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #251F19;">Modal on top of the current page</h4>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B342D;">For in-context actions such as adding users, editing templates and editing settings, a modal approach was chosen so users don&#8217;t get lost in a reroute. It also let us reuse similar components across the platform instead of building new ones.</p>
+        </div>
+      </article>
+
+      <article class="opt" aria-label="Alternative considered">
+        <span style="justify-self: start; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; background: #EEEDE6; color: #4F4740; font-size: 14px; font-weight: 500;"><span style="width: 22px; height: 22px; border-radius: 999px; background: #FFFFFF; color: #68615A; display: inline-flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></span>Alternative considered</span>
+        <div style="box-sizing: border-box; padding: clamp(14px, 2.4vw, 28px); border-radius: var(--radius-card); border: 1.5px dashed #C2BAB1; background: #EEEDE6;">
+          <img src={m('d737b813e863ed776341a8f20cb5687b')} alt="Select Process Recruiter shown as a separate full page" style="display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: center top; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 16px 40px rgba(10,44,85,0.14); background: #FFFFFF; filter: saturate(0.6); opacity: 0.9;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <h4 style="margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #251F19;">Reroute to a separate page</h4>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B342D;">The same in-context actions would reroute to a separate settings page. This would have confused users and left them lost in the process.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="reuse" style="box-sizing: border-box; padding: clamp(20px, 3vw, 32px); border-radius: var(--radius-card); background: rgba(227, 238, 250, 0.55); border: 1px solid rgba(208, 225, 245, 0.8);">
+      <div style="display: flex; flex-direction: column; gap: 6px; max-width: 260px;">
+        <h4 style="margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #251F19;">One pattern, reused</h4>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #68615A;">The same modal shell carries project creation and template selection too.</p>
+      </div>
+      <img src={m('3c130b755157a42485acf9d88bef98e2')} alt="Create a Hiring Project modal with two layout options" style="display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: center top; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 16px 40px rgba(10,44,85,0.14); background: #FFFFFF;">
+      <img src={m('9992bead4d3d7b220d415fbb31567710')} alt="Select JD Template modal listing job description templates" style="display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: center top; border-radius: 12px; border: 1px solid #D3E0EF; box-shadow: 0 16px 40px rgba(10,44,85,0.14); background: #FFFFFF;">
+    </div>
+
+  </div>
+</section>
+
+<style>
+.cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,auto);column-gap:clamp(16px,2.4vw,32px);row-gap:0}
+.opt{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:18px}
+.reuse{display:grid;grid-template-columns:auto repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);align-items:center}
+@media (max-width: 900px){.cmp{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:32px}.opt{grid-row:auto;grid-template-rows:none}.reuse{grid-template-columns:minmax(0,1fr)}}
+</style>
