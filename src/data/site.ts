@@ -39,7 +39,7 @@ export const caseStudies = [
     short: 'One role-aware hiring platform replacing spreadsheets and inboxes for five roles.',
     art: 'media/work-art-saas.svg',
     image: 'media/work-saas.webp',
-    imageSize: [1587, 1090],
+    imageSize: [1080, 946],
   },
   {
     slug: 'figma-design-system',
