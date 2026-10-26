@@ -140,7 +140,7 @@ import { caseStudies, url } from '../../data/site';
     pointer-events: none;
     transition: transform .6s var(--ease-out);
   }
-  .wk__item--tall .wk__art { left: 28px; top: 236px; bottom: auto; height: calc(100% - 206px); width: auto; max-width: none; }
+  .wk__item--tall .wk__art { left: 28px; top: 236px; bottom: auto; width: calc(100% - 28px); height: auto; max-width: none; border-radius: 10px 0 0 10px; border-right: 0; }
   .wk__card:hover .wk__art { transform: translateY(-8px); }
 
   @media (max-width: 1000px) {
@@ -153,5 +153,7 @@ import { caseStudies, url } from '../../data/site';
     /* On phones every screen sits below the text and arrow, bleeding off the right */
     .wk__card { min-height: 470px; }
     .wk__art, .wk__item--tall .wk__art { top: 250px; bottom: auto; left: 24px; width: 135%; height: auto; }
+    .wk__item--tall .wk__card { min-height: 620px; }
+    .wk__item--tall .wk__art { width: calc(100% - 24px); }
   }
 </style>
