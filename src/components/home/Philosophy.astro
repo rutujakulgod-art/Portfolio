@@ -1,0 +1,149 @@
+---
+// Pixel mosaics on a 14 x 10 grid. Each tile: [column, row, opacity].
+const COLS = 14, ROWS = 10, RO = 1.5;
+const cw = 100 / COLS, ch = 100 / ROWS;
+const tile = (c: number, r: number, o: number, d: number) => ({
+  l: (c * cw + cw * 0.22).toFixed(3),
+  t: ((r + RO) * ch + ch * 0.22).toFixed(3),
+  w: (cw * 0.56).toFixed(3),
+  o, d,
+});
+
+// 01 Lead from Research: scattered findings gather into a solid block
+const scatter = [[0,2,0.2],[1,5,0.2],[2,1,0.25],[3,4,0.25],[4,6,0.3],[5,2,0.3],[6,5,0.35],[7,3,0.5],[8,2,0.6],[9,4,0.7]];
+const block: number[][] = [];
+for (let r = 2; r <= 4; r++) for (let c = 10; c <= 12; c++) block.push([c, r, 1]);
+const tiles1 = scatter.concat(block).map((p, i) => tile(p[0], p[1], p[2], i * 55));
+
+// 02 Design for Scale
+const scatter2 = [[9.6,0,1],[3.8,2.15,1],[8.07,2.65,1],[11.2,3.15,0.3],[2.2,3.7,0.65],[0.66,5.25,0.7],[4.6,5.8,0.5],[6.2,5.25,0.3],[9.1,5.25,0.6],[5.7,6.8,0.55],[11.2,7.35,0.65]];
+const tiles2 = scatter2.slice().sort((a, b) => a[0] - b[0]).map((p, i) => tile(p[0] + 0.6, p[1] - 0.7, p[2], 150 + i * 90));
+
+// 03 Own the full Journey: a staircase
+const path = [[0,6],[1,6],[2,5],[3,5],[4,4],[5,4],[6,4],[7,3],[8,3],[9,2],[10,2],[11,1],[12,1],[13,0]];
+const tiles3 = path.map((p, i) => tile(p[0], p[1], +(0.2 + 0.8 * (i / (path.length - 1))).toFixed(2), 300 + i * 75));
+
+const cards = [
+  { num: '01.', title: 'Lead from Research', body: 'Every decision is grounded in real insight, not assumptions. Research is the foundation.', tiles: tiles1 },
+  { num: '02.', title: 'Design for Scale', body: 'The patterns that survive are the ones built for change.', tiles: tiles2, narrow: true },
+  { num: '03.', title: 'Own the full Journey', body: 'From first brief to final impact, every step counts through research, design, and engineering hand off.', tiles: tiles3 },
+];
+---
+<section class="section ph" id="philosophy" aria-labelledby="philosophy-title">
+  <div class="wrap">
+    <div class="ph__intro">
+      <h2 id="philosophy-title" class="eyebrow">Design philosophy</h2>
+      <p class="ph__statement">I lead end-to-end UX strategy that turns complex problems into experiences that are precise, scalable, and deeply human.</p>
+    </div>
+
+    <ol class="ph__grid">
+      {cards.map((c) => (
+        <li class="ph__card" data-ph-card>
+          <span aria-hidden="true" class="ph__num">{c.num}</span>
+          <div aria-hidden="true" class="ph__mosaic">
+            {c.tiles.map((t) => (
+              <span class="ph__t" style={`left:${t.l}%;top:${t.t}%;width:${t.w}%;--o:${t.o};--d:${t.d}ms`}></span>
+            ))}
+          </div>
+          <div class="ph__text">
+            <h3 class="ph__title">{c.title}</h3>
+            <p class:list={['ph__body', c.narrow && 'ph__body--narrow']}>{c.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .ph__intro { display: flex; flex-direction: column; gap: 16px; }
+  .ph__statement {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 32px);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .ph__grid {
+    list-style: none;
+    margin: clamp(40px, 4vw, 56px) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 1.8vw, 24px);
+  }
+  .ph__card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 22px 22px;
+    border-radius: var(--radius-card);
+    background: var(--surface-sand);
+    overflow: hidden;
+  }
+  .ph__num {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(36px, 3vw, 44px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink-ghost);
+  }
+  .ph__mosaic { position: relative; width: 100%; aspect-ratio: 14 / 10; margin-top: 40px; }
+  .ph__t {
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    border-radius: 1.5px;
+    background: var(--brand);
+    opacity: var(--o);
+  }
+  .ph__text { margin-top: auto; padding-top: 36px; display: flex; flex-direction: column; gap: 12px; }
+  .ph__title { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: 20px; line-height: 1.1; }
+  .ph__body { margin: 0; font-size: 14px; line-height: 1.4; color: var(--ink-muted); }
+  .ph__body--narrow { max-width: 290px; }
+
+  .ph__card.is-waiting .ph__t { opacity: 0; }
+  .ph__card.play-a .ph__t { animation: ph-in-a .65s var(--ease-out) both; animation-delay: var(--d); }
+  .ph__card.play-b .ph__t { animation: ph-in-b .65s var(--ease-out) both; animation-delay: var(--d); }
+  @keyframes ph-in-a { from { opacity: 0; transform: translateY(10px) scale(.4); } to { opacity: var(--o); transform: none; } }
+  @keyframes ph-in-b { from { opacity: 0; transform: translateY(10px) scale(.4); } to { opacity: var(--o); transform: none; } }
+
+  @media (max-width: 760px) {
+    .ph__grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+
+<script>
+  // Tiles pop in when each card scrolls into view; hovering a card replays it.
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-ph-card]'));
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduce && cards.length) {
+    cards.forEach((c) => c.classList.add('is-waiting'));
+    const play = (c: HTMLElement) => {
+      c.classList.remove('is-waiting');
+      c.classList.add('play-a');
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          io.unobserve(en.target);
+          setTimeout(() => play(en.target as HTMLElement), 400);
+        });
+      }, { threshold: 0.3 });
+      cards.forEach((c) => io.observe(c));
+    } else {
+      setTimeout(() => cards.forEach(play), 500);
+    }
+    cards.forEach((c) => {
+      c.addEventListener('mouseenter', () => {
+        if (c.classList.contains('is-waiting')) return;
+        const a = c.classList.contains('play-a');
+        c.classList.toggle('play-a', !a);
+        c.classList.toggle('play-b', a);
+      });
+    });
+  }
+</script>

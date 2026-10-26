@@ -1,0 +1,28 @@
+---
+/** Four-tile mark plus name. The fourth tile takes the page accent (ink on Home and About). */
+interface Props { accent?: string }
+const { accent } = Astro.props;
+const tile4 = accent ?? 'var(--brand-ink)';
+---
+<span class="logo">
+  <span class="logo__mark" aria-hidden="true">
+    <span style="background: var(--brand)"></span>
+    <span style="background: var(--brand-tile-2)"></span>
+    <span style="background: var(--brand-tile-3)"></span>
+    <span style={`background: ${tile4}`}></span>
+  </span>
+  <span class="logo__name">Rutuja Kulgod</span>
+</span>
+
+<style>
+  .logo { display: inline-flex; align-items: center; gap: 10px; }
+  .logo__mark { display: grid; grid-template-columns: repeat(2, 9px); gap: 2px; }
+  .logo__mark span { width: 9px; height: 9px; border-radius: 2px; }
+  .logo__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+const steps = [
+  ['Stakeholder & User Research', 'Deep-dive interviews, market analysis and business-requirements gathering. I translate ambiguous briefs into precise, prioritised product roadmaps.'],
+  ['Information Architecture & Systems Design', 'Wireframes, user flows and scalable IA, built before any visual design begins. I specialise in complex multi-role systems: banking portals, SaaS dashboards and AEC platforms.'],
+  ['High-Fidelity Design & Design Systems', 'Visual design, interactive prototyping and governance of scalable Figma systems. I architect component libraries that reduce design debt across entire organisations.'],
+  ['Cross-Functional Leadership & Handoff', 'I lead pods of developers and PMs, run A/B tests and manage stakeholder presentations. Technical handoff is spec’d to eliminate ambiguity, because a design that can’t be built is just a pretty picture.'],
+  ['Data-Driven Iteration', 'Google Analytics, Power BI, usability testing and Optimal Workshop guide post-launch refinement. The goal is always measurable improvement: reduced task time, higher NPS and lower support volume.'],
+];
+
+const tiles = [
+  [44, 4, 1], [51.5, 4, 1], [80.5, 4, 0.55], [32.5, 22, 1], [59, 36, 1], [0, 52, 0.3], [13, 52, 0.85], [24.5, 52, 0.45],
+  [37, 52, 0.25], [74, 52, 0.25], [95, 52, 0.45], [0, 82, 0.6], [17, 82, 0.55], [29.5, 82, 0.6], [65, 82, 0.35], [86, 82, 0.5],
+];
+---
+<section class="section hw" id="process" aria-labelledby="process-title">
+  <div class="wrap hw__grid">
+    <div class="hw__intro">
+      <p class="eyebrow">How I work</p>
+      <h2 id="process-title" class="hw__h2">End-to-end delivery</h2>
+      <p class="hw__lede">I own the full design lifecycle, not just the Figma file. From the first stakeholder interview to post-launch iteration, I connect strategy, research, design and engineering into one coherent thread.</p>
+      <div class="hw__mosaic" aria-hidden="true">
+        {tiles.map(([l, t, o]) => <span style={`left:${l}%;top:${t}%;opacity:${o}`}></span>)}
+      </div>
+    </div>
+
+    <ol class="hw__list" data-accordion>
+      {steps.map(([title, body], i) => (
+        <li class:list={['hw__item', i === 0 && 'is-open']}>
+          <h3 class="hw__h3">
+            <button
+              type="button"
+              class="hw__q"
+              id={`hw-q${i}`}
+              aria-expanded={i === 0 ? 'true' : 'false'}
+              aria-controls={`hw-p${i}`}
+            >
+              <span class="hw__num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="hw__title">{title}</span>
+              <svg class="hw__icon" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#F48D16" stroke-width="1.6" stroke-dasharray="1.6 1.9"><path d="M10 2v16M2 10h16" /></svg>
+            </button>
+          </h3>
+          <div class="hw__panel" id={`hw-p${i}`} role="region" aria-labelledby={`hw-q${i}`}>
+            <div class="hw__inner"><p class="hw__body">{body}</p></div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .hw__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+    gap: clamp(32px, 5vw, 72px);
+  }
+  .hw__intro { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+  .hw__h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(36px, 3.6vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .hw__lede { margin: 0; max-width: 440px; font-size: 16px; line-height: 1.5; color: var(--ink-muted); }
+  .hw__mosaic { position: relative; width: 100%; max-width: 500px; aspect-ratio: 500 / 130; margin-top: clamp(24px, 4vw, 56px); }
+  .hw__mosaic span { position: absolute; width: 3.6%; aspect-ratio: 1 / 1; border-radius: 2px; background: var(--brand); }
+
+  .hw__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .hw__item { border-radius: var(--radius-card); background: var(--surface-sand); overflow: hidden; }
+  .hw__h3 { margin: 0; }
+  .hw__q {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    min-height: 64px;
+    padding: 18px 22px;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    color: var(--ink);
+    font: inherit;
+  }
+  .hw__q:focus-visible { outline-offset: -2px; border-radius: var(--radius-card); }
+  .hw__num { font-family: var(--font-display); font-weight: 500; font-size: 15px; color: var(--ink-muted); min-width: 22px; }
+  .hw__title { flex: 1; font-family: var(--font-display); font-weight: 400; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.25; }
+  .hw__icon { flex-shrink: 0; transition: transform .35s var(--ease-out); }
+  .hw__q[aria-expanded='true'] .hw__icon { transform: rotate(45deg); }
+
+  .hw__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease-out); }
+  .hw__inner { overflow: hidden; min-height: 0; }
+  .hw__body { margin: 0; padding: 0 22px 22px 60px; max-width: 560px; font-size: 15px; line-height: 1.55; color: var(--ink-muted); visibility: hidden; transition: visibility 0s .45s; }
+  .hw__item.is-open .hw__panel { grid-template-rows: 1fr; }
+  .hw__item.is-open .hw__body { visibility: visible; transition: none; }
+
+  @media (max-width: 900px) {
+    .hw__grid { grid-template-columns: minmax(0, 1fr); }
+    .hw__mosaic { display: none; }
+  }
+</style>
+
+<script>
+  // One row open at a time. The first row starts open.
+  document.querySelectorAll<HTMLElement>('[data-accordion]').forEach((list) => {
+    const items = Array.from(list.querySelectorAll<HTMLElement>('.hw__item'));
+    const setOpen = (idx: number) => {
+      items.forEach((it, i) => {
+        const open = i === idx;
+        it.classList.toggle('is-open', open);
+        it.querySelector('button')?.setAttribute('aria-expanded', String(open));
+      });
+    };
+    items.forEach((it, i) => {
+      it.querySelector('button')?.addEventListener('click', () => {
+        setOpen(it.classList.contains('is-open') ? -1 : i);
+      });
+    });
+    setOpen(0);
+  });
+</script>

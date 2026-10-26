@@ -1,0 +1,209 @@
+---
+import Button from '../Button.astro';
+import { url } from '../../data/site';
+---
+<section class="hero" aria-label="Introduction" data-hero>
+  <div class="hero__zoom">
+    <video
+      class="hero__video"
+      src={url('media/hero-floor-plans.mp4')}
+      poster={url('media/hero-poster.webp')}
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    ></video>
+  </div>
+
+  <div class="hero__head">
+    <h1 class="hero__h1">
+      <span class="hero__line" data-line="0">“I design systems</span>{' '}
+      <span class="hero__line" data-line="1">the way Architects</span>{' '}
+      <span class="hero__line" data-line="2">design buildings”</span>
+    </h1>
+  </div>
+
+  <div class="hero__foot">
+    <p class="hero__sub">structural, not decorative.</p>
+    <Button href="#work" tone="light" arrow="down">View selected work</Button>
+  </div>
+
+  <button type="button" class="hero__pause" aria-label="Pause background video" data-hero-toggle>
+    <svg class="hero__i-pause" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5.5 3.5v9M10.5 3.5v9" /></svg>
+    <svg class="hero__i-play" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 3.5v9l7.5-4.5z" /></svg>
+  </button>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: min(calc(100vh - var(--header-h)), 60vw);
+    min-height: 600px;
+    background: var(--surface-dark);
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero__zoom {
+    position: absolute;
+    inset: 0;
+    transform-origin: 50% 48%;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: clamp(64px, 13vh, 128px) 0;
+    object-fit: contain;
+    object-position: center;
+  }
+  .hero__head {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 1;
+    padding: clamp(32px, 6vh, 64px) var(--gutter) 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero__h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 2.9vw, 42px);
+    line-height: 1.12;
+    word-spacing: 0.14em;
+    color: var(--on-dark);
+  }
+  .hero__line { display: inline-block; will-change: opacity, transform; }
+  .hero__foot {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 1;
+    padding: 0 var(--gutter) clamp(28px, 5vh, 56px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 2vh, 22px);
+    text-align: center;
+  }
+  .hero__sub {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.1;
+    color: var(--on-dark);
+  }
+  .hero__pause {
+    position: absolute;
+    z-index: 2;
+    right: clamp(16px, 2.4vw, 32px);
+    bottom: clamp(16px, 3vh, 32px);
+    width: 44px; height: 44px;
+    padding: 0;
+    border: 1px solid rgba(235, 232, 228, 0.22);
+    border-radius: 6px;
+    background: rgba(37, 31, 25, 0.72);
+    color: var(--on-dark);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    opacity: .72;
+    transition: opacity .2s ease;
+  }
+  .hero:hover .hero__pause, .hero__pause:focus-visible { opacity: 1; }
+  .hero__pause:focus-visible { outline-color: var(--on-dark); }
+  .hero__i-play { display: none; }
+  .hero.is-paused .hero__i-pause { display: none; }
+  .hero.is-paused .hero__i-play { display: block; }
+
+  @media (min-width: 721px) {
+    .hero__h1 { white-space: nowrap; }
+  }
+  @media (min-width: 721px) and (prefers-reduced-motion: no-preference) {
+    .hero__zoom { animation: herozoom 4s linear infinite; }
+  }
+  @keyframes herozoom {
+    0% { transform: translateZ(0) scale(1); }
+    47% { transform: translateZ(0) scale(1); animation-timing-function: cubic-bezier(.45, 0, .2, 1); }
+    91% { transform: translateZ(0) scale(1.3); }
+    100% { transform: translateZ(0) scale(1.3); }
+  }
+
+  @media (max-width: 720px) {
+    .hero { height: auto; min-height: 0; display: flex; flex-direction: column; }
+    .hero__zoom { position: static; transform: none; order: 2; }
+    .hero__video { position: static; height: auto; aspect-ratio: 1600 / 1000; padding: 0; }
+    .hero__head, .hero__foot { position: static; }
+    .hero__head { order: 1; }
+    .hero__foot { order: 3; padding-top: 8px; }
+  }
+</style>
+
+<script>
+  // Headline lines appear with each floor plan, then fade before the loop restarts.
+  // The zoom (CSS animation) is resynced to the video on every loop.
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const video = hero?.querySelector<HTMLVideoElement>('video');
+  const zoom = hero?.querySelector<HTMLElement>('.hero__zoom');
+  const toggle = hero?.querySelector<HTMLButtonElement>('[data-hero-toggle]');
+  const lines = hero ? Array.from(hero.querySelectorAll<HTMLElement>('[data-line]')) : [];
+
+  if (hero && video && zoom && toggle && lines.length === 3) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const windows: [number, number][] = [[0.17, 0.55], [1.0, 1.35], [1.62, 1.95]];
+    const ease = (x: number) => 1 - Math.pow(1 - x, 3);
+    const ramp = (t: number, a: number, b: number) => (t <= a ? 0 : t >= b ? 1 : ease((t - a) / (b - a)));
+    const apply = (el: HTMLElement, p: number) => {
+      el.style.opacity = String(p);
+      el.style.transform = `translateY(${((1 - p) * 14).toFixed(1)}px)`;
+    };
+    const setPaused = (paused: boolean) => {
+      hero.classList.toggle('is-paused', paused);
+      toggle.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
+    };
+
+    toggle.addEventListener('click', () => {
+      if (video.paused) { video.play(); setPaused(false); } else { video.pause(); setPaused(true); }
+    });
+
+    if (reduce) {
+      video.removeAttribute('autoplay');
+      video.pause();
+      setPaused(true);
+    } else {
+      let last = 0;
+      let wasPaused = true;
+      const syncZoom = (t: number) => {
+        zoom.style.animation = 'none';
+        void zoom.offsetWidth;
+        zoom.style.animation = '';
+        zoom.style.animationDelay = `${(-t).toFixed(3)}s`;
+        zoom.style.animationPlayState = 'running';
+      };
+      const tick = () => {
+        if (video.paused) {
+          lines.forEach((l) => apply(l, 1));
+          if (!wasPaused) zoom.style.animationPlayState = 'paused';
+          wasPaused = true;
+        } else {
+          const t = video.currentTime;
+          if (wasPaused || t + 0.3 < last) syncZoom(t);
+          wasPaused = false;
+          last = t;
+          const out = 1 - ramp(t, 3.5, 3.8);
+          lines.forEach((l, i) => apply(l, ramp(t, windows[i][0], windows[i][1]) * out));
+        }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+</script>

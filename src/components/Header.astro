@@ -1,0 +1,182 @@
+---
+/**
+ * Site header. Same layout and links on every page.
+ * accent: case-study accent (fourth logo tile and active underline). Empty on Home and About.
+ * active: which link is the current page.
+ */
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import { url } from '../data/site';
+
+interface Props {
+  accent?: string;
+  active?: 'none' | 'work' | 'about';
+}
+const { accent, active = 'none' } = Astro.props;
+const line = accent ?? 'var(--brand-ink)';
+
+const links = [
+  { key: 'work', label: 'Work', href: url('#work') },
+  { key: 'about', label: 'About', href: url('about/') },
+];
+const contact = url('about/#lets-talk');
+---
+<header class="hdr" style={`--hdr-accent: ${line}`} data-header>
+  <div class="hdr__bar">
+    <a href={url('')} class="hdr__home" aria-label="Rutuja Kulgod, home">
+      <Logo accent={accent} />
+    </a>
+
+    <nav aria-label="Main" class="hdr__nav">
+      <ul class="hdr__links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} class="hdr__lnk" aria-current={active === l.key ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+
+      <Button href={contact} class="hdr__cta">Get in touch</Button>
+
+      <button type="button" class="hdr__menu" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-toggle>
+        <svg class="hdr__icon-open" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3.5 6.5h13M3.5 13.5h13" /></svg>
+        <svg class="hdr__icon-close" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l10 10M15 5 5 15" /></svg>
+      </button>
+    </nav>
+  </div>
+
+  <div id="site-menu" class="hdr__panel" hidden data-menu-panel>
+    <ul>
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="hdr__plnk" aria-current={active === l.key ? 'page' : undefined}>
+            {l.label}<span aria-hidden="true" class="hdr__dot"></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <Button href={contact} class="hdr__pcta">Get in touch</Button>
+  </div>
+</header>
+
+<style>
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    background: rgba(238, 237, 230, 0.93);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--ink);
+  }
+  .hdr__bar {
+    max-width: 1440px;
+    height: var(--header-h);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .hdr__home {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 6px;
+  }
+  .hdr__nav { display: flex; align-items: center; gap: clamp(20px, 2.6vw, 40px); }
+  .hdr__links { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 32px; }
+  .hdr__lnk {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding-top: 2px;
+    border-bottom: 2px solid transparent;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  .hdr__lnk:hover, .hdr__plnk:hover { color: var(--ink-muted); }
+  .hdr__lnk[aria-current='page'] { border-bottom-color: var(--hdr-accent); }
+
+  .hdr__menu {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: var(--surface-sand-strong);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .hdr__icon-close { display: none; }
+  .hdr__menu[aria-expanded='true'] .hdr__icon-open { display: none; }
+  .hdr__menu[aria-expanded='true'] .hdr__icon-close { display: block; }
+
+  .hdr__panel {
+    height: calc(100vh - var(--header-h));
+    height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    padding: 8px 20px 32px;
+    background: var(--surface-sand);
+    flex-direction: column;
+  }
+  .hdr__panel:not([hidden]) { display: flex; }
+  .hdr__panel ul { list-style: none; margin: 0; padding: 0; }
+  .hdr__panel li { border-top: 1px solid var(--line-strong); }
+  .hdr__panel li:last-child { border-bottom: 1px solid var(--line-strong); }
+  .hdr__plnk {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+  .hdr__dot { width: 8px; height: 8px; border-radius: 2px; background: transparent; }
+  .hdr__plnk[aria-current='page'] .hdr__dot { background: var(--hdr-accent); }
+  .hdr :global(.hdr__pcta) { margin-top: 24px; align-self: stretch; }
+
+  @media (max-width: 720px) {
+    .hdr__links, .hdr :global(.hdr__cta) { display: none; }
+    .hdr__menu { display: inline-flex; }
+  }
+  @media (min-width: 721px) {
+    .hdr__panel { display: none !important; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-header]').forEach((hdr) => {
+    const btn = hdr.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    const panel = hdr.querySelector<HTMLElement>('[data-menu-panel]');
+    if (!btn || !panel) return;
+    const set = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      panel.hidden = !open;
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+    };
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+    panel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) set(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') { set(false); btn.focus(); }
+    });
+    window.matchMedia('(min-width: 721px)').addEventListener('change', (m) => { if (m.matches) set(false); });
+  });
+</script>

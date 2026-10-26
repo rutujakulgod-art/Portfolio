@@ -1,0 +1,23 @@
+---
+/** Espresso button with the orange arrow chip. `tone="light"` is for use on the dark hero. */
+interface Props {
+  href: string;
+  tone?: 'dark' | 'light';
+  arrow?: 'right' | 'down';
+  class?: string;
+  [key: string]: unknown;
+}
+const { href, tone = 'dark', arrow = 'right', class: cls, ...rest } = Astro.props;
+---
+<a
+  href={href}
+  class:list={['btn', tone === 'light' && 'btn--light', arrow === 'down' && 'btn--down', cls]}
+  {...rest}
+>
+  <span class="btn__chip" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#251F19" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      {arrow === 'down' ? <path d="M8 3.5v9M4.5 9 8 12.5 11.5 9" /> : <path d="M6 3.5 10.5 8 6 12.5" />}
+    </svg>
+  </span>
+  <slot />
+</a>

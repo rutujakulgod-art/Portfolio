@@ -1,0 +1,72 @@
+---
+import Button from '../Button.astro';
+import { caseStudies, url } from '../../data/site';
+---
+<section class="section wk" id="work" aria-labelledby="work-title">
+  <div class="wrap wk__wrap">
+    <h2 id="work-title" class="eyebrow">Selected Work</h2>
+
+    <ol class="wk__list">
+      {caseStudies.map((c, i) => (
+        <li class="wk__card">
+          <div class="wk__text">
+            <div class="wk__copy">
+              <h3 class="wk__title">{c.title}</h3>
+              <p class="wk__summary">{c.summary}</p>
+            </div>
+            <Button href={url(`work/${c.slug}/`)} class="wk__cta" aria-label={`View case study: ${c.title}`}>View case study</Button>
+          </div>
+          <div class="wk__frame" aria-hidden="true">
+            <img
+              src={url(c.image)}
+              width={c.imageSize[0]}
+              height={c.imageSize[1]}
+              alt=""
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .wk__wrap { display: flex; flex-direction: column; align-items: center; }
+  .wk .eyebrow { text-align: center; }
+  .wk__list {
+    list-style: none;
+    width: 100%;
+    margin: clamp(28px, 3vw, 40px) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 5vw, 72px);
+  }
+  .wk__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 27px;
+    padding: clamp(20px, 2vw, 28px) clamp(20px, 3vw, 40px) 0;
+    border-radius: clamp(16px, 2.1vw, 30px);
+    background: var(--surface-sand);
+    overflow: hidden;
+  }
+  .wk__text { display: flex; flex-direction: column; align-items: center; gap: 17px; max-width: 900px; text-align: center; }
+  .wk__copy { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .wk__title { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 2.3vw, 32px); line-height: 1.1; }
+  .wk__summary { margin: 0; max-width: 594px; font-size: clamp(15px, 1.15vw, 16px); line-height: 1.3; color: var(--ink-muted); }
+  .wk :global(.wk__cta) { height: 46px; padding: 5px 16px 5px 5px; gap: 10px; font-weight: 400; }
+  .wk__frame { width: min(870px, 100%); aspect-ratio: 870 / 412; overflow: hidden; flex-shrink: 0; }
+  .wk__frame img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 870 / 500;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: clamp(14px, 2.1vw, 30px);
+    box-shadow: 10px 6px 6px rgba(0, 0, 0, 0.25);
+  }
+</style>

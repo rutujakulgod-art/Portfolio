@@ -1,0 +1,161 @@
+---
+/**
+ * Site footer. Same layout and content on every page.
+ * accent: case-study accent (logo tile and column dots). On Home and About the
+ * dots are brand orange and the logo tile is ink.
+ */
+import Logo from './Logo.astro';
+import { site, caseStudies, url } from '../data/site';
+
+interface Props { accent?: string }
+const { accent } = Astro.props;
+const dot = accent ?? 'var(--brand)';
+
+const columns = [
+  {
+    title: 'Pages',
+    links: [
+      { label: 'Work', href: url('#work') },
+      { label: 'About', href: url('about/') },
+      { label: 'Get in touch', href: url('about/#lets-talk') },
+    ],
+  },
+  {
+    title: 'Case studies',
+    links: caseStudies.map((c) => ({ label: c.navLabel, href: url(`work/${c.slug}/`) })),
+  },
+  {
+    title: 'Connect',
+    links: [
+      { label: 'LinkedIn', href: site.linkedin, external: true },
+      { label: 'Email', href: `mailto:${site.email}` },
+      { label: 'Résumé', href: url(site.resume), download: site.resume },
+    ],
+  },
+];
+
+// Pixel tiles over the wordmark: [left %, top %, opacity]
+const tiles = [
+  [28.5, 0, 1], [33.5, 0, 1], [70, 0, 0.55], [23, 20, 1], [42.5, 34, 1], [0, 60, 0.3], [11, 60, 0.45],
+  [16.5, 72, 1], [24, 60, 0.4], [30, 60, 0.25], [52, 60, 0.25], [66, 60, 0.4], [85, 50, 0.45], [77, 60, 0.35],
+];
+---
+<footer class="ft" style={`--ft-dot: ${dot}`}>
+  <div class="wrap">
+    <div class="ft__top">
+      <a href="#top" class="ft__home" aria-label="Rutuja Kulgod, back to top"><Logo accent={accent} /></a>
+      <div class="ft__social">
+        <span class="ft__label">Connect</span>
+        <a href={site.linkedin} target="_blank" rel="noopener" class="ft__soc" aria-label="LinkedIn">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm7 0h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1v5.36h-4v-4.75c0-1.13-.02-2.59-1.58-2.59-1.58 0-1.82 1.24-1.82 2.5v4.84h-4v-11z" /></svg>
+        </a>
+        <a href={`mailto:${site.email}`} class="ft__soc" aria-label="Email">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3.5 6.5 8.5 6 8.5-6" /></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="ft__links">
+      <p class="ft__line">Have a complex system that needs structure? Let’s build something.</p>
+      <nav aria-label="Footer" class="ft__menu">
+        {columns.map((col) => (
+          <div class="ft__col">
+            <p class="ft__head"><span aria-hidden="true" class="ft__dot"></span>{col.title}</p>
+            {col.links.map((l: any) => (
+              <a
+                href={l.href}
+                class="ft__a"
+                target={l.external ? '_blank' : undefined}
+                rel={l.external ? 'noopener' : undefined}
+                download={l.download}
+              >{l.label}</a>
+            ))}
+          </div>
+        ))}
+      </nav>
+    </div>
+
+    <div class="ft__mark">
+      <p aria-hidden="true" class="ft__word">Rutuja</p>
+      <div aria-hidden="true" class="ft__tiles">
+        {tiles.map(([l, t, o]) => (
+          <span style={`left:${l}%;top:${t}%;opacity:${o}`}></span>
+        ))}
+      </div>
+      <div class="ft__legal">
+        <a href="#top" class="ft__a">Back to top ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ft {
+    width: 100%;
+    background: var(--surface-sand);
+    color: var(--ink);
+    padding: 40px var(--gutter) 0;
+    overflow: hidden;
+  }
+  .ft__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .ft__home { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; border-radius: 4px; }
+  .ft__social { display: flex; align-items: center; gap: 12px; }
+  .ft__label { font-size: 12px; color: var(--ink-muted); }
+  .ft__soc {
+    width: 44px; height: 44px;
+    border-radius: 4px;
+    background: var(--surface-sand-strong);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-muted);
+    transition: background-color .2s ease;
+  }
+  .ft__soc:hover { background: var(--line-strong); }
+
+  .ft__links {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 32px;
+  }
+  .ft__line { margin: 0; max-width: 260px; font-size: 13px; line-height: 1.45; color: var(--ink-muted); }
+  .ft__menu { display: grid; grid-template-columns: repeat(3, minmax(0, 133px)); column-gap: 40px; }
+  .ft__col { display: flex; flex-direction: column; gap: 10px; }
+  .ft__head { margin: 0 0 2px; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; }
+  .ft__dot { width: 4px; height: 4px; background: var(--ft-dot); }
+  .ft__col .ft__a { padding-left: 16px; font-size: 13px; line-height: 1.3; }
+  .ft__a { color: var(--ink); text-decoration: none; transition: color .2s ease; border-radius: 4px; }
+  .ft__a:hover { color: var(--ink-muted); }
+
+  .ft__mark { position: relative; margin-top: clamp(16px, 2vw, 24px); height: clamp(170px, 20vw, 270px); }
+  .ft__word {
+    position: absolute;
+    left: -0.04em;
+    top: 0;
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(150px, 25vw, 360px);
+    line-height: 0.82;
+    letter-spacing: -0.04em;
+    color: var(--surface-sand-strong);
+    white-space: nowrap;
+    user-select: none;
+  }
+  .ft__tiles { position: absolute; left: 26%; top: 28%; width: 50%; aspect-ratio: 624 / 98; }
+  .ft__tiles span { position: absolute; width: 2.6%; aspect-ratio: 1 / 1; border-radius: 1px; background: var(--brand); }
+  .ft__legal { position: absolute; left: 0; right: 0; bottom: 20px; display: flex; justify-content: flex-end; }
+  .ft__legal .ft__a { font-size: 14px; }
+
+  @media (max-width: 760px) {
+    .ft__links { grid-template-columns: minmax(0, 1fr); }
+    .ft__menu { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+  }
+</style>

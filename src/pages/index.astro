@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Philosophy from '../components/home/Philosophy.astro';
+import SelectedWork from '../components/home/SelectedWork.astro';
+import HowIWork from '../components/home/HowIWork.astro';
+import { url } from '../data/site';
+---
+<BaseLayout>
+  <link slot="head" rel="preload" as="image" href={url('media/hero-poster.webp')} />
+  <Hero />
+  <Philosophy />
+  <SelectedWork />
+  <HowIWork />
+</BaseLayout>

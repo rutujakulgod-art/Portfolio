@@ -1,0 +1,18 @@
+---
+/**
+ * Wrapper for every case-study page. Passes the case study's accent to the
+ * shared Header and Footer and marks "Work" as the current page.
+ * Each case study is designed in its own conversation; its sections go in the slot.
+ */
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  accent: string;
+}
+const { title, description, accent } = Astro.props;
+---
+<BaseLayout title={title} description={description} accent={accent} active="work">
+  <slot />
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+/**
+ * TEMPORARY placeholder for each case study, so links from Home and the footer work.
+ * When a case study is designed, create src/pages/work/<slug>.astro using
+ * CaseStudyLayout; that file takes priority over this route for that slug,
+ * and you can remove the slug from getStaticPaths below.
+ */
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import Button from '../../components/Button.astro';
+import { caseStudies, url } from '../../data/site';
+
+export function getStaticPaths() {
+  return caseStudies.map((c) => ({ params: { slug: c.slug }, props: { study: c } }));
+}
+
+const { study } = Astro.props;
+---
+<CaseStudyLayout title={study.title} description={study.summary} accent={study.accent}>
+  <section class="section cs-soon" aria-labelledby="cs-title">
+    <div class="wrap cs-soon__inner">
+      <p class="eyebrow">Case study</p>
+      <h1 id="cs-title" class="cs-soon__h1">{study.title}</h1>
+      <p class="cs-soon__lede">{study.summary}</p>
+      <p class="cs-soon__note">The full case study is being written up. In the meantime, I’m happy to walk you through it.</p>
+      <div class="cs-soon__actions">
+        <Button href={url('about/#lets-talk')}>Get in touch</Button>
+        <a class="cs-soon__back" href={url('#work')}>Back to selected work</a>
+      </div>
+    </div>
+  </section>
+</CaseStudyLayout>
+
+<style>
+  .cs-soon { border-top: 6px solid var(--accent); }
+  .cs-soon__inner { max-width: 820px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; min-height: 40vh; }
+  .cs-soon__h1 { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(36px, 4vw, 56px); line-height: 1.05; letter-spacing: -0.02em; }
+  .cs-soon__lede { margin: 0; font-size: 18px; line-height: 1.5; color: var(--ink-soft); }
+  .cs-soon__note { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-muted); }
+  .cs-soon__actions { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+  .cs-soon__back { font-size: 14px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-dashed); }
+  .cs-soon__back:hover { border-color: var(--ink); }
+</style>
