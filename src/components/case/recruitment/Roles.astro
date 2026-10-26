@@ -10,7 +10,7 @@ import { m } from '../../../data/recruitment-media';
       <p style="margin: 0; max-width: 1120px; font-size: 17px; line-height: 1.65; color: #68615A;">Studied how a recruitment firm functions end to end: who raises a hiring need, who sources and screens candidates, who owns client and vendor relationships, and who administers the platform itself. This identified every distinct role the system needed to support, rather than assuming roles from the SRS alone, and grounded the five roles in how the work actually gets done, not just in a spec document.</p>
     </div>
 
-    <div style="box-sizing: border-box; border-radius: 24px; background: #FFFFFF; border: 1px solid #EBE8E4; padding: clamp(16px, 3vw, 40px); overflow-x: auto;">
+    <div class="permtable" style="box-sizing: border-box; border-radius: 24px; background: #FFFFFF; border: 1px solid #EBE8E4; padding: clamp(16px, 3vw, 40px); overflow-x: auto;">
       <table style="width: 100%; min-width: 860px; border-collapse: collapse; font-family: var(--font-text);">
         <caption style="caption-side: top; text-align: left; padding-bottom: 8px; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #251F19;">Who can do what</caption>
         <thead>
@@ -27,6 +27,32 @@ import { m } from '../../../data/recruitment-media';
             <tr><th scope="row" style="padding: 18px 24px 18px 0; text-align: left; font-weight: 400; font-size: 15px; line-height: 1.5; color: #251F19;">Source and submit candidates to open projects</th><td style="padding: 18px 12px; text-align: center;"><span role="img" aria-label="No access" style="display: inline-block; width: 14px; height: 2px; border-radius: 2px; background: #D6CFC7;"></span></td><td style="padding: 18px 12px; text-align: center;"><span role="img" aria-label="No access" style="display: inline-block; width: 14px; height: 2px; border-radius: 2px; background: #D6CFC7;"></span></td><td style="padding: 18px 12px; text-align: center;"><span role="img" aria-label="No access" style="display: inline-block; width: 14px; height: 2px; border-radius: 2px; background: #D6CFC7;"></span></td><td style="padding: 18px 12px; text-align: center;"><span role="img" aria-label="No access" style="display: inline-block; width: 14px; height: 2px; border-radius: 2px; background: #D6CFC7;"></span></td><td style="padding: 18px 12px; text-align: center;"><span role="img" aria-label="Has access" style="width: 28px; height: 28px; border-radius: 999px; background: var(--accent); display: inline-flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span></td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="permlist" style="box-sizing: border-box; border-radius: 24px; background: #FFFFFF; border: 1px solid #EBE8E4; padding: 24px 20px 6px;">
+      <h3 style="margin: 0 0 14px; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #251F19;">Who can do what</h3>
+      <ul style="margin: 0; padding: 0; list-style: none;">
+        <li style="display: flex; flex-direction: column; gap: 12px; padding: 18px 0; border-top: 1px solid #EBE8E4;">
+          <div style="display: flex; align-items: center; gap: 12px;"><span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #DCEAF9; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 13px;">PA</span><span style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #251F19;">Platform Admin</span><span style="margin-left: auto; padding: 3px 10px; border-radius: 999px; background: var(--accent); color: #FFFFFF; font-size: 12px; font-weight: 500;">Platform</span></div>
+          <ul style="margin: 0; padding: 0 0 0 66px; list-style: disc; display: flex; flex-direction: column; gap: 6px;"><li style="font-size: 15px; line-height: 1.5; color: #251F19;">Manage all tenants and global platform settings</li></ul>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 12px; padding: 18px 0; border-top: 1px solid #EBE8E4;">
+          <div style="display: flex; align-items: center; gap: 12px;"><span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #D2EFF7; color: #0B5F78; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 13px;">TA</span><span style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #251F19;">Tenant Admin</span><span style="margin-left: auto; padding: 3px 10px; border-radius: 999px; background: #EEEDE6; color: #4F4740; font-size: 12px; font-weight: 500;">Tenant</span></div>
+          <ul style="margin: 0; padding: 0 0 0 66px; list-style: disc; display: flex; flex-direction: column; gap: 6px;"><li style="font-size: 15px; line-height: 1.5; color: #251F19;">Manage users and org structure within a tenant</li></ul>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 12px; padding: 18px 0; border-top: 1px solid #EBE8E4;">
+          <div style="display: flex; align-items: center; gap: 12px;"><span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #D3F0E4; color: #0B6B47; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 13px;">BA</span><span style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #251F19;">Business Admin</span><span style="margin-left: auto; padding: 3px 10px; border-radius: 999px; background: #EEEDE6; color: #4F4740; font-size: 12px; font-weight: 500;">Tenant</span></div>
+          <ul style="margin: 0; padding: 0 0 0 66px; list-style: disc; display: flex; flex-direction: column; gap: 6px;"><li style="font-size: 15px; line-height: 1.5; color: #251F19;">Create hiring project templates</li><li style="font-size: 15px; line-height: 1.5; color: #251F19;">Manage user roles and groups</li><li style="font-size: 15px; line-height: 1.5; color: #251F19;">Create and manage cost centers</li></ul>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 12px; padding: 18px 0; border-top: 1px solid #EBE8E4;">
+          <div style="display: flex; align-items: center; gap: 12px;"><span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #FCEBC2; color: #7A5300; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 13px;">HM</span><span style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #251F19;">Hiring Manager</span><span style="margin-left: auto; padding: 3px 10px; border-radius: 999px; background: #EEEDE6; color: #4F4740; font-size: 12px; font-weight: 500;">Tenant</span></div>
+          <ul style="margin: 0; padding: 0 0 0 66px; list-style: disc; display: flex; flex-direction: column; gap: 6px;"><li style="font-size: 15px; line-height: 1.5; color: #251F19;">Create and configure hiring projects</li></ul>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 12px; padding: 18px 0; border-top: 1px solid #EBE8E4;">
+          <div style="display: flex; align-items: center; gap: 12px;"><span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #E6E1F7; color: #47367F; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 13px;">SR</span><span style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #251F19;">Sourcing Recruiter</span><span style="margin-left: auto; padding: 3px 10px; border-radius: 999px; background: #EEEDE6; color: #4F4740; font-size: 12px; font-weight: 500;">Tenant</span></div>
+          <ul style="margin: 0; padding: 0 0 0 66px; list-style: disc; display: flex; flex-direction: column; gap: 6px;"><li style="font-size: 15px; line-height: 1.5; color: #251F19;">Source and submit candidates to open projects</li></ul>
+        </li>
+      </ul>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: clamp(28px, 3vw, 40px);">
@@ -67,4 +93,7 @@ import { m } from '../../../data/recruitment-media';
 .vcol{display:grid;grid-row:1 / span 4;grid-template-rows:subgrid;row-gap:18px}
 .vcol>span{justify-self:start;align-self:start}
 @media (max-width: 900px){.views{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:32px}.vdiv{width:auto;height:1px;grid-row:auto}.vcol{grid-row:auto;grid-template-rows:none}}
+.permlist{display:none}
+.permlist ul ul{padding-left:48px !important}
+@media (max-width: 720px){.permtable{display:none}.permlist{display:block}}
 </style>

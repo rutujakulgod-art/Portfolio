@@ -10,7 +10,7 @@ import { m } from '../../../data/recruitment-media';
       <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">Studied Keka Hire, Zoho Recruit and Glider AI and catalogued their features to understand baseline expectations before designing our own workflows.</p>
     </div>
 
-    <div role="tablist" aria-label="Competitors" data-tabs style="display: flex; flex-wrap: wrap; gap: 6px; align-self: flex-start; padding: 5px; border-radius: 999px; background: #FFFFFF; border: 1px solid #EBE8E4;">
+    <div role="tablist" aria-label="Competitors" data-tabs class="tabrow" style="display: flex; flex-wrap: wrap; gap: 6px; align-self: flex-start; padding: 5px; border-radius: 999px; background: #FFFFFF; border: 1px solid #EBE8E4;">
       <button class="tabbtn" type="button" role="tab" aria-selected="true" data-tab="keka" id="mk-tab-keka" aria-controls="mk-panel-keka" style="min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Keka Hire</button>
         <button class="tabbtn" type="button" role="tab" aria-selected="false" data-tab="zoho" id="mk-tab-zoho" aria-controls="mk-panel-zoho" style="min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Zoho Recruit</button>
         <button class="tabbtn" type="button" role="tab" aria-selected="false" data-tab="glider" id="mk-tab-glider" aria-controls="mk-panel-glider" style="min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Glider AI</button>
@@ -103,6 +103,7 @@ import { m } from '../../../data/recruitment-media';
 .tabbtn{background:transparent;color:#4F4740}
 .tabbtn[aria-selected="true"]{background:var(--accent);color:#FFFFFF}
 .panel[hidden]{display:none}
+@media (max-width: 560px){.tabrow{flex-wrap:nowrap !important;align-self:stretch !important}.tabrow>button{flex:1 1 auto;padding:10px 10px !important;font-size:14px !important;white-space:nowrap}}
 </style>
 
 <script>

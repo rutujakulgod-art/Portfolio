@@ -15,7 +15,7 @@ import { m } from '../../../data/recruitment-media';
         <div style="display: flex; flex-direction: column; gap: 18px;">
           <h3 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; letter-spacing: -0.025em; color: #251F19;">Table-first approach</h3>
           <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #68615A;">One mental model, reused across every management module. Tenant, User and Candidate views share the same pattern: learn it once, and every screen feels familiar.</p>
-          <div role="tablist" aria-label="Compare tables" style="align-self: flex-start; display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 999px; background: #EEEDE6;">
+          <div role="tablist" aria-label="Compare tables" class="tabrow" style="align-self: flex-start; display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 999px; background: #EEEDE6;">
             <button class="segbtn" type="button" role="tab" aria-selected="false" data-seg="tenants" style="min-height: 44px; padding: 10px 18px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Tenants</button>
               <button class="segbtn" type="button" role="tab" aria-selected="false" data-seg="users" style="min-height: 44px; padding: 10px 18px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Users</button>
               <button class="segbtn" type="button" role="tab" aria-selected="true" data-seg="candidates" style="min-height: 44px; padding: 10px 18px; border: 0; border-radius: 999px; font-family: var(--font-display); font-size: 15px; font-weight: 600;">Candidates</button>
@@ -74,6 +74,7 @@ import { m } from '../../../data/recruitment-media';
 .segbtn{background:transparent;color:#68615A;box-shadow:none}
 .segbtn[aria-selected="true"]{background:#FFFFFF;color:var(--accent);box-shadow:0 1px 3px rgba(10,44,85,0.12)}
 img[hidden]{display:none !important}
+@media (max-width: 560px){.tabrow{flex-wrap:nowrap !important;align-self:stretch !important}.tabrow>button{flex:1 1 auto;padding:10px 10px !important;font-size:14px !important;white-space:nowrap}}
 </style>
 
 <script>
