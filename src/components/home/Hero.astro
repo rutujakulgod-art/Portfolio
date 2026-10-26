@@ -4,10 +4,13 @@ import { url } from '../../data/site';
 ---
 <section class="hero" aria-label="Introduction" data-hero>
   <div class="hero__zoom">
+    <!-- See-through still: shown until the animation starts, and kept when motion is reduced -->
+    <img class="hero__art hero__poster" src={url('media/hero-poster.webp')} alt="" aria-hidden="true" width="1600" height="1000" />
+    <!-- The video's white background is removed frame by frame onto this canvas -->
+    <canvas class="hero__art hero__canvas" width="1600" height="1000" aria-hidden="true" hidden></canvas>
     <video
-      class="hero__video"
+      class="hero__art hero__src"
       src={url('media/hero-floor-plans.mp4')}
-      poster={url('media/hero-poster.webp')}
       autoplay
       muted
       loop
@@ -48,15 +51,12 @@ import { url } from '../../data/site';
   .hero__zoom {
     position: absolute;
     inset: 0;
-    /* The video's white background multiplies away into the page colour,
-       so no box shows on any screen or colour profile. */
-    mix-blend-mode: multiply;
     transform-origin: 50% 48%;
     will-change: transform;
     backface-visibility: hidden;
     transform: translateZ(0);
   }
-  .hero__video {
+  .hero__art {
     /*
       Size the drawing to the free space between the headline and the bottom line.
       In the video frame the drawing spans 11%-88% of the height, so the frame is
@@ -64,7 +64,7 @@ import { url } from '../../data/site';
     */
     --hh: max(600px, min(calc(var(--vh) * 100 - var(--header-h)), calc(var(--vw) * 60)));
     --above: calc(clamp(32px, calc(var(--vh) * 6), 64px) + 47px + 18px);
-    --below: calc(clamp(28px, calc(var(--vh) * 5), 56px) + 44px + clamp(16px, calc(var(--vh) * 2), 22px) + 31px + 18px);
+    --below: calc(clamp(16px, calc(var(--vh) * 2.5), 32px) + 44px + clamp(16px, calc(var(--vh) * 2), 22px) + 31px + 18px);
     --frame: calc((var(--hh) - var(--above) - var(--below)) / 0.77);
     position: absolute;
     left: 0;
@@ -75,6 +75,11 @@ import { url } from '../../data/site';
     object-fit: contain;
     object-position: center;
   }
+  /* The source video stays in place (so browsers keep it playing) but is never seen */
+  .hero__src { opacity: 0; pointer-events: none; }
+  .hero__canvas[hidden], .hero__poster[hidden] { display: none; }
+  /* Fallback when the canvas can't run: show the video, blended into the page */
+  .hero.no-canvas .hero__src { opacity: 1; mix-blend-mode: multiply; }
   .hero__head {
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -99,7 +104,7 @@ import { url } from '../../data/site';
     position: absolute;
     bottom: 0; left: 0; right: 0;
     z-index: 1;
-    padding: 0 var(--gutter) clamp(28px, calc(var(--vh) * 5), 56px);
+    padding: 0 var(--gutter) clamp(16px, calc(var(--vh) * 2.5), 32px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -151,8 +156,8 @@ import { url } from '../../data/site';
 
   @media (max-width: 720px) {
     .hero { height: auto; min-height: 0; display: flex; flex-direction: column; }
-    .hero__zoom { position: static; transform: none; order: 2; }
-    .hero__video { position: static; height: auto; aspect-ratio: 1 / 1; object-fit: cover; padding: 0; }
+    .hero__zoom { position: relative; inset: auto; transform: none; order: 2; aspect-ratio: 1 / 1; }
+    .hero__art { inset: 0; top: 0; height: 100%; object-fit: cover; }
     .hero__head, .hero__foot { position: static; }
     .hero__head { order: 1; }
     .hero__foot { order: 3; padding-top: 8px; }
@@ -164,6 +169,42 @@ import { url } from '../../data/site';
   // The zoom (CSS animation) is resynced to the video on every loop.
   const hero = document.querySelector<HTMLElement>('[data-hero]');
   const video = hero?.querySelector<HTMLVideoElement>('video');
+  const canvas = hero?.querySelector<HTMLCanvasElement>('.hero__canvas');
+  const poster = hero?.querySelector<HTMLImageElement>('.hero__poster');
+
+  // Draws each video frame with its white background turned transparent.
+  // For a pixel c on white: alpha = 1 - min(r, g, b); premultiplied colour = c - (1 - alpha).
+  function makeKeyer(cv: HTMLCanvasElement, v: HTMLVideoElement) {
+    const gl = cv.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false });
+    if (!gl) return null;
+    const sh = (type: number, src: string) => {
+      const o = gl.createShader(type)!; gl.shaderSource(o, src); gl.compileShader(o);
+      return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null;
+    };
+    const vs = sh(gl.VERTEX_SHADER, 'attribute vec2 p;varying vec2 uv;void main(){uv=vec2((p.x+1.)/2.,(1.-p.y)/2.);gl_Position=vec4(p,0.,1.);}');
+    const fs = sh(gl.FRAGMENT_SHADER, 'precision mediump float;varying vec2 uv;uniform sampler2D t;void main(){vec3 c=texture2D(t,uv).rgb;float a=1.-min(c.r,min(c.g,c.b));a=a<.02?0.:a;gl_FragColor=vec4(max(c-vec3(1.-a),0.),a);}');
+    if (!vs || !fs) return null;
+    const pr = gl.createProgram()!; gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return null;
+    gl.useProgram(pr);
+    const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    return () => {
+      if (v.readyState < 2) return false;
+      if (cv.width !== v.videoWidth && v.videoWidth) { cv.width = v.videoWidth; cv.height = v.videoHeight; }
+      gl.viewport(0, 0, cv.width, cv.height);
+      try { gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, v); } catch (e) { return false; }
+      gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      return true;
+    };
+  }
   const zoom = hero?.querySelector<HTMLElement>('.hero__zoom');
   const toggle = hero?.querySelector<HTMLButtonElement>('[data-hero-toggle]');
   const lines = hero ? Array.from(hero.querySelectorAll<HTMLElement>('[data-line]')) : [];
@@ -185,6 +226,19 @@ import { url } from '../../data/site';
     toggle.addEventListener('click', () => {
       if (video.paused) { video.play(); setPaused(false); } else { video.pause(); setPaused(true); }
     });
+
+    // Paint frames onto the see-through canvas while the video plays.
+    const draw = canvas ? makeKeyer(canvas, video) : null;
+    if (!draw) hero.classList.add('no-canvas');
+    let shown = false;
+    const paint = () => {
+      if (draw && !video.paused && draw()) {
+        if (!shown) { shown = true; canvas!.hidden = false; if (poster) poster.hidden = true; }
+      }
+      requestAnimationFrame(paint);
+    };
+    if (draw) requestAnimationFrame(paint);
+    else video.addEventListener('playing', () => { if (poster) poster.hidden = true; }, { once: true });
 
     if (reduce) {
       video.removeAttribute('autoplay');
