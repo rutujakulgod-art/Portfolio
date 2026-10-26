@@ -49,6 +49,10 @@
   --header-h: 72px;
 
   --ease-out: cubic-bezier(.16, 1, .3, 1);
+
+  /* Screen units that stay correct when wide screens scale the page (see BaseLayout) */
+  --vh: 1vh;
+  --vw: 1vw;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
