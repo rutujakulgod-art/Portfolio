@@ -1,72 +1,188 @@
 ---
+/**
+ * Selected Work: intro column on the left, bento of case-study cards on the right.
+ * The first case study is the tall card; the other two stack beside it.
+ */
 import Button from '../Button.astro';
 import { caseStudies, url } from '../../data/site';
 ---
 <section class="section wk" id="work" aria-labelledby="work-title">
-  <div class="wrap wk__wrap">
-    <h2 id="work-title" class="eyebrow">Selected Work</h2>
+  <div class="wrap wk__grid">
 
-    <ol class="wk__list">
+    <div class="wk__intro">
+      <p class="eyebrow">Selected Work</p>
+      <h2 id="work-title" class="wk__h2">Complex systems, made clear.</h2>
+      <p class="wk__lede">Enterprise SaaS, design systems and data products, designed end to end from research to handoff.</p>
+      <div class="wk__actions">
+        <Button href={url('about/#lets-talk')}>Get in touch</Button>
+        <a class="wk__ghost" href={url('about/')}>
+          About me
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 10 4M5 4h5v5" /></svg>
+        </a>
+      </div>
+      <p class="wk__note"><span aria-hidden="true"></span>Research led. Built to scale.</p>
+    </div>
+
+    <ol class="wk__bento">
       {caseStudies.map((c, i) => (
-        <li class="wk__card">
-          <div class="wk__text">
-            <div class="wk__copy">
-              <h3 class="wk__title">{c.title}</h3>
-              <p class="wk__summary">{c.summary}</p>
-            </div>
-            <Button href={url(`work/${c.slug}/`)} class="wk__cta" aria-label={`View case study: ${c.title}`}>View case study</Button>
-          </div>
-          <div class="wk__frame" aria-hidden="true">
-            <img
-              src={url(c.image)}
-              width={c.imageSize[0]}
-              height={c.imageSize[1]}
-              alt=""
-              loading={i === 0 ? 'eager' : 'lazy'}
-              decoding="async"
-            />
-          </div>
+        <li class:list={['wk__item', i === 0 && 'wk__item--tall']}>
+          <a class="wk__card" href={url(`work/${c.slug}/`)}>
+            <span class="wk__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="wk__title">{c.title}</h3>
+            <p class="wk__desc">{c.short}</p>
+            <span class="wk__arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 10 4M5 4h5v5" /></svg>
+            </span>
+            <span class="visually-hidden">View case study</span>
+            <img class="wk__art" src={url(c.art)} alt="" loading="lazy" decoding="async" />
+          </a>
         </li>
       ))}
     </ol>
+
   </div>
 </section>
 
 <style>
-  .wk__wrap { display: flex; flex-direction: column; align-items: center; }
-  .wk .eyebrow { text-align: center; }
-  .wk__list {
-    list-style: none;
-    width: 100%;
-    margin: clamp(28px, 3vw, 40px) 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(32px, 5vw, 72px);
+  .wk__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: clamp(32px, 4vw, 64px);
+    align-items: stretch;
   }
-  .wk__card {
+
+  /* Intro column */
+  .wk__intro {
+    position: relative;
     display: flex;
     flex-direction: column;
+    gap: 22px;
+    padding: 24px 0 8px;
+    min-width: 0;
+  }
+  .wk__h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(40px, 4vw, 58px);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .wk__lede {
+    margin: 0;
+    max-width: 380px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-muted);
+  }
+  .wk__actions { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .wk__ghost {
+    display: inline-flex;
     align-items: center;
-    gap: 27px;
-    padding: clamp(20px, 2vw, 28px) clamp(20px, 3vw, 40px) 0;
-    border-radius: clamp(16px, 2.1vw, 30px);
-    background: var(--surface-sand);
-    overflow: hidden;
+    gap: 10px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: var(--radius-button);
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color .2s ease, background-color .2s ease;
   }
-  .wk__text { display: flex; flex-direction: column; align-items: center; gap: 17px; max-width: 900px; text-align: center; }
-  .wk__copy { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .wk__title { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 2.3vw, 32px); line-height: 1.1; }
-  .wk__summary { margin: 0; max-width: 594px; font-size: clamp(15px, 1.15vw, 16px); line-height: 1.3; color: var(--ink-muted); }
-  .wk :global(.wk__cta) { height: 46px; padding: 5px 16px 5px 5px; gap: 10px; font-weight: 400; }
-  .wk__frame { width: min(870px, 100%); aspect-ratio: 870 / 412; overflow: hidden; flex-shrink: 0; }
-  .wk__frame img {
-    width: 100%;
+  .wk__ghost:hover { border-color: var(--line-dashed); background: var(--surface-sand); }
+  .wk__note {
+    margin: auto 0 0;
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .wk__note span { width: 6px; height: 6px; border-radius: 1px; background: var(--brand); }
+
+  /* Bento */
+  .wk__bento {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(clamp(300px, 26vw, 360px), auto));
+    gap: 16px;
+  }
+  .wk__item { min-width: 0; display: flex; }
+  .wk__item--tall { grid-row: span 2; }
+
+  .wk__card {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 28px 24px;
+    border-radius: var(--radius-card);
+    background: #FBFAF7;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    text-decoration: none;
+    overflow: hidden;
+    isolation: isolate;
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  .wk__card:hover { border-color: var(--line-strong); box-shadow: 0 10px 30px rgba(37, 31, 25, 0.06); }
+  .wk__card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .wk__num { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--brand); }
+  .wk__title {
+    margin: 14px 0 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(22px, 1.8vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .wk__desc { margin: 12px 0 0; max-width: 260px; font-size: 14px; line-height: 1.55; color: var(--ink-muted); }
+  .wk__arrow {
+    margin-top: 22px;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .35s var(--ease-out);
+  }
+  .wk__card:hover .wk__arrow { background: var(--brand-ink); border-color: var(--brand-ink); color: #fff; transform: rotate(45deg); }
+
+  /* Visual bleeds off the bottom-right corner */
+  .wk__art {
+    position: absolute;
+    z-index: -1;
+    right: -16%;
+    bottom: -16%;
+    width: 96%;
     height: auto;
-    aspect-ratio: 870 / 500;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: clamp(14px, 2.1vw, 30px);
-    box-shadow: 10px 6px 6px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    transition: transform .6s var(--ease-out);
+  }
+  .wk__item--tall .wk__art { right: -22%; bottom: -3%; width: 134%; }
+  .wk__card:hover .wk__art { transform: translateY(-8px); }
+
+  @media (max-width: 1000px) {
+    .wk__grid { grid-template-columns: minmax(0, 1fr); }
+    .wk__note { margin-top: 0; padding-top: 4px; }
+  }
+  @media (max-width: 640px) {
+    .wk__bento { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+    .wk__item--tall { grid-row: auto; }
+    .wk__card { min-height: 360px; }
+    .wk__item--tall .wk__card { min-height: 460px; }
+    .wk__item--tall .wk__art { width: 90%; right: -6%; }
   }
 </style>

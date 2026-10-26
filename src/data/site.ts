@@ -36,6 +36,8 @@ export const caseStudies = [
     accent: '#0A2C55',
     summary:
       'Led UX strategy for a complex B2B SaaS portal aligning business objectives with user centric solutions across enterprise and recruitment-tech platforms.',
+    short: 'One role-aware hiring platform replacing spreadsheets and inboxes for five roles.',
+    art: 'media/work-art-saas.svg',
     image: 'media/work-saas.webp',
     imageSize: [1587, 1090],
   },
@@ -46,6 +48,8 @@ export const caseStudies = [
     accent: '#1E3A7B',
     summary:
       'Architected the Figma design system and visual library for Singapore’s largest newsroom.',
+    short: 'A scalable, tokenised Figma library for Singapore’s largest newsroom.',
+    art: 'media/work-art-design-system.svg',
     image: 'media/work-design-system.webp',
     imageSize: [597, 317],
   },
@@ -56,6 +60,8 @@ export const caseStudies = [
     accent: '#0E5A63',
     summary:
       'A combined view of energy, ESG, water and public building performance for West Tower.',
+    short: 'Energy, ESG, water and public building performance in one clear view.',
+    art: 'media/work-art-sustainability.svg',
     image: 'media/work-sustainability.webp',
     imageSize: [1740, 979],
   },
