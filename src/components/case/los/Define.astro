@@ -6,6 +6,11 @@ const roles = [
   { tag: 'Underwriter', title: 'Assesses & approves', text: 'Needs full context on an application without re-entering data captured upstream.', icon: 'underwriter' },
   { tag: 'Admin', title: 'Configures the system', text: 'Needs to manage 49 master types without breaking dependencies elsewhere in the product.', icon: 'admin' },
 ];
+const lanes = [
+  { lane: 'Front office', steps: [{ t: 'New Lead' }, { t: 'Submit application', kind: 'act' }] },
+  { lane: 'Credit · Risk · Legal', steps: [{ t: 'Credit Check' }, { t: 'Risk Analysis' }, { t: 'Legal & Security Review' }, { t: 'Send to underwriting', kind: 'act' }] },
+  { lane: 'Underwriting · Approval · Ops', steps: [{ t: 'Underwriting' }, { t: 'Loan Assessment' }, { t: 'Approve', kind: 'act' }, { t: 'Additional Approval', note: 'if flagged by policy', kind: 'opt' }, { t: 'TC Verification' }, { t: 'Disburse', kind: 'act' }, { t: 'Kit Delivery & Post-Docs', note: 'if selected at disbursement', kind: 'opt' }, { t: 'Process complete', kind: 'done' }] },
+];
 ---
 <section aria-label="Define" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
   <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
@@ -81,6 +86,21 @@ const roles = [
           <path d="M1040,567 l7,7 l13,-14" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
+      <div class="jmob" aria-hidden="true">
+        {lanes.map((l) => (
+          <div class="jlane">
+            <span class="jlane__label">{l.lane}</span>
+            <ol class="jlane__steps">
+              {l.steps.map((st) => (
+                <li class:list={['jstep', st.kind && `jstep--${st.kind}`]}>
+                  <span>{st.t}</span>
+                  {st.note && <em>{st.note}</em>}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+      </div>
       <figcaption>Simplified for clarity: adjacent specialist reviews are grouped (e.g. Legal &amp; Security), and minor steps like Scrutiny, Additional Documentation, and Handoff aren’t drawn individually. All 17 stages are named in the SRS; this shape reflects how they group by responsible team.</figcaption>
     </figure>
 
@@ -125,9 +145,21 @@ const roles = [
 .flow__svg .opt{font-size:10.5px;fill:#8FD3D6;font-weight:600}
 .flow__svg .optsub{font-size:9px;fill:#5B9296}
 .flow figcaption{max-width:960px;font-size:14px;line-height:1.6;color:#68615A}
+.jmob{display:none;flex-direction:column;gap:14px;padding:20px;border-radius:var(--radius-card);background:#002329}
+.jlane{display:flex;flex-direction:column;gap:10px}
+.jlane + .jlane{padding-top:14px;border-top:1px dashed rgba(143,211,214,.3)}
+.jlane__label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#5B9296}
+.jlane__steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+.jstep{position:relative;box-sizing:border-box;padding:10px 12px;border-radius:10px;background:#0B3A41;border:1px solid #145159;color:#EAF4F4;font-size:14px;font-weight:600;display:flex;flex-direction:column;gap:2px}
+.jstep em{font-style:normal;font-weight:400;font-size:12px;color:#5B9296}
+.jstep--act{background:#006D75;border-color:#006D75;color:#FFFFFF;border-radius:999px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;align-self:flex-start;padding:9px 16px}
+.jstep--opt{background:transparent;border:1.5px dashed #006D75;color:#8FD3D6;margin-left:20px}
+.jstep--done{align-self:flex-start;background:#006D75;border:1.5px solid #8FD3D6;color:#FFFFFF;border-radius:999px;font-size:13px}
+.jstep:not(:last-child)::after{content:"";position:absolute;left:22px;bottom:-15px;width:2px;height:12px;background:#8FD3D6}
+.jstep--opt:not(:last-child)::after{border-left:2px dashed #8FD3D6;background:transparent;width:0}
 @media (max-width: 760px){
-  .flow__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .flow__svg{width:820px;max-width:none}
+  .flow__scroll{display:none}
+  .jmob{display:flex}
 }
 .roles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media (max-width: 900px){.roles{grid-template-columns:minmax(0,1fr)}}
