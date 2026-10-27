@@ -1,0 +1,12 @@
+---
+/** Eyebrow + heading + optional lead paragraph, shared by LOS sections. */
+interface Props { eyebrow: string; title: string; maxWidth?: string }
+const { eyebrow, title, maxWidth = '960px' } = Astro.props;
+---
+<div style="display: flex; flex-direction: column; gap: 18px;">
+  <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">{eyebrow}</span>
+  <h2 style={`margin: 0; max-width: ${maxWidth}; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;`}>{title}</h2>
+  {Astro.slots.has('default') && (
+    <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;"><slot /></p>
+  )}
+</div>

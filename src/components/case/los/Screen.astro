@@ -1,0 +1,22 @@
+---
+/** A product screen in a light browser frame. */
+import { m } from '../../../data/los-media';
+interface Props { src: string; alt: string; w: number; h: number; caption?: string; eager?: boolean }
+const { src, alt, w, h, caption, eager = false } = Astro.props;
+---
+<figure class="scr">
+  <div class="scr__frame">
+    <div class="scr__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+    <img src={m(src)} width={w} height={h} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async">
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+.scr{margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.scr__frame{border-radius:12px;overflow:hidden;background:#FFFFFF;border:1px solid #D3E7E8;box-shadow:0 18px 44px -20px rgba(0,35,41,.28)}
+.scr__bar{display:flex;gap:6px;padding:10px 14px;background:#F2F8F8;border-bottom:1px solid #D3E7E8}
+.scr__bar span{width:8px;height:8px;border-radius:50%;background:#B7D8DA}
+.scr img{display:block;width:100%;height:auto}
+.scr figcaption{font-size:14px;line-height:1.5;color:#68615A}
+</style>

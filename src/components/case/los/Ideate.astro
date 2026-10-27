@@ -1,0 +1,158 @@
+---
+import SectionHead from './SectionHead.astro';
+import Screen from './Screen.astro';
+
+const masterGroups = [
+  { label: 'Institution & Product', items: ['Institute / Bank', 'Branches', 'Loan Types', 'Loan Products', 'Channels'] },
+  { label: 'Financial Parameters', items: ['Credit Parameters', 'Risk Parameters', 'Assets / Incomes / Liabilities', 'Credit Rating Mapping'] },
+  { label: 'Documents & Collateral', items: ['Documents', 'Document Map', 'Collateral Types', 'Templates', '+ 30 more'] },
+];
+
+const resolutions = [
+  {
+    srs: '“Each master should have a view to display all values… search option… ADD+ option… view and update any existing value.”',
+    res: 'One shared list template (table, search, sort, add, edit) reused across all 49 masters instead of 49 bespoke screens.',
+  },
+  {
+    srs: '“The user should be able to save and exit the application process at any step and continue at a later time.”',
+    res: 'A persistent step indicator with an explicit Draft state, so leaving mid-form never feels like losing work.',
+    screen: { src: 'application-handoff', w: 1280, h: 875, alt: 'Handoff step of application #36: a stage rail on the left with completed steps ticked, a Pending status, and Save draft beside Save & next' },
+  },
+  {
+    srs: '“System should validate the [bulk upload] excel file and give an error if the file is not in the specified format.”',
+    res: 'Template download, then upload, then row-level validation feedback, before anything commits to the system.',
+  },
+];
+---
+<section aria-label="Ideate" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <SectionHead eyebrow="03 · Ideate" title="Three modules, three depths">I went deeper into requirements and edge cases for Leads, User Management, and Masters. For Loan Application, I focused on understanding and mapping the flow rather than owning the design.</SectionHead>
+
+    <!-- Lead Creation -->
+    <article class="mod" aria-label="Lead Creation">
+      <header class="mod__head">
+        <span class="mod__tag">Focus area 1</span>
+        <h3 class="mod__title">Lead Creation</h3>
+        <p class="mod__lead">The Leads module captures potential customers interested in taking a loan.</p>
+      </header>
+      <div class="pair">
+        <div class="pcard"><h4>SRS requirements</h4><p>Add new lead, tabular list with search, sort, and pagination, view and edit, create from a previous customer, fetch via UCIC (CBS), director and PAN checks, takeover loans with confidential uploads, bulk upload, in-principle sanction tags.</p></div>
+        <div class="pcard pcard--mine"><h4>What I worked on</h4><p>Lead capture flow with clear mandatory fields; a filterable list view with status indicators; a bulk upload flow (template, validation, errors); and edge cases like CBS integration and takeover loans.</p></div>
+      </div>
+      <Screen src="leads-list" w={1280} h={810} alt="Leads list with name, contact, email, loan product, assignee and a Hot, Warm or Cold priority tag; the row menu offers Edit Info, Convert and Delete" caption="Leads list: priority tags and row actions (edit, convert to application, delete)." />
+      <div class="duo">
+        <Screen src="lead-add-form" w={1280} h={856} alt="Add New Lead form split into Lead Details and Customer Details panels, with mandatory fields marked" caption="Add New Lead: lead details and customer details, mandatory fields marked." />
+        <Screen src="lead-existing-customer-lookup" w={1902} h={910} alt="Existing User Lookup dialog over the Add New Lead form, with a single customer search field" caption="Existing customer lookup: create a lead from a previous customer." />
+      </div>
+    </article>
+
+    <!-- User Management -->
+    <article class="mod" aria-label="User Management">
+      <header class="mod__head">
+        <span class="mod__tag">Focus area 2</span>
+        <h3 class="mod__title">User Management</h3>
+        <p class="mod__lead">Handles internal users, their roles, and permissions.</p>
+      </header>
+      <div class="pair">
+        <div class="pcard"><h4>SRS requirements</h4><p>Create users with designation, role, branch, and limits; transfer with approval workflow; terminate with soft delete; update, reset, and activate; dashboard with filters and export; bulk upload; self-registration; CBS sync; MFA and session policies; role-based authorization.</p></div>
+        <div class="pcard pcard--mine"><h4>What I worked on</h4><p>Creation and update flows with logical grouping; a user dashboard (filters, sort, export); a bulk upload flow; role and permission concepts; and security states: MFA, session timeout, password reset, account lock.</p></div>
+      </div>
+      <div class="duo">
+        <Screen src="users-employees-list" w={1912} h={900} alt="Employees list with sort, filters, CSV import, export and New Employee actions; personal details are blurred" caption="User dashboard: sort, filters, import and export in one toolbar." />
+        <Screen src="users-permissions-matrix" w={1906} h={866} alt="Review Permissions for the Super Admin role: a grid of features such as Users, Masters and Leads against actions such as create, read, update, delete, reassign and transfer" caption="Permissions reviewed as a feature-by-action grid before saving a role." />
+      </div>
+    </article>
+
+    <!-- Masters -->
+    <article class="mod" aria-label="Masters">
+      <header class="mod__head">
+        <span class="mod__tag">Focus area 3</span>
+        <h3 class="mod__title">Masters</h3>
+        <p class="mod__lead">The SRS defines 49 different master types. Each shapes how the rest of the loan process behaves.</p>
+      </header>
+      <div class="groups">
+        {masterGroups.map((g) => (
+          <div class="group">
+            <span class="group__label">{g.label}</span>
+            <ul class="pills">
+              {g.items.map((t) => <li class:list={[t.startsWith('+') && 'pill--more']}>{t}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="mod__lead">Focused on a consistent list pattern across all masters, clear add/edit forms, visible permissions, and dependency awareness (e.g. product → document map → application fields).</p>
+      <Screen src="masters-roles-list" w={1918} h={906} alt="Roles & Entitlements master: a searchable list of all masters on the left and a table of roles with sort, filter, import, export and New on the right" caption="Every master opens in the same shell: searchable master list on the left, one table template on the right." />
+      <div class="duo">
+        <Screen src="masters-templates-list" w={1908} h={894} alt="Templates master showing email, SMS and letter templates in the same table layout" caption="Same template, different master: Templates." />
+        <Screen src="masters-roles-add-state" w={1914} h={900} alt="Roles & Entitlements in add mode: the page dims and each row shows a plus button, with the hint 'Click the + to add a role below'" caption="Add mode: insert a role at a specific rank." />
+      </div>
+    </article>
+
+    <!-- Requirement → Resolution -->
+    <article class="mod" aria-label="Requirement to resolution">
+      <header class="mod__head">
+        <h3 class="mod__title">Requirement → Resolution</h3>
+        <p class="mod__lead">There’s no prior app being redesigned here: the “before” is the raw specification text, and the “after” is the pattern it became.</p>
+      </header>
+      <ol class="rr">
+        {resolutions.map((r) => (
+          <li class="rr__item">
+            <div class="rr__row">
+              <div class="rr__srs">
+                <span class="rr__tag">SRS, as written</span>
+                <p>{r.srs}</p>
+              </div>
+              <span class="rr__arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              <div class="rr__res">
+                <span class="rr__tag rr__tag--res">Resolution</span>
+                <p>{r.res}</p>
+              </div>
+            </div>
+            {r.screen && <div class="rr__screen"><Screen src={r.screen.src} w={r.screen.w} h={r.screen.h} alt={r.screen.alt} /></div>}
+          </li>
+        ))}
+      </ol>
+    </article>
+
+  </div>
+</section>
+
+<style>
+.mod{display:flex;flex-direction:column;gap:clamp(20px,2.6vw,28px);padding-top:clamp(40px,5vw,64px);border-top:1px solid #EBE8E4}
+.mod__head{display:flex;flex-direction:column;gap:10px}
+.mod__tag{align-self:flex-start;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:#EAF4F4;border:1px solid #D3E7E8;padding:5px 12px;border-radius:999px}
+.mod__title{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(26px,2.6vw,34px);line-height:1.15;letter-spacing:-0.02em;color:#251F19}
+.mod__lead{margin:0;max-width:860px;font-size:16px;line-height:1.65;color:#68615A}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px);align-items:start}
+@media (max-width: 900px){.pair,.duo{grid-template-columns:minmax(0,1fr)}}
+.pcard{box-sizing:border-box;padding:clamp(20px,2.4vw,28px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column;gap:8px}
+.pcard h4{margin:0;font-family:var(--font-display);font-size:17px;font-weight:600;color:#251F19}
+.pcard p{margin:0;font-size:15px;line-height:1.6;color:#4F4740}
+.pcard--mine{background:#EAF4F4;border-color:#D3E7E8;border-left:4px solid var(--accent)}
+.pcard--mine h4{color:#002329}
+.groups{display:flex;flex-direction:column;gap:14px}
+.group{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width: 760px){.group{grid-template-columns:minmax(0,1fr);gap:8px}}
+.group__label{padding-top:7px;font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#4C6367}
+.pills{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.pills li{padding:7px 14px;border-radius:999px;background:#FFFFFF;border:1px solid #D3E7E8;font-size:14px;color:#002329}
+.pills .pill--more{background:var(--accent);border-color:var(--accent);color:#FFFFFF}
+.rr{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.rr__item{display:flex;flex-direction:column;gap:16px}
+.rr__row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:16px;align-items:stretch}
+.rr__srs,.rr__res{box-sizing:border-box;padding:clamp(20px,2.4vw,28px);border-radius:var(--radius-card);display:flex;flex-direction:column;gap:12px}
+.rr__srs{background:#FFFFFF;border:1.5px dashed #C2BAB1}
+.rr__srs p{margin:0;font-size:16px;line-height:1.6;font-style:italic;color:#4F4740}
+.rr__res{background:#002329}
+.rr__res p{margin:0;font-size:16px;line-height:1.6;color:#EAF4F4}
+.rr__tag{align-self:flex-start;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:#EEEDE6;color:#68615A}
+.rr__tag--res{background:rgba(143,211,214,.14);color:#8FD3D6}
+.rr__arrow{align-self:center;width:40px;height:40px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent);background:#FFFFFF;display:flex;align-items:center;justify-content:center}
+.rr__screen{max-width:960px}
+@media (max-width: 900px){
+  .rr__row{grid-template-columns:minmax(0,1fr)}
+  .rr__arrow{justify-self:center;transform:rotate(90deg)}
+}
+</style>
