@@ -1,0 +1,107 @@
+---
+/** Loan application stages as a snake flow (desktop SVG) or a vertical list (mobile). */
+
+// Stage flow, laid out as a snake like the whiteboard sketch (viewBox 1200 x 600).
+const W = 200;
+const nodes = [
+  { n: 1,  x: 20,  y: 30,  h: 96, t: 'Application details', sub: ['Personal · Finance · Loan ·', 'Collateral & guarantor · Valuator'] },
+  { n: 2,  x: 255, y: 30,  h: 96, t: 'Follow-up' },
+  { n: 3,  x: 490, y: 30,  h: 96, t: 'Enrichment' },
+  { n: 4,  x: 725, y: 30,  h: 96, t: 'Ratio analysis' },
+  { n: 5,  x: 960, y: 30,  h: 96, t: 'Evaluation', sub: ['Credit · Legal · Risk ·', 'Security valuation · Scrutiny'] },
+  { n: 6,  x: 960, y: 190, h: 60, t: 'Underwriting / consortium' },
+  { n: 7,  x: 725, y: 190, h: 60, t: 'Additional info' },
+  { n: 8,  x: 490, y: 190, h: 60, t: 'Loan assessment' },
+  { n: 9,  x: 255, y: 190, h: 60, t: 'Loan approval' },
+  { n: 10, x: 20,  y: 330, h: 60, t: 'Additional approval', cond: true },
+  { n: 11, x: 255, y: 330, h: 60, t: 'Handoff' },
+  { n: 12, x: 490, y: 330, h: 60, t: 'Customer agreement' },
+  { n: 13, x: 725, y: 330, h: 60, t: 'Pre-disbursement T&C' },
+  { n: 14, x: 960, y: 330, h: 60, t: 'Disbursement' },
+  { n: 15, x: 960, y: 470, h: 60, t: 'Post-disbursement T&C' },
+  { n: 16, x: 725, y: 470, h: 60, t: 'Kit delivery', cond: true },
+  { n: 17, x: 490, y: 470, h: 60, t: 'Post-disbursement docs' },
+];
+const solid = [
+  'M220,78 H251', 'M455,78 H486', 'M690,78 H721', 'M925,78 H956',
+  'M1060,126 V186',
+  'M960,220 H929', 'M725,220 H694', 'M490,220 H459',
+  'M355,250 V326',
+  'M220,360 H251', 'M455,360 H486', 'M690,360 H721', 'M925,360 H956',
+  'M1060,390 V466',
+  'M725,500 H694',
+  'M490,500 H466',
+];
+const dashed = ['M255,220 H120 V326', 'M960,500 H929'];
+const bypass = 'M1060,530 V572 H590 V534';
+---
+    <figure class="flow" aria-label="Loan application stages as a flow">
+  <figcaption class="flow__head">
+    <span class="flow__title"><b>The application journey, stage by stage</b><span>Redrawn from my whiteboard sketch, with names checked against the SRS.</span></span>
+    <span class="flow__legend"><i class="lg lg--solid"></i>Next stage <i class="lg lg--dash"></i>Only if checked</span>
+  </figcaption>
+
+  <svg class="flow__desk" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seventeen stages in order: application details, follow-up, enrichment, ratio analysis, evaluation, underwriting or consortium, additional info, loan assessment, loan approval, additional approval if checked, handoff, customer agreement, pre-disbursement T and C, disbursement, post-disbursement T and C, kit delivery if checked, post-disbursement documents.">
+    <defs>
+      <marker id="la-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#006D75"/></marker>
+    </defs>
+    {solid.map((d) => <path d={d} fill="none" stroke="#006D75" stroke-width="2" marker-end="url(#la-arrow)"/>)}
+    {dashed.map((d) => <path d={d} fill="none" stroke="#006D75" stroke-width="2" stroke-dasharray="6,5" marker-end="url(#la-arrow)"/>)}
+    <path d={bypass} fill="none" stroke="#8FB9BC" stroke-width="1.6" marker-end="url(#la-arrow)"/>
+    <text x="150" y="210" class="cond-lbl">if checked</text>
+    <text x="942" y="458" text-anchor="middle" class="cond-lbl">if checked</text>
+
+    {nodes.map((o) => (
+      <g>
+        <rect x={o.x} y={o.y} width={W} height={o.h} rx="12" class:list={['node', o.cond && 'node--cond']}/>
+        <text x={o.x + 16} y={o.y + 24} class="num">{String(o.n).padStart(2, '0')}</text>
+        <text x={o.x + 16} y={o.y + 46} class="lbl">{o.t}</text>
+        {o.sub && o.sub.map((s, i) => <text x={o.x + 16} y={o.y + 68 + i * 16} class="sub">{s}</text>)}
+      </g>
+    ))}
+    <circle cx="442" cy="500" r="22" fill="#006D75"/>
+    <path d="M432,500 l7,7 l13,-14" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <ol class="flow__mob" aria-hidden="true">
+    {nodes.map((o) => (
+      <li class:list={['mstage', o.cond && 'mstage--cond']}>
+        <span class="mstage__no">{String(o.n).padStart(2, '0')}</span>
+        <span class="mstage__t">{o.t}{o.cond && <em> (if checked)</em>}</span>
+        {o.sub && <span class="mstage__sub">{o.sub.join(' ')}</span>}
+      </li>
+    ))}
+  </ol>
+</figure>
+
+<style>
+.flow{margin:0;box-sizing:border-box;padding:clamp(20px,3vw,36px);border-radius:var(--radius-card);background:#EAF4F4;border:1px solid #D3E7E8;display:flex;flex-direction:column;gap:20px}
+.flow__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 24px}
+.flow__head b{font-family:var(--font-display);font-size:17px;font-weight:600;color:#002329}
+.flow__legend{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#4C6367}
+.lg{display:inline-block;width:24px;border-top:2px solid #006D75}
+.lg--dash{border-top-style:dashed;margin-left:12px}
+.flow__desk{display:block;width:100%;height:auto}
+.flow__desk text{font-family:var(--font-text)}
+.flow__desk .node{fill:#FFFFFF;stroke:#B7D8DA;stroke-width:1.2}
+.flow__desk .node--cond{fill:transparent;stroke:#006D75;stroke-width:1.6;stroke-dasharray:6 5}
+.flow__desk .num{font-family:var(--font-display);font-size:12px;font-weight:600;fill:#006D75}
+.flow__desk .lbl{font-size:14.5px;font-weight:600;fill:#002329}
+.flow__desk .sub{font-size:12.5px;fill:#4C6367}
+.flow__desk .cond-lbl{font-size:12.5px;font-style:italic;fill:#006D75}
+.flow__mob{display:none;list-style:none;margin:0;padding:0;flex-direction:column;gap:22px}
+.mstage{position:relative;box-sizing:border-box;padding:12px 14px;border-radius:10px;background:#FFFFFF;border:1px solid #B7D8DA;display:flex;flex-direction:column;gap:2px}
+.mstage:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-19px;width:2px;height:12px;background:#006D75}
+.mstage:not(:last-child)::before{content:"";position:absolute;left:calc(50% - 4px);bottom:-21px;border:5px solid transparent;border-top-color:#006D75;border-bottom:0}
+.mstage--cond{background:transparent;border:1.5px dashed #006D75}
+.mstage__no{font-family:var(--font-display);font-size:12px;font-weight:600;color:#006D75}
+.mstage__t{font-size:15px;font-weight:600;color:#002329}
+.mstage__t em{font-style:italic;font-weight:400;color:#006D75}
+.mstage__sub{font-size:13px;color:#4C6367}
+@media (max-width: 760px){
+  .flow__desk{display:none}
+  .flow__mob{display:flex}
+}
+.flow__title{display:flex;flex-direction:column;gap:4px}
+.flow__title span{font-size:14px;color:#4C6367}
+</style>

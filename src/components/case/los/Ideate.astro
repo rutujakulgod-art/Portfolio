@@ -1,6 +1,8 @@
 ---
 import SectionHead from './SectionHead.astro';
 import Steps from './Steps.astro';
+import Screen from './Screen.astro';
+import StageFlow from './StageFlow.astro';
 import { m } from '../../../data/los-media';
 
 const hotspots = [
@@ -101,6 +103,26 @@ const masterGroups = [
       </ul>
     </article>
 
+    <!-- Loan Application -->
+    <article class="mod" id="los-application" aria-label="Loan Application">
+      <header class="mod__head">
+        <span class="mod__tag">Focus area 4 · Involvement</span>
+        <h3 class="mod__title">Loan Application</h3>
+        <p class="mod__lead">My involvement, not ownership. The core of the LOS: a 17-stage journey from application entry to post-disbursement documents.</p>
+      </header>
+      <aside class="disclose" aria-label="Scope disclosure">
+          <span class="disclose__tag">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h0M11 12h1v5h1"/></svg>
+            Scope disclosure
+          </span>
+          <p>I didn’t own this design. I mapped the flow from the SRS, noted which fields were mandatory, conditional, or auto-populated, and joined discussions on structuring steps. That analysis shaped my work on Leads, Users, and Masters.</p>
+        </aside>
+      <StageFlow />
+      <div class="la-screen">
+        <Screen src="application-personal-details" w={1280} h={1200} alt="Application #36, Personal Details step: a stage rail on the left lists every step from Application Details to Post Disbursement Documents, with grouped form sections on the right and Save draft beside Save & next" caption="The journey in the product: a stage rail on every application step, with Save draft." />
+      </div>
+    </article>
+
 
   </div>
 </section>
@@ -146,4 +168,8 @@ const masterGroups = [
   .hs{width:22px;height:22px;font-size:12px;box-shadow:0 0 0 3px rgba(0,109,117,.22)}
   .mini{grid-template-columns:minmax(0,1fr)}
 }
+.la-screen :global(img){aspect-ratio:1280/760;object-fit:cover;object-position:left top}
+.disclose{max-width:860px;box-sizing:border-box;padding:clamp(20px,2.4vw,28px);border-radius:var(--radius-card);background:#FFFFFF;border:1.5px dashed #C2BAB1;display:flex;flex-direction:column;gap:12px}
+.disclose__tag{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#68615A;background:#EEEDE6;padding:5px 12px;border-radius:999px}
+.disclose p{margin:0;font-size:16px;line-height:1.65;color:#3B342D}
 </style>
