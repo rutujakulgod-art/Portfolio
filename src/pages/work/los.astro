@@ -1,0 +1,42 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import Main from '../../components/case/los/Main.astro';
+import Overview from '../../components/case/los/Overview.astro';
+import Problem from '../../components/case/los/Problem.astro';
+import Role from '../../components/case/los/Role.astro';
+import OldNew from '../../components/case/los/OldNew.astro';
+import Process from '../../components/case/los/Process.astro';
+import Discover from '../../components/case/los/Discover.astro';
+import Define from '../../components/case/los/Define.astro';
+import Ideate from '../../components/case/los/Ideate.astro';
+import Resolution from '../../components/case/los/Resolution.astro';
+import Design from '../../components/case/los/Design.astro';
+import Focus from '../../components/case/los/Focus.astro';
+import Learned from '../../components/case/los/Learned.astro';
+import Reflection from '../../components/case/los/Reflection.astro';
+import { caseStudies } from '../../data/site';
+
+const study = caseStudies.find((c) => c.slug === 'los')!;
+---
+<CaseStudyLayout
+  title="Loan Origination System"
+  description="From fragmented spec to structured system: a Loan Origination System UX case study covering Leads, User Management and Masters."
+  accent={study.accent}
+>
+  <div class="cs" style="--accent-hover: #00535A">
+    <Main />
+    <Overview />
+    <Problem />
+    <Role />
+    <OldNew />
+    <Process />
+    <Discover />
+    <Define />
+    <Ideate />
+    <Resolution />
+    <Design />
+    <Focus />
+    <Learned />
+    <Reflection />
+  </div>
+</CaseStudyLayout>

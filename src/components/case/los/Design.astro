@@ -1,0 +1,56 @@
+---
+import SectionHead from './SectionHead.astro';
+import Screen from './Screen.astro';
+import { m } from '../../../data/los-media';
+
+const phones = [
+  { src: 'lead-mobile-type', alt: 'Mobile step: choose a loan type such as Personal, Vehicle or Housing loan' },
+  { src: 'lead-mobile-amount', alt: 'Mobile step: enter the loan amount with a field and a slider' },
+  { src: 'lead-mobile-personal', alt: 'Mobile step: personal details form with PAN, name, date of birth and contact number' },
+];
+---
+<section aria-label="Design" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <SectionHead eyebrow="04 · Design" title="Final screens">Laptop as the primary surface, mobile for the customer self-registration entry point.</SectionHead>
+
+
+
+    <figure class="final">
+      <figcaption class="final__cap"><b>Applications</b><span>Status and step tracking for every loan in flight</span></figcaption>
+      <Screen src="applications-list" w={1280} h={812} alt="Applications table with application number, customer, branch, loan product, assignee, step progress such as 11 of 25 and a Processing, Completed or Rejected status" />
+    </figure>
+
+    <div class="final-row">
+      <figure class="final">
+        <figcaption class="final__cap"><b>Approval and handoff</b><span>Deviation override, sign-off</span></figcaption>
+        <div class="crop">
+          <Screen src="application-loan-approval" w={1280} h={1382} alt="Loan Approval step: requested versus sanctioned amount, a Need Additional Approval checkbox, E-sign with NSDL, pre and post terms and conditions, and an EMI repayment schedule" />
+        </div>
+      </figure>
+
+      <figure class="final">
+        <figcaption class="final__cap"><b>Lead capture, mobile</b><span>Self-registration entry</span></figcaption>
+        <ul class="phones">
+          {phones.map((p) => (
+            <li class="phone"><img src={m(p.src)} width="360" height="800" alt={p.alt} loading="lazy" decoding="async"></li>
+          ))}
+        </ul>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.final{margin:0;display:flex;flex-direction:column;gap:14px;min-width:0}
+.final__cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.final__cap b{font-family:var(--font-display);font-size:17px;font-weight:600;color:#251F19}
+.final__cap span{font-size:14px;color:#68615A}
+.final-row{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(16px,2.4vw,32px);align-items:stretch}
+@media (max-width: 900px){.final-row{grid-template-columns:minmax(0,1fr)}}
+.crop :global(img){aspect-ratio:1280/960;object-fit:cover;object-position:left top}
+.phones{list-style:none;margin:0;flex:1;box-sizing:border-box;padding:clamp(20px,2.6vw,32px);border-radius:var(--radius-card);background:linear-gradient(160deg,#EAF4F4 0%,#D3E7E8 100%);border:1px solid #D3E7E8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,16px);align-items:center}
+.phone{box-sizing:border-box;padding:5px;border-radius:22px;background:#0D2530;box-shadow:0 18px 36px -18px rgba(0,35,41,.45)}
+.phone img{display:block;width:100%;height:auto;border-radius:17px}
+</style>

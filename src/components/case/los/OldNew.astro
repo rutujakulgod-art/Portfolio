@@ -1,0 +1,57 @@
+---
+---
+<section aria-label="Old versus new" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">Old vs. new</span>
+      <h2 style="margin: 0; max-width: 960px; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Understanding the old system vs. the new LOS</h2>
+      <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">This contrast helped frame my design decisions around reducing friction, adding structure, and making the system configurable.</p>
+    </div>
+
+    <div class="ba">
+      <article class="ba__col ba__col--old">
+        <span class="ba__tag">Old system</span>
+        <p>Only had a loan application process: very long, with no structured lead creation, basic or ad-hoc user management, and almost no configuration. Most changes needed developer intervention. Poor visibility into status, progress, and workload.</p>
+      </article>
+
+      <span class="ba__arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+
+      <article class="ba__col ba__col--new">
+        <span class="ba__tag">New LOS</span>
+        <ul>
+          <li>End-to-end workflow from lead to disbursement</li>
+          <li>A dedicated Leads module</li>
+          <li>Robust user management: roles, permissions, MFA, session management, activity logs</li>
+          <li>A Masters module with 49 configurable types</li>
+          <li>A structured application process with save-and-resume and status tracking</li>
+          <li>Dashboards for operational visibility</li>
+        </ul>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.ba{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.2fr);gap:16px;align-items:stretch}
+.ba__col{box-sizing:border-box;padding:clamp(24px,3vw,40px);border-radius:var(--radius-card);display:flex;flex-direction:column;gap:18px}
+.ba__col p{margin:0;font-size:16px;line-height:1.7}
+.ba__col--old{background:#FFFFFF;border:1.5px dashed #C2BAB1;color:#4F4740}
+.ba__col--new{background:#EAF4F4;border:1px solid #D3E7E8;border-left:4px solid var(--accent);color:#002329}
+.ba__tag{align-self:flex-start;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.ba__col--old .ba__tag{background:#EEEDE6;color:#68615A}
+.ba__col--new .ba__tag{background:var(--accent);color:#FFFFFF}
+.ba__col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.ba__col li{position:relative;padding:11px 0 11px 28px;border-top:1px solid #D3E7E8;font-size:16px;line-height:1.55}
+.ba__col li:first-child{border-top:0;padding-top:0}
+.ba__col li::before{content:"";position:absolute;left:2px;top:15px;width:14px;height:8px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+.ba__col li:first-child::before{top:4px}
+.ba__arrow{align-self:center;width:44px;height:44px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent);background:#FFFFFF;display:flex;align-items:center;justify-content:center}
+@media (max-width: 900px){
+  .ba{grid-template-columns:minmax(0,1fr)}
+  .ba__arrow{justify-self:center;transform:rotate(90deg)}
+}
+</style>

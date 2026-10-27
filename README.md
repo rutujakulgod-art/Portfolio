@@ -61,7 +61,7 @@ The only things that change per page are:
 3. The slug and accent must match the entry in `src/data/site.ts`, which drives the home cards and footer links.
 
 Accent rules: white text must reach 4.5:1 on it, and it must not be orange, amber or gold.
-Current accents: Recruitment SaaS `#0A2C55`, Figma Design System `#1E3A7B`, Sustainability Intelligence `#0E5A63`.
+Current accents: Recruitment SaaS `#0A2C55`, Figma Design System `#1E3A7B`, Loan Origination System `#006D75`.
 
 ## Accessibility notes
 

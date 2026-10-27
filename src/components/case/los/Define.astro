@@ -1,0 +1,171 @@
+---
+import SectionHead from './SectionHead.astro';
+
+const roles = [
+  { tag: 'Loan Officer', title: 'Captures leads & applications', text: 'Needs a fast capture form and clear status on every application they’re driving forward.', icon: 'officer' },
+  { tag: 'Underwriter', title: 'Assesses & approves', text: 'Needs full context on an application without re-entering data captured upstream.', icon: 'underwriter' },
+  { tag: 'Admin', title: 'Configures the system', text: 'Needs to manage 49 master types without breaking dependencies elsewhere in the product.', icon: 'admin' },
+];
+const lanes = [
+  { lane: 'Front office', steps: [{ t: 'New Lead' }, { t: 'Submit application', kind: 'act' }] },
+  { lane: 'Credit · Risk · Legal', steps: [{ t: 'Credit Check' }, { t: 'Risk Analysis' }, { t: 'Legal & Security Review' }, { t: 'Send to underwriting', kind: 'act' }] },
+  { lane: 'Underwriting · Approval · Ops', steps: [{ t: 'Underwriting' }, { t: 'Loan Assessment' }, { t: 'Approve', kind: 'act' }, { t: 'Additional Approval', note: 'if flagged by policy', kind: 'opt' }, { t: 'TC Verification' }, { t: 'Disburse', kind: 'act' }, { t: 'Kit Delivery & Post-Docs', note: 'if selected at disbursement', kind: 'opt' }, { t: 'Process complete', kind: 'done' }] },
+];
+---
+<section aria-label="Define" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <SectionHead eyebrow="02 · Define" title="Mapping the journey and the people in it">From the SRS, the LOS is a chain of connected modules. I mapped this into a simple journey to see where users spend the most time and where things go wrong.</SectionHead>
+
+    <figure class="flow">
+      <ul class="legend" aria-label="Legend">
+        <li><i class="sw"></i>Direct step</li>
+        <li><i class="sw sw--dash"></i>Handoff / conditional</li>
+        <li><i class="sw sw--pill"></i>Action taken</li>
+        <li><i class="sw sw--dot"></i>Process complete</li>
+      </ul>
+      <div class="flow__scroll">
+        <svg class="flow__svg" viewBox="0 0 1300 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Swimlane diagram of the loan journey from lead to disbursement, staged across Front Office, Credit, Risk and Legal, and Underwriting, Approval and Ops.">
+          <defs>
+            <pattern id="los-dotgrid" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#0f4a52"/></pattern>
+            <marker id="los-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#8FD3D6"/></marker>
+          </defs>
+          <rect x="0" y="0" width="1300" height="700" rx="24" fill="#002329"/>
+          <rect x="0" y="0" width="1300" height="700" rx="24" fill="url(#los-dotgrid)"/>
+
+          <text x="285" y="115" text-anchor="middle" class="lane">LEAD &amp; APPLICATION</text>
+          <text x="30" y="162" transform="rotate(-90 30,162)" text-anchor="middle" class="side">FRONT OFFICE</text>
+          <rect x="90" y="140" width="150" height="44" rx="10" fill="#0B3A41" stroke="#145159" stroke-width="1.2"/>
+          <text x="165" y="167" text-anchor="middle" class="node">New Lead</text>
+          <path d="M240,162 H285" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <rect x="285" y="138" width="190" height="44" rx="22" fill="#006D75"/>
+          <text x="380" y="165" text-anchor="middle" class="act">SUBMIT APPLICATION</text>
+          <path d="M380,182 V280 H420" fill="none" stroke="#8FD3D6" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#los-arrow)"/>
+
+          <text x="815" y="245" text-anchor="middle" class="lane">CREDIT, RISK &amp; LEGAL REVIEW</text>
+          <text x="30" y="292" transform="rotate(-90 30,292)" text-anchor="middle" class="side">CREDIT · RISK · LEGAL</text>
+          <rect x="420" y="270" width="130" height="44" rx="10" fill="#0B3A41" stroke="#145159" stroke-width="1.2"/>
+          <text x="485" y="297" text-anchor="middle" class="node">Credit Check</text>
+          <path d="M550,292 H590" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <rect x="590" y="270" width="130" height="44" rx="10" fill="#0B3A41" stroke="#145159" stroke-width="1.2"/>
+          <text x="655" y="297" text-anchor="middle" class="node">Risk Analysis</text>
+          <path d="M720,292 H760" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <rect x="760" y="270" width="190" height="44" rx="10" fill="#0B3A41" stroke="#145159" stroke-width="1.2"/>
+          <text x="855" y="297" text-anchor="middle" class="node">Legal &amp; Security Review</text>
+          <path d="M950,292 H990" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <rect x="990" y="268" width="220" height="44" rx="22" fill="#006D75"/>
+          <text x="1100" y="295" text-anchor="middle" class="act">SEND TO UNDERWRITING</text>
+          <path d="M1100,312 V475 H90 V520" fill="none" stroke="#8FD3D6" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#los-arrow)"/>
+
+          <text x="580" y="520" text-anchor="middle" class="lane">UNDERWRITING, APPROVAL &amp; DISBURSEMENT</text>
+          <text x="30" y="567" transform="rotate(-90 30,567)" text-anchor="middle" class="side">UNDERWRITING · APPROVAL · OPS</text>
+          <rect x="90" y="545" width="150" height="44" rx="10" fill="#0B3A41" stroke="#145159" stroke-width="1.2"/>
+          <text x="165" y="572" text-anchor="middle" class="node">Underwriting</text>
+          <path d="M240,567 H280" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <rect x="280" y="545" width="160" height="44" rx="10" fill="#0B3A41" stroke="#145159" stroke-width="1.2"/>
+          <text x="360" y="572" text-anchor="middle" class="node">Loan Assessment</text>
+          <path d="M440,567 H480" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <rect x="480" y="543" width="130" height="44" rx="22" fill="#006D75"/>
+          <text x="545" y="570" text-anchor="middle" class="act">APPROVE</text>
+          <path d="M545,587 V615" fill="none" stroke="#8FD3D6" stroke-width="1.6" stroke-dasharray="4,4" marker-end="url(#los-arrow)"/>
+          <rect x="465" y="618" width="170" height="42" rx="10" fill="none" stroke="#006D75" stroke-width="1.6" stroke-dasharray="4,4"/>
+          <text x="550" y="635" text-anchor="middle" class="opt">Additional Approval</text>
+          <text x="550" y="650" text-anchor="middle" class="optsub">if flagged by policy</text>
+          <path d="M610,567 H650" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <rect x="650" y="545" width="150" height="44" rx="10" fill="#0B3A41" stroke="#145159" stroke-width="1.2"/>
+          <text x="725" y="572" text-anchor="middle" class="node">TC Verification</text>
+          <path d="M800,567 H840" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <rect x="840" y="543" width="130" height="44" rx="22" fill="#006D75"/>
+          <text x="905" y="570" text-anchor="middle" class="act">DISBURSE</text>
+          <path d="M905,587 V615" fill="none" stroke="#8FD3D6" stroke-width="1.6" stroke-dasharray="4,4" marker-end="url(#los-arrow)"/>
+          <rect x="800" y="618" width="210" height="42" rx="10" fill="none" stroke="#006D75" stroke-width="1.6" stroke-dasharray="4,4"/>
+          <text x="905" y="635" text-anchor="middle" class="opt">Kit Delivery &amp; Post-Docs</text>
+          <text x="905" y="650" text-anchor="middle" class="optsub">if selected at disbursement</text>
+          <path d="M970,567 H1010" stroke="#8FD3D6" stroke-width="2" marker-end="url(#los-arrow)"/>
+          <circle cx="1050" cy="567" r="24" fill="#006D75" stroke="#8FD3D6" stroke-width="1.5"/>
+          <path d="M1040,567 l7,7 l13,-14" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="jmob" aria-hidden="true">
+        {lanes.map((l) => (
+          <div class="jlane">
+            <span class="jlane__label">{l.lane}</span>
+            <ol class="jlane__steps">
+              {l.steps.map((st) => (
+                <li class:list={['jstep', st.kind && `jstep--${st.kind}`]}>
+                  <span>{st.t}</span>
+                  {st.note && <em>{st.note}</em>}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+      </div>
+      <figcaption>Simplified for clarity: adjacent specialist reviews are grouped (e.g. Legal &amp; Security), and minor steps like Scrutiny, Additional Documentation, and Handoff aren’t drawn individually. All 17 stages are named in the SRS; this shape reflects how they group by responsible team.</figcaption>
+    </figure>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: clamp(8px, 2vw, 24px);">
+      <h3 style="margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #251F19;">Role profiles</h3>
+      <p style="margin: 0; max-width: 860px; font-size: 16px; line-height: 1.65; color: #68615A;">Lightweight profiles built from the SRS’s stated roles and responsibilities, <strong style="font-weight: 600; color: #251F19;">not derived from primary user research or interviews</strong>, which this project didn’t include.</p>
+    </div>
+
+    <ul class="roles">
+      {roles.map((r) => (
+        <li class="role">
+          <span class="role__icon" aria-hidden="true">
+            {r.icon === 'officer' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20.5c.9-3.8 3.7-5.8 7-5.8s6.1 2 7 5.8"/><path d="M12 14.7v3.3"/></svg>}
+            {r.icon === 'underwriter' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14.5l2 2 4-4.5"/></svg>}
+            {r.icon === 'admin' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>}
+          </span>
+          <span class="role__tag">{r.tag}</span>
+          <h4 class="role__title">{r.title}</h4>
+          <p class="role__text">{r.text}</p>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+.flow{margin:0;display:flex;flex-direction:column;gap:16px}
+.legend{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:14px;color:#4C6367}
+.legend li{display:inline-flex;align-items:center;gap:8px}
+.sw{display:inline-block;width:26px;height:0;border-top:2px solid #006D75}
+.sw--dash{border-top-style:dashed}
+.sw--pill{width:26px;height:12px;border:0;border-radius:999px;background:#006D75}
+.sw--dot{width:12px;height:12px;border:0;border-radius:999px;background:#006D75;box-shadow:0 0 0 2px #8FD3D6}
+.flow__scroll{border-radius:var(--radius-card);overflow:hidden}
+.flow__svg{display:block;width:100%;height:auto}
+.flow__svg text{font-family:var(--font-text)}
+.flow__svg .lane{font-size:11px;letter-spacing:2px;fill:#5B9296;font-weight:600}
+.flow__svg .side{font-size:10.5px;letter-spacing:1.5px;fill:#5B9296;font-weight:600}
+.flow__svg .node{font-size:12px;fill:#EAF4F4;font-weight:600}
+.flow__svg .act{font-size:10.5px;letter-spacing:1px;fill:#FFFFFF;font-weight:700}
+.flow__svg .opt{font-size:10.5px;fill:#8FD3D6;font-weight:600}
+.flow__svg .optsub{font-size:9px;fill:#5B9296}
+.flow figcaption{max-width:960px;font-size:14px;line-height:1.6;color:#68615A}
+.jmob{display:none;flex-direction:column;gap:14px;padding:20px;border-radius:var(--radius-card);background:#002329}
+.jlane{display:flex;flex-direction:column;gap:10px}
+.jlane + .jlane{padding-top:14px;border-top:1px dashed rgba(143,211,214,.3)}
+.jlane__label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#5B9296}
+.jlane__steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+.jstep{position:relative;box-sizing:border-box;padding:10px 12px;border-radius:10px;background:#0B3A41;border:1px solid #145159;color:#EAF4F4;font-size:14px;font-weight:600;display:flex;flex-direction:column;gap:2px}
+.jstep em{font-style:normal;font-weight:400;font-size:12px;color:#5B9296}
+.jstep--act{background:#006D75;border-color:#006D75;color:#FFFFFF;border-radius:999px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;align-self:flex-start;padding:9px 16px}
+.jstep--opt{background:transparent;border:1.5px dashed #006D75;color:#8FD3D6;margin-left:20px}
+.jstep--done{align-self:flex-start;background:#006D75;border:1.5px solid #8FD3D6;color:#FFFFFF;border-radius:999px;font-size:13px}
+.jstep:not(:last-child)::after{content:"";position:absolute;left:22px;bottom:-15px;width:2px;height:12px;background:#8FD3D6}
+.jstep--opt:not(:last-child)::after{border-left:2px dashed #8FD3D6;background:transparent;width:0}
+@media (max-width: 760px){
+  .flow__scroll{display:none}
+  .jmob{display:flex}
+}
+.roles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width: 900px){.roles{grid-template-columns:minmax(0,1fr)}}
+.role{box-sizing:border-box;padding:clamp(22px,2.4vw,28px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column;gap:8px}
+.role__icon{width:44px;height:44px;margin-bottom:12px;border-radius:999px;background:#EAF4F4;color:var(--accent);display:flex;align-items:center;justify-content:center}
+.role__tag{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
+.role__title{margin:0;font-family:var(--font-display);font-size:19px;font-weight:500;color:#251F19}
+.role__text{margin:0;font-size:15px;line-height:1.55;color:#68615A}
+</style>
