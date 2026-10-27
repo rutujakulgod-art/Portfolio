@@ -1,7 +1,20 @@
 ---
 import SectionHead from './SectionHead.astro';
-import Screen from './Screen.astro';
 import Steps from './Steps.astro';
+import { m } from '../../../data/los-media';
+
+const hotspots = [
+  { n: 1, x: 16.5, y: 56, t: 'Master navigation', d: 'All 49 masters in one searchable side list.' },
+  { n: 2, x: 19.5, y: 13.6, t: 'Search', d: 'Jump straight to a master by name.' },
+  { n: 3, x: 72, y: 16.4, t: 'One toolbar', d: 'Sort, filter, import, export, and New, in the same place on every master.' },
+  { n: 4, x: 52, y: 25.5, t: 'Shared table', d: 'Same column pattern, row actions on the right.' },
+  { n: 5, x: 90, y: 82, t: 'Pagination', d: 'Consistent paging and result count.' },
+];
+const minis = [
+  { src: 'masters-templates-list', w: 1908, h: 894, cap: 'Templates: same layout, different master', alt: 'Templates master showing email, SMS and letter templates in the same table layout' },
+  { src: 'masters-roles-add-state', w: 1914, h: 900, cap: 'Add mode: insert a role at a specific rank', alt: 'Roles & Entitlements in add mode: each row shows a plus button, with the hint Click the + to add a role below' },
+  { src: 'masters-edit-role', w: 1908, h: 904, cap: 'Edit a value: grouped form, permissions on the same page', alt: 'Edit Role form with role details and a Set Permissions panel' },
+];
 
 const leadSteps = [
   { src: 'leads-list', w: 1280, h: 810, alt: 'Leads list with name, contact, email, loan product, assignee and a Hot, Warm or Cold priority tag; the row menu offers Edit Info, Convert and Delete', title: 'Find or triage a lead', text: 'Priority tags and row actions: edit, convert, delete.' },
@@ -20,21 +33,6 @@ const masterGroups = [
   { label: 'Documents & Collateral', items: ['Documents', 'Document Map', 'Collateral Types', 'Templates', '+ 30 more'] },
 ];
 
-const resolutions = [
-  {
-    srs: '“Each master should have a view to display all values… search option… ADD+ option… view and update any existing value.”',
-    res: 'One shared list template (table, search, sort, add, edit) reused across all 49 masters instead of 49 bespoke screens.',
-  },
-  {
-    srs: '“The user should be able to save and exit the application process at any step and continue at a later time.”',
-    res: 'A persistent step indicator with an explicit Draft state, so leaving mid-form never feels like losing work.',
-    screen: { src: 'application-handoff', w: 1280, h: 875, alt: 'Handoff step of application #36: a stage rail on the left with completed steps ticked, a Pending status, and Save draft beside Save & next' },
-  },
-  {
-    srs: '“System should validate the [bulk upload] excel file and give an error if the file is not in the specified format.”',
-    res: 'Template download, then upload, then row-level validation feedback, before anything commits to the system.',
-  },
-];
 ---
 <section aria-label="Ideate" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
   <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
@@ -42,7 +40,7 @@ const resolutions = [
     <SectionHead eyebrow="03 · Ideate" title="Three modules, three depths">I went deeper into requirements and edge cases for Leads, User Management, and Masters. For Loan Application, I focused on understanding and mapping the flow rather than owning the design.</SectionHead>
 
     <!-- Lead Creation -->
-    <article class="mod" aria-label="Lead Creation">
+    <article class="mod" id="los-leads" aria-label="Lead Creation">
       <header class="mod__head">
         <span class="mod__tag">Focus area 1</span>
         <h3 class="mod__title">Lead Creation</h3>
@@ -56,7 +54,7 @@ const resolutions = [
     </article>
 
     <!-- User Management -->
-    <article class="mod" aria-label="User Management">
+    <article class="mod" id="los-users" aria-label="User Management">
       <header class="mod__head">
         <span class="mod__tag">Focus area 2</span>
         <h3 class="mod__title">User Management</h3>
@@ -70,7 +68,7 @@ const resolutions = [
     </article>
 
     <!-- Masters -->
-    <article class="mod" aria-label="Masters">
+    <article class="mod" id="los-masters" aria-label="Masters">
       <header class="mod__head">
         <span class="mod__tag">Focus area 3</span>
         <h3 class="mod__title">Masters</h3>
@@ -87,38 +85,22 @@ const resolutions = [
         ))}
       </div>
       <p class="mod__lead">Focused on a consistent list pattern across all masters, clear add/edit forms, visible permissions, and dependency awareness (e.g. product → document map → application fields).</p>
-      <Screen src="masters-roles-list" w={1918} h={906} alt="Roles & Entitlements master: a searchable list of all masters on the left and a table of roles with sort, filter, import, export and New on the right" caption="Every master opens in the same shell: searchable master list on the left, one table template on the right." />
-      <div class="duo">
-        <Screen src="masters-templates-list" w={1908} h={894} alt="Templates master showing email, SMS and letter templates in the same table layout" caption="Same template, different master: Templates." />
-        <Screen src="masters-roles-add-state" w={1914} h={900} alt="Roles & Entitlements in add mode: the page dims and each row shows a plus button, with the hint 'Click the + to add a role below'" caption="Add mode: insert a role at a specific rank." />
+      <div class="anat">
+        <figure class="anat__img">
+          <img src={m('masters-roles-list')} width="1918" height="906" loading="lazy" decoding="async" alt="Roles & Entitlements master: a searchable list of all masters on the left and a table of roles with sort, filter, import, export and New on the right">
+          {hotspots.map((h) => <span class="hs" style={`left:${h.x}%;top:${h.y}%`} aria-hidden="true">{h.n}</span>)}
+        </figure>
+        <ol class="anat__legend" aria-label="Parts of the shared master template">
+          {hotspots.map((h) => <li><span aria-hidden="true">{h.n}</span><div><h4>{h.t}</h4><p>{h.d}</p></div></li>)}
+        </ol>
       </div>
+      <ul class="mini" aria-label="The same template on other masters">
+        {minis.map((x) => (
+          <li><figure><img src={m(x.src)} width={x.w} height={x.h} alt={x.alt} loading="lazy" decoding="async"><figcaption>{x.cap}</figcaption></figure></li>
+        ))}
+      </ul>
     </article>
 
-    <!-- Requirement → Resolution -->
-    <article class="mod" aria-label="Requirement to resolution">
-      <header class="mod__head">
-        <h3 class="mod__title">Requirement → Resolution</h3>
-        <p class="mod__lead">There’s no prior app being redesigned here: the “before” is the raw specification text, and the “after” is the pattern it became.</p>
-      </header>
-      <ol class="rr">
-        {resolutions.map((r) => (
-          <li class="rr__item">
-            <div class="rr__row">
-              <div class="rr__srs">
-                <span class="rr__tag">SRS, as written</span>
-                <p>{r.srs}</p>
-              </div>
-              <span class="rr__arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-              <div class="rr__res">
-                <span class="rr__tag rr__tag--res">Resolution</span>
-                <p>{r.res}</p>
-              </div>
-            </div>
-            {r.screen && <div class="rr__screen"><Screen src={r.screen.src} w={r.screen.w} h={r.screen.h} alt={r.screen.alt} /></div>}
-          </li>
-        ))}
-      </ol>
-    </article>
 
   </div>
 </section>
@@ -144,20 +126,24 @@ const resolutions = [
 .pills{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .pills li{padding:7px 14px;border-radius:999px;background:#FFFFFF;border:1px solid #D3E7E8;font-size:14px;color:#002329}
 .pills .pill--more{background:var(--accent);border-color:var(--accent);color:#FFFFFF}
-.rr{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
-.rr__item{display:flex;flex-direction:column;gap:16px}
-.rr__row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:16px;align-items:stretch}
-.rr__srs,.rr__res{box-sizing:border-box;padding:clamp(20px,2.4vw,28px);border-radius:var(--radius-card);display:flex;flex-direction:column;gap:12px}
-.rr__srs{background:#FFFFFF;border:1.5px dashed #C2BAB1}
-.rr__srs p{margin:0;font-size:16px;line-height:1.6;font-style:italic;color:#4F4740}
-.rr__res{background:#002329}
-.rr__res p{margin:0;font-size:16px;line-height:1.6;color:#EAF4F4}
-.rr__tag{align-self:flex-start;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:#EEEDE6;color:#68615A}
-.rr__tag--res{background:rgba(143,211,214,.14);color:#8FD3D6}
-.rr__arrow{align-self:center;width:40px;height:40px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent);background:#FFFFFF;display:flex;align-items:center;justify-content:center}
-.rr__screen{max-width:960px}
 @media (max-width: 900px){
-  .rr__row{grid-template-columns:minmax(0,1fr)}
-  .rr__arrow{justify-self:center;transform:rotate(90deg)}
+    }
+.anat{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:center;padding:clamp(20px,3vw,40px);border-radius:var(--radius-card);background:linear-gradient(160deg,#EAF4F4 0%,#D3E7E8 100%);border:1px solid #D3E7E8}
+.anat__img{position:relative;margin:0}
+.anat__img img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid #D3E7E8;box-shadow:0 24px 50px -22px rgba(0,35,41,.45);background:#FFFFFF}
+.hs{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:999px;background:var(--accent);color:#FFFFFF;font-family:var(--font-display);font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px rgba(0,109,117,.22)}
+.anat__legend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.anat__legend li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px}
+.anat__legend span{width:28px;height:28px;border-radius:999px;background:var(--accent);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:13px}
+.anat__legend h4{margin:3px 0 0;font-family:var(--font-display);font-size:16px;font-weight:600;color:#002329}
+.anat__legend p{margin:3px 0 0;font-size:14px;line-height:1.5;color:#4F4740}
+.mini{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px)}
+.mini figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.mini img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:left top;border-radius:10px;border:1px solid #D3E7E8;box-shadow:0 14px 30px -18px rgba(0,35,41,.3);background:#FFFFFF}
+.mini figcaption{font-size:14px;line-height:1.5;color:#68615A}
+@media (max-width: 900px){
+  .anat{grid-template-columns:minmax(0,1fr)}
+  .hs{width:22px;height:22px;font-size:12px;box-shadow:0 0 0 3px rgba(0,109,117,.22)}
+  .mini{grid-template-columns:minmax(0,1fr)}
 }
 </style>

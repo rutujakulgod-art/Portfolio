@@ -1,0 +1,123 @@
+---
+const items = [
+  {
+    module: 'Masters',
+    ref: 'SRS 3.4 · REQ-2 to REQ-5',
+    quote: '“Each master should have a view to display all the values in that particular master… There should be a search option… There should be a “ADD +” option in each master… The user should be able to view and update any existing value.”',
+    gap: '49 masters, each needing list, search, add, and edit, with no shared pattern defined.',
+    res: 'One shared list template (table, search, sort, add, edit) reused across all 49 masters instead of 49 bespoke screens.',
+    link: { href: '#los-masters', label: 'See it in Masters' },
+  },
+  {
+    module: 'Loan Application',
+    ref: 'SRS 3.6 · REQ-13',
+    quote: '“The user should be allowed to save and exit the application process at any step and should be able to continue the process at a later time from the step at which he stopped the process earlier.”',
+    gap: 'A 17-stage application with no defined way to show where someone left off.',
+    res: 'A persistent step indicator with an explicit Draft state, so leaving mid-form never feels like losing work.',
+    link: { href: '#los-application', label: 'See it in Loan Application' },
+  },
+  {
+    module: 'Leads',
+    ref: 'SRS 3.5 · REQ-6, REQ-7',
+    quote: '“The system should provide an option to create a lead from a previous loan customer… there should be an option to fetch the user details from CBS using UCIC.”',
+    gap: 'Returning customers would be retyped from scratch, creating duplicates and errors.',
+    res: 'An Existing Customer lookup inside Add New Lead: search once, and the customer’s details fill the form.',
+    link: { href: '#los-leads', label: 'See it in Lead Creation' },
+  },
+  {
+    module: 'User Management',
+    ref: 'SRS 3.2.2 · REQ-2, REQ-8',
+    quote: '“Each “ROLE” is assigned one or more “PERMISSION”… Every role will have a Rank to define seniority of the user it is assigned to.”',
+    gap: 'Permissions were enforced in the backend with no clear UI signal for what a role can or cannot do.',
+    res: 'Roles listed by rank, with an add mode that inserts at a specific rank, and permissions reviewed as a feature-by-action grid before saving.',
+    link: { href: '#los-users', label: 'See it in User Management' },
+  },
+  {
+    module: 'Users and Leads',
+    ref: 'SRS 3.1.9 · REQ-2; 3.5 · REQ-10',
+    quote: '“Once the user uploads the excel file the system will validate it and give an error if the file is not in the specified format.”',
+    gap: 'Errors only after upload, with no guidance on the expected format.',
+    res: 'Template download, then upload, then row-level validation feedback, before anything commits to the system.',
+    flow: ['Download template', 'Upload file', 'Row-level errors', 'Commit'],
+  },
+];
+---
+<section aria-label="Requirement to resolution" class="rr">
+  <div class="rr__wrap">
+
+    <div class="rr__head">
+      <span class="rr__eyebrow">Requirement → Resolution</span>
+      <h2 class="rr__title">From spec text to design pattern</h2>
+      <p class="rr__lead">There’s no prior app being redesigned here: the “before” is the raw specification text, and the “after” is the pattern it became.</p>
+    </div>
+
+    <ol class="rr__list">
+      {items.map((it, i) => (
+        <li class="rr__card">
+          <div class="rr__meta">
+            <span class="rr__no">{String(i + 1).padStart(2, '0')}</span>
+            <span class="rr__module">{it.module}</span>
+            <span class="rr__ref">{it.ref}</span>
+          </div>
+
+          <div class="rr__grid">
+            <div class="rr__col">
+              <span class="rr__label">SRS, as written</span>
+              <p class="rr__quote">{it.quote}</p>
+            </div>
+            <div class="rr__col">
+              <span class="rr__label">What it left open</span>
+              <p class="rr__gap">{it.gap}</p>
+            </div>
+            <div class="rr__col rr__col--res">
+              <span class="rr__label rr__label--res">Resolution</span>
+              <p class="rr__res">{it.res}</p>
+              {it.link && (
+                <a class="rr__link" href={it.link.href}>{it.link.label}
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                </a>
+              )}
+              {it.flow && (
+                <ol class="rr__flow" aria-label="Bulk upload flow">
+                  {it.flow.map((f) => <li>{f}</li>)}
+                </ol>
+              )}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>
+
+<style>
+.rr{box-sizing:border-box;width:100%;background:#002329;color:#EAF4F4;font-family:var(--font-text);-webkit-font-smoothing:antialiased}
+.rr__wrap{box-sizing:border-box;max-width:calc(var(--content-max) + 2 * var(--gutter));margin:0 auto;padding:clamp(56px,8vw,104px) var(--gutter);display:flex;flex-direction:column;gap:clamp(32px,4vw,48px)}
+.rr__head{display:flex;flex-direction:column;gap:18px}
+.rr__eyebrow{font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--brand)}
+.rr__title{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(32px,3.4vw,48px);line-height:1.12;letter-spacing:-0.03em;color:#FFFFFF}
+.rr__lead{margin:0;max-width:860px;font-size:17px;line-height:1.65;color:#8FD3D6}
+.rr__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.rr__card{box-sizing:border-box;padding:clamp(20px,2.6vw,32px);border-radius:var(--radius-card);background:rgba(255,255,255,.04);border:1px solid rgba(143,211,214,.16);display:flex;flex-direction:column;gap:20px}
+.rr__meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.rr__no{font-family:var(--font-display);font-size:14px;font-weight:600;color:#8FD3D6}
+.rr__module{font-family:var(--font-display);font-size:18px;font-weight:600;color:#FFFFFF}
+.rr__ref{padding:4px 10px;border-radius:999px;background:rgba(143,211,214,.1);border:1px solid rgba(143,211,214,.22);font-size:12px;font-weight:500;color:#CDEBEC}
+.rr__grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(16px,2.4vw,32px)}
+.rr__col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.rr__col + .rr__col{padding-left:clamp(16px,2.4vw,32px);border-left:1px solid rgba(143,211,214,.16)}
+.rr__label{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#5B9296}
+.rr__label--res{color:#8FD3D6}
+.rr__quote{margin:0;font-size:15px;line-height:1.65;font-style:italic;color:rgba(234,244,244,.72)}
+.rr__gap{margin:0;font-size:15px;line-height:1.6;color:#EAF4F4}
+.rr__res{margin:0;font-size:16px;line-height:1.6;font-weight:500;color:#FFFFFF}
+.rr__link{align-self:flex-start;margin-top:4px;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:#8FD3D6;text-decoration:none;border-bottom:1px solid rgba(143,211,214,.4);padding-bottom:2px}
+.rr__link:hover{color:#FFFFFF;border-color:#FFFFFF}
+.rr__flow{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.rr__flow li{position:relative;padding:5px 10px;border-radius:6px;background:rgba(0,109,117,.45);font-size:13px;color:#FFFFFF}
+@media (max-width: 900px){
+  .rr__grid{grid-template-columns:minmax(0,1fr)}
+  .rr__col + .rr__col{padding-left:0;border-left:0;padding-top:16px;border-top:1px solid rgba(143,211,214,.16)}
+}
+</style>
