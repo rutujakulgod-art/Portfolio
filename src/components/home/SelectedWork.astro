@@ -24,7 +24,10 @@ import { caseStudies, url } from '../../data/site';
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 10 4M5 4h5v5" /></svg>
             </span>
             <span class="visually-hidden">View case study</span>
-            <img class="wk__art" src={url(c.image)} width={c.imageSize[0]} height={c.imageSize[1]} alt="" loading="lazy" decoding="async" />
+            <picture>
+              {'imageMobile' in c && <source media="(max-width: 640px)" srcset={url(c.imageMobile)} />}
+              <img class="wk__art" src={url(c.image)} width={c.imageSize[0]} height={c.imageSize[1]} alt="" loading="lazy" decoding="async" />
+            </picture>
           </a>
         </li>
       ))}
@@ -115,6 +118,8 @@ import { caseStudies, url } from '../../data/site';
   }
   .wk__card:hover .wk__arrow { background: var(--brand-ink); border-color: var(--brand-ink); color: #fff; transform: rotate(45deg); }
 
+  .wk__card picture { display: contents; }
+
   /* Case-study screen bleeds off the bottom-right corner */
   .wk__art {
     position: absolute;
@@ -137,10 +142,13 @@ import { caseStudies, url } from '../../data/site';
     @media (max-width: 640px) {
     .wk__bento { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
     .wk__item--tall { grid-row: auto; }
-    /* On phones every screen sits below the text and arrow, bleeding off the right */
-    .wk__card { min-height: 470px; }
-    .wk__art, .wk__item--tall .wk__art { top: 250px; bottom: auto; left: 24px; width: 135%; height: auto; }
-    .wk__item--tall .wk__card { min-height: 620px; }
-    .wk__item--tall .wk__art { width: calc(100% - 24px); }
+    /* On phones every card gets the same image frame: equal height, cropped from the top left, bleeding off the right and bottom */
+    .wk__card, .wk__item--tall .wk__card { min-height: 0; padding-bottom: 0; }
+    .wk__art, .wk__item--tall .wk__art {
+      position: relative; z-index: 0; top: auto; left: auto; bottom: auto;
+      margin: 28px -28px 0 0; width: calc(100% + 28px); max-width: none;
+      height: 240px; object-fit: cover; object-position: left top;
+      border-radius: 10px 0 0 0; border-right: 0; border-bottom: 0;
+    }
   }
 </style>
