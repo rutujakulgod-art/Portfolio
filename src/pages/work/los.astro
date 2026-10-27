@@ -3,6 +3,9 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import Main from '../../components/case/los/Main.astro';
 import Overview from '../../components/case/los/Overview.astro';
 import Problem from '../../components/case/los/Problem.astro';
+import Role from '../../components/case/los/Role.astro';
+import OldNew from '../../components/case/los/OldNew.astro';
+import Process from '../../components/case/los/Process.astro';
 import { caseStudies } from '../../data/site';
 
 const study = caseStudies.find((c) => c.slug === 'los')!;
@@ -16,5 +19,8 @@ const study = caseStudies.find((c) => c.slug === 'los')!;
     <Main />
     <Overview />
     <Problem />
+    <Role />
+    <OldNew />
+    <Process />
   </div>
 </CaseStudyLayout>
