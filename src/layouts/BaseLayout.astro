@@ -34,12 +34,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="theme-color" content="#F7F7F4" />
     <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
     <script is:inline>
-      // Like Parley: above the 1440px design width, scale the whole page in
-      // proportion instead of centring a fixed-width layout. Runs before paint.
+      // Above the 1440px design width, scale the page up a little (max 1.1x)
+      // so it fills large screens without type getting oversized; any extra
+      // width becomes side margin. Runs before paint.
       (function () {
-        var d = document.documentElement, W = 1440;
+        var d = document.documentElement, W = 1440, MAX = 1.1;
         function fit() {
-          var w = window.innerWidth, z = w > W ? w / W : 1;
+          var w = window.innerWidth, z = w > W ? Math.min(w / W, MAX) : 1;
           d.style.zoom = z > 1 ? z.toFixed(4) : '';
           // Inside a scaled page, vh/vw are scaled too; give layouts the real screen size.
           d.style.setProperty('--vh', z > 1 ? (window.innerHeight / z / 100).toFixed(3) + 'px' : '1vh');

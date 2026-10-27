@@ -26,7 +26,7 @@ import { caseStudies, url } from '../../data/site';
             <span class="visually-hidden">View case study</span>
             <picture>
               {'imageMobile' in c && <source media="(max-width: 640px)" srcset={url(c.imageMobile)} />}
-              <img class="wk__art" src={url(c.image)} width={c.imageSize[0]} height={c.imageSize[1]} alt="" loading="lazy" decoding="async" />
+              <img class:list={['wk__art', 'artLarge' in c && 'wk__art--large']} src={url(c.image)} width={c.imageSize[0]} height={c.imageSize[1]} alt="" loading="lazy" decoding="async" />
             </picture>
           </a>
         </li>
@@ -136,6 +136,8 @@ import { caseStudies, url } from '../../data/site';
   }
   .wk__item--tall .wk__art { left: 28px; top: 236px; bottom: auto; width: calc(100% - 28px); height: auto; max-width: none; border-radius: 10px 0 0 10px; border-right: 0; }
   .wk__card:hover .wk__art { transform: translateY(-8px); }
+  /* Larger screen image: starts beside the arrow and bleeds off the right and bottom */
+  .wk__art--large { left: 96px; top: 212px; bottom: auto; width: calc((100% - 96px) / 0.7); max-width: none; border-radius: 10px 0 0 0; }
 
   @media (max-width: 1000px) {
     .wk__grid { grid-template-columns: minmax(0, 1fr); }

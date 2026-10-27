@@ -12,11 +12,7 @@ const stats = [
 
   <section aria-label="Introduction" class="hero">
     <div class="hero__wrap">
-      <ul class="hero__tags rise" aria-label="Category">
-        <li>Fintech</li>
-        <li>Enterprise web</li>
-      </ul>
-      <h1 class="hero__title rise rise-1">From fragmented spec <span>to structured system</span></h1>
+      <h1 class="hero__title rise">From fragmented spec <span>to structured system</span></h1>
       <p class="hero__sub rise rise-2">Designing a Loan Origination System for a bank: turning a dense, compliance-heavy SRS into usable flows, patterns, and screens. UX contribution, focused on Leads, Users, and Masters.</p>
 
       <div class="stage rise rise-3">
@@ -50,11 +46,9 @@ const stats = [
 <style>
 .hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#EAF4F4 0%,var(--surface-page) 60%);color:#002329}
 .hero__wrap{box-sizing:border-box;max-width:calc(var(--content-max) + 2 * var(--gutter));margin:0 auto;padding:clamp(56px,7vw,96px) var(--gutter) 0}
-.hero__tags{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.hero__tags li{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:#FFFFFF;border:1px solid #B7D8DA;padding:6px 14px;border-radius:999px}
-.hero__title{margin:0;max-width:900px;font-family:var(--font-display);font-weight:600;font-size:clamp(31px,4.6vw,62px);line-height:1.08;letter-spacing:-0.03em;color:#002329}
-.hero__title span{display:block;color:var(--accent)}
-.hero__sub{margin:20px 0 0;max-width:640px;font-size:clamp(17px,1.4vw,19px);line-height:1.65;color:#4C6367}
+.hero__title{margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(30px,3.9vw,54px);line-height:1.1;letter-spacing:-0.03em;color:#002329}
+.hero__title span{color:var(--accent)}
+.hero__sub{margin:20px 0 0;max-width:min(1040px,86%);font-size:clamp(17px,1.4vw,19px);line-height:1.65;color:#4C6367}
 
 /* Device stage: laptop on the left, phone overlapping on the right */
 .stage{position:relative;margin-top:clamp(36px,5vw,56px);padding-bottom:28px}
@@ -71,6 +65,7 @@ const stats = [
   .stage:hover .phone{transform:translateY(-7px)}
 }
 @media (max-width: 760px){
+  .hero__sub{max-width:none}
   .laptop{width:100%}
   .phone{width:38%;right:-4px;bottom:0;border-radius:26px;padding:6px}
   .phone img{border-radius:20px}
