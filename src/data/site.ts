@@ -61,8 +61,8 @@ export const caseStudies = [
     summary:
       'Designing a Loan Origination System for a bank: turning a dense, compliance-heavy SRS into usable flows, patterns, and screens.',
     short: 'An end-to-end loan platform, from lead capture to disbursement.',
-    image: 'media/los/applications-list.webp',
-    imageSize: [1280, 812],
+    image: 'media/los/card-los.webp',
+    imageSize: [1545, 968],
   },
 ] as const;
 
