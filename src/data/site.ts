@@ -54,16 +54,15 @@ export const caseStudies = [
     imageSize: [597, 317],
   },
   {
-    slug: 'sustainability-intelligence',
-    title: 'Sustainability Intelligence',
-    navLabel: 'Sustainability Intelligence',
-    accent: '#0E5A63',
+    slug: 'los',
+    title: 'Loan Origination System',
+    navLabel: 'Loan Origination System',
+    accent: '#006D75',
     summary:
-      'A combined view of energy, ESG, water and public building performance for West Tower.',
-    short: 'Energy, ESG, water and public building performance in one clear view.',
-    art: 'media/work-art-sustainability.svg',
-    image: 'media/work-sustainability.webp',
-    imageSize: [1740, 979],
+      'Designing a Loan Origination System for a bank: turning a dense, compliance-heavy SRS into usable flows, patterns, and screens.',
+    short: 'An end-to-end loan platform, from lead capture to disbursement.',
+    image: 'media/los/applications-list.webp',
+    imageSize: [1280, 812],
   },
 ] as const;
 

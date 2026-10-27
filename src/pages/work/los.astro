@@ -1,0 +1,20 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import Main from '../../components/case/los/Main.astro';
+import Overview from '../../components/case/los/Overview.astro';
+import Problem from '../../components/case/los/Problem.astro';
+import { caseStudies } from '../../data/site';
+
+const study = caseStudies.find((c) => c.slug === 'los')!;
+---
+<CaseStudyLayout
+  title="Loan Origination System"
+  description="From fragmented spec to structured system: a Loan Origination System UX case study covering Leads, User Management and Masters."
+  accent={study.accent}
+>
+  <div class="cs" style="--accent-hover: #00535A">
+    <Main />
+    <Overview />
+    <Problem />
+  </div>
+</CaseStudyLayout>

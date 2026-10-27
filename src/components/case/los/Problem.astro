@@ -1,0 +1,113 @@
+---
+const oldSystem = [
+  'Focused almost entirely on a long loan application form with many fields and no clear structure.',
+  'Lacked proper lead management: sales and branch teams had no clean way to track potential customers.',
+  'Weak user management and permission controls, making it hard to manage access for different roles.',
+  'Minimal configuration options: every change required heavy development effort.',
+];
+const goals = [
+  'Provide an end-to-end digital workflow from lead to disbursement.',
+  'Make the system configurable through a strong Masters module.',
+  'Improve user management with clear roles, permissions, and audit trails.',
+  'Simplify and structure the loan application journey without losing required data or compliance.',
+];
+const chapters = [
+  { n: '3.1', t: 'User Management' },
+  { n: '3.2', t: 'Authentication & Authorization' },
+  { n: '3.3', t: 'Dashboard' },
+  { n: '3.4', t: 'Masters' },
+  { n: '3.5', t: 'Leads' },
+  { n: '3.6', t: 'Loan Application', sub: '17 stages, 3.6.1 to 3.6.17' },
+];
+---
+<section aria-label="The problem" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">The problem</span>
+      <h2 style="margin: 0; max-width: 960px; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">An old system built around one long form</h2>
+      <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">The bank’s existing platform had no real workflow behind it: just a long application form with no lead management, weak user controls, and almost no configurability.</p>
+    </div>
+
+    <blockquote class="pull">
+      <p>That’s not the loan officer’s fault. It’s a system with one long form and nothing built around it.</p>
+    </blockquote>
+
+    <div class="pg">
+      <article class="card" style="background: #FFFFFF; border: 1px solid #EBE8E4;">
+        <p class="card__tag" style="color: #68615A;">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 20h19z"/><path d="M12 10v4M12 17h0"/></svg>
+          Before
+        </p>
+        <h3 class="card__h">The old system</h3>
+        <ul class="card__list">
+          {oldSystem.map((t) => <li style="border-top: 1px solid #EBE8E4; color: #3B342D;">{t}</li>)}
+        </ul>
+      </article>
+
+      <article class="card" style="background: var(--accent); color: #FFFFFF;">
+        <p class="card__tag" style="color: #9FDCE0;">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/></svg>
+          Goal
+        </p>
+        <h3 class="card__h" style="color: #FFFFFF;">The goal for the new LOS</h3>
+        <ul class="card__list">
+          {goals.map((t) => <li style="border-top: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.86);">{t}</li>)}
+        </ul>
+      </article>
+    </div>
+
+    <div class="srs">
+      <div style="display: flex; flex-direction: column; gap: 16px; justify-content: center;">
+        <h3 style="margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #251F19;">That’s why this needed structure</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B342D;"><strong style="font-weight: 600; color: var(--accent);">17 stages</strong>, <strong style="font-weight: 600; color: var(--accent);">49 configurable masters</strong>, and <strong style="font-weight: 600; color: var(--accent);">6+ internal roles</strong>, all defined across a single specification, with no existing interface to guide the translation from spec to screen.</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #68615A;">The document itself became the closest thing to a research artifact this project had.</p>
+      </div>
+
+      <figure class="doc" aria-label="Source document: Software Requirements Specification, version 0.1">
+        <div class="doc__sheet doc__sheet--back" aria-hidden="true"></div>
+        <div class="doc__sheet">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+            <span style="font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #68615A;">Source document</span>
+            <span style="padding: 3px 9px; border-radius: var(--radius-chip); background: #EAF4F4; color: var(--accent); font-size: 12px; font-weight: 600;">v0.1</span>
+          </div>
+          <p style="margin: 18px 0 0; font-family: var(--font-display); font-size: clamp(20px, 2vw, 24px); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; color: #251F19;">Software Requirements Specification</p>
+          <p style="margin: 6px 0 0; font-size: 14px; color: #68615A;">Loan Origination System</p>
+          <ol class="doc__toc" aria-label="System features covered">
+            {chapters.map((c) => (
+              <li>
+                <span class="doc__n">{c.n}</span>
+                <span style="display: flex; flex-direction: column; gap: 2px;">
+                  <span>{c.t}</span>
+                  {c.sub && <span style="font-size: 12px; color: #68615A;">{c.sub}</span>}
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.pull{margin:0;padding:clamp(4px,1vw,8px) 0 clamp(4px,1vw,8px) clamp(20px,2.4vw,32px);border-left:4px solid var(--accent);max-width:900px}
+.pull p{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(22px,2.2vw,30px);line-height:1.3;letter-spacing:-0.02em;color:#251F19}
+.pg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width: 900px){.pg{grid-template-columns:minmax(0,1fr)}}
+.card{box-sizing:border-box;padding:clamp(28px,4vw,48px);border-radius:var(--radius-card);display:flex;flex-direction:column;gap:14px}
+.card__tag{margin:0;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:14px;font-weight:600}
+.card__h{margin:0 0 8px;font-family:var(--font-display);font-weight:500;font-size:clamp(24px,2.4vw,32px);line-height:1.15;letter-spacing:-0.02em;color:#251F19}
+.card__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.card__list li{padding:16px 0;font-size:16px;line-height:1.55}
+.card__list li:last-child{padding-bottom:0}
+.srs{box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);padding:clamp(28px,4vw,56px);border-radius:var(--radius-card);background:#EAF4F4;border:1px solid #D3E7E8}
+@media (max-width: 900px){.srs{grid-template-columns:minmax(0,1fr)}}
+.doc{position:relative;margin:0;padding:0 14px 14px 0}
+.doc__sheet{position:relative;box-sizing:border-box;padding:clamp(22px,2.6vw,32px);border-radius:10px;background:#FFFFFF;border:1px solid #D3E7E8;box-shadow:0 16px 40px rgba(0,35,41,0.10)}
+.doc__sheet--back{position:absolute;inset:14px 0 0 14px;padding:0;box-shadow:none;background:#F5FAFA}
+.doc__toc{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column}
+.doc__toc li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px;padding:10px 0;border-top:1px solid #EBE8E4;font-size:14px;line-height:1.4;color:#251F19}
+.doc__n{font-family:var(--font-display);font-weight:600;color:var(--accent)}
+</style>

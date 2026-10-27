@@ -1,0 +1,76 @@
+---
+import { m } from '../../../data/los-media';
+
+const facts = [
+  { label: 'My role', value: 'Junior UX designer: flow thinking, wireframes, UI patterns, working with product and business teams' },
+  { label: 'Source of truth', value: 'A vendor-prepared Software Requirements Specification (SRS), version 0.1' },
+  { label: 'Platform', value: 'Enterprise web and tablet, with a mobile-responsive customer self-registration entry point' },
+];
+
+const stats = [
+  { n: '17', label: 'Stages in the loan lifecycle', tone: 'white' },
+  { n: '49', label: 'Configurable master types', tone: 'tint' },
+  { n: '6+', label: 'Distinct internal roles', tone: 'white' },
+  { n: '12', label: 'Report types across the platform', tone: 'accent' },
+];
+---
+<div style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+
+  <section aria-label="Introduction" class="los-hero" style="box-sizing: border-box; width: 100%; display: flex; flex-direction: column; color: #FFFFFF;">
+
+    <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(64px, 8vw, 112px) var(--gutter) clamp(40px, 5vw, 64px); display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+      <span class="rise" style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: #8FD3D8;">Fintech · Enterprise web</span>
+      <h1 class="rise" style="margin: 16px 0 0; max-width: 1120px; font-family: var(--font-display); font-weight: 500; font-size: clamp(36px, 4.6vw, 62px); line-height: 1.1; letter-spacing: -0.03em; color: #FFFFFF;">From fragmented spec to structured system</h1>
+      <p class="rise rise-2" style="margin: 22px 0 0; max-width: 680px; font-size: clamp(17px, 1.4vw, 19px); line-height: 1.65; color: rgba(255,255,255,0.82);">Designing a Loan Origination System for a bank: turning a dense, compliance-heavy SRS into usable flows, patterns, and screens. Junior UX contribution, focused on Leads, Users, and Masters.</p>
+    </div>
+
+    <div class="rise rise-3" style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter);">
+      <img src={m('applications-list')} width="1280" height="812" alt="Applications table with application number, customer, branch, loan product, assignee, step progress and status for each loan" style="display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid rgba(255,255,255,0.28); box-shadow: 0 30px 80px rgba(0,20,24,0.45); background: #FFFFFF;">
+    </div>
+
+    <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(32px, 4vw, 48px) var(--gutter) clamp(48px, 6vw, 80px);">
+      <dl class="hstrip" aria-label="Project details" style="margin: 0;">
+        {facts.map((f) => (
+          <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.22);">
+            <dt style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #FFFFFF;">{f.label}</dt>
+            <dd style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.45; color: rgba(255,255,255,0.82);">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section aria-label="At a glance" style="box-sizing: border-box; width: 100%; background: var(--surface-page);">
+    <div class="bento" style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter) 0;">
+      {stats.map((s) => (
+        <div class:list={['stat', `stat--${s.tone}`]}>
+          <div class="stat__n">{s.n}</div>
+          <div class="stat__l">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+</div>
+
+<style>
+@media (prefers-reduced-motion: no-preference){
+.rise{opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.16,1,.3,1) forwards}
+.rise-2{animation-delay:.08s}.rise-3{animation-delay:.16s}
+@keyframes rise{to{opacity:1;transform:none}}
+}
+.los-hero{background:radial-gradient(120% 80% at 85% 0%, rgba(0,109,117,0.55) 0%, rgba(0,109,117,0) 60%), linear-gradient(180deg, #002329 0%, #00363D 100%)}
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width: 900px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 420px){.bento{gap:12px}}
+.hstrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width: 640px){.hstrip{grid-template-columns:minmax(0,1fr);gap:18px}}
+.stat{box-sizing:border-box;min-height:clamp(160px,14vw,200px);padding:clamp(20px,2.2vw,28px);border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;gap:32px;background:#FFFFFF;border:1px solid #EBE8E4}
+.stat__n{font-family:var(--font-display);font-weight:500;font-size:clamp(36px,3.6vw,52px);line-height:1;letter-spacing:-0.03em;color:var(--accent)}
+.stat__l{font-size:clamp(14px,1.1vw,16px);line-height:1.45;max-width:240px;color:#68615A}
+.stat--tint{background:#EAF4F4;border-color:#D3E7E8}
+.stat--tint .stat__l{color:#4F4740}
+.stat--accent{background:var(--accent);border-color:var(--accent)}
+.stat--accent .stat__n{color:#FFFFFF}
+.stat--accent .stat__l{color:rgba(255,255,255,0.86)}
+</style>

@@ -1,0 +1,77 @@
+---
+const areas = [
+  {
+    tag: 'Focus area 1',
+    title: 'Lead Creation',
+    text: 'Capturing and managing potential customers before they become full applications.',
+    icon: 'lead',
+  },
+  {
+    tag: 'Focus area 2',
+    title: 'User Management',
+    text: 'Creating, updating, and managing internal users, roles, and permissions.',
+    icon: 'users',
+  },
+  {
+    tag: 'Focus area 3',
+    title: 'Masters',
+    text: 'Configuring system-wide settings: products, loan types, channels, documents, and more.',
+    icon: 'masters',
+  },
+  {
+    tag: 'Involvement',
+    title: 'Loan Application',
+    text: 'Analyzed the flow, mapped steps, and contributed to structuring discussions, but did not own the design.',
+    icon: 'file',
+    muted: true,
+  },
+];
+---
+<section aria-label="Overview" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">Overview</span>
+      <h2 style="margin: 0; max-width: 760px; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Redesigning a bank’s loan platform</h2>
+      <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">The bank’s previous system was outdated and focused almost entirely on one long, unintuitive loan application form, with poor usability and no real workflow support. I worked as a junior UX designer on its replacement: a comprehensive Loan Origination System (LOS) covering the full journey, including lead capture, user management, application, approvals, disbursement, and reporting.</p>
+    </div>
+
+    <ol class="areas" aria-label="Focus areas" style="list-style: none; margin: 0; padding: 0;">
+      {areas.map((a) => (
+        <li class:list={['area', a.muted && 'area--muted']}>
+          <span class="area__icon" aria-hidden="true">
+            {a.icon === 'lead' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M19 8v6M16 11h6"/></svg>
+            )}
+            {a.icon === 'users' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M15.5 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.9.7 3.1 2.4 3.5 5.2"/></svg>
+            )}
+            {a.icon === 'masters' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+            )}
+            {a.icon === 'file' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+            )}
+          </span>
+          <span class="area__tag">{a.tag}</span>
+          <h3 class="area__title">{a.title}</h3>
+          <p class="area__text">{a.text}</p>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>
+
+<style>
+.areas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width: 1100px){.areas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 640px){.areas{grid-template-columns:minmax(0,1fr)}}
+.area{box-sizing:border-box;padding:clamp(22px,2.4vw,28px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column;gap:8px}
+.area__icon{width:44px;height:44px;margin-bottom:14px;border-radius:10px;background:#EAF4F4;color:var(--accent);display:flex;align-items:center;justify-content:center}
+.area__tag{font-family:var(--font-display);font-size:13px;font-weight:600;color:#68615A}
+.area__title{margin:0;font-family:var(--font-display);font-size:19px;font-weight:500;color:#251F19}
+.area__text{margin:0;font-size:15px;line-height:1.55;color:#68615A}
+.area--muted{background:transparent;border:1.5px dashed #C2BAB1}
+.area--muted .area__icon{background:#EEEDE6;color:#68615A}
+</style>
