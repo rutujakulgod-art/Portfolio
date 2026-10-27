@@ -1,6 +1,18 @@
 ---
 import SectionHead from './SectionHead.astro';
 import Screen from './Screen.astro';
+import Steps from './Steps.astro';
+
+const leadSteps = [
+  { src: 'leads-list', w: 1280, h: 810, alt: 'Leads list with name, contact, email, loan product, assignee and a Hot, Warm or Cold priority tag; the row menu offers Edit Info, Convert and Delete', title: 'Find or triage a lead', text: 'Priority tags and row actions: edit, convert, delete.' },
+  { src: 'lead-add-form', w: 1280, h: 856, alt: 'Add New Lead form split into Lead Details and Customer Details panels, with mandatory fields marked', title: 'Capture a new lead', text: 'Lead details and customer details, mandatory fields marked.' },
+  { src: 'lead-existing-customer-lookup', w: 1902, h: 910, alt: 'Existing User Lookup dialog over the Add New Lead form, with a single customer search field', title: 'Reuse an existing customer', text: 'Look up a previous customer instead of retyping.' },
+];
+const userSteps = [
+  { src: 'users-dashboard', w: 1906, h: 906, alt: 'Dashboard with financial year, quarter and branch filters, a donut chart of users by staff, customer and guest, and a target status chart by branch', title: 'See the picture', text: 'Dashboard filtered by financial year, quarter, and branch.' },
+  { src: 'users-employees-list', w: 1912, h: 900, alt: 'Employees list with sort, filters, CSV import, export and New Employee actions; personal details are blurred', title: 'Manage users', text: 'Sort, filters, import, and export in one toolbar.' },
+  { src: 'users-permissions-matrix', w: 1906, h: 866, alt: 'Review Permissions for the Super Admin role: a grid of features such as Users, Masters and Leads against actions such as create, read, update, delete, reassign and transfer', title: 'Set what each role can do', text: 'Permissions reviewed as a feature-by-action grid before saving a role.' },
+];
 
 const masterGroups = [
   { label: 'Institution & Product', items: ['Institute / Bank', 'Branches', 'Loan Types', 'Loan Products', 'Channels'] },
@@ -40,11 +52,7 @@ const resolutions = [
         <div class="pcard"><h4>SRS requirements</h4><p>Add new lead, tabular list with search, sort, and pagination, view and edit, create from a previous customer, fetch via UCIC (CBS), director and PAN checks, takeover loans with confidential uploads, bulk upload, in-principle sanction tags.</p></div>
         <div class="pcard pcard--mine"><h4>What I worked on</h4><p>Lead capture flow with clear mandatory fields; a filterable list view with status indicators; a bulk upload flow (template, validation, errors); and edge cases like CBS integration and takeover loans.</p></div>
       </div>
-      <Screen src="leads-list" w={1280} h={810} alt="Leads list with name, contact, email, loan product, assignee and a Hot, Warm or Cold priority tag; the row menu offers Edit Info, Convert and Delete" caption="Leads list: priority tags and row actions (edit, convert to application, delete)." />
-      <div class="duo">
-        <Screen src="lead-add-form" w={1280} h={856} alt="Add New Lead form split into Lead Details and Customer Details panels, with mandatory fields marked" caption="Add New Lead: lead details and customer details, mandatory fields marked." />
-        <Screen src="lead-existing-customer-lookup" w={1902} h={910} alt="Existing User Lookup dialog over the Add New Lead form, with a single customer search field" caption="Existing customer lookup: create a lead from a previous customer." />
-      </div>
+      <Steps steps={leadSteps} label="Lead Creation screens" />
     </article>
 
     <!-- User Management -->
@@ -58,10 +66,7 @@ const resolutions = [
         <div class="pcard"><h4>SRS requirements</h4><p>Create users with designation, role, branch, and limits; transfer with approval workflow; terminate with soft delete; update, reset, and activate; dashboard with filters and export; bulk upload; self-registration; CBS sync; MFA and session policies; role-based authorization.</p></div>
         <div class="pcard pcard--mine"><h4>What I worked on</h4><p>Creation and update flows with logical grouping; a user dashboard (filters, sort, export); a bulk upload flow; role and permission concepts; and security states: MFA, session timeout, password reset, account lock.</p></div>
       </div>
-      <div class="duo">
-        <Screen src="users-employees-list" w={1912} h={900} alt="Employees list with sort, filters, CSV import, export and New Employee actions; personal details are blurred" caption="User dashboard: sort, filters, import and export in one toolbar." />
-        <Screen src="users-permissions-matrix" w={1906} h={866} alt="Review Permissions for the Super Admin role: a grid of features such as Users, Masters and Leads against actions such as create, read, update, delete, reassign and transfer" caption="Permissions reviewed as a feature-by-action grid before saving a role." />
-      </div>
+      <Steps steps={userSteps} label="User Management screens" />
     </article>
 
     <!-- Masters -->
