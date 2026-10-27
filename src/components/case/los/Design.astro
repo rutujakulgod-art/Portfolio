@@ -3,19 +3,6 @@ import SectionHead from './SectionHead.astro';
 import Screen from './Screen.astro';
 import { m } from '../../../data/los-media';
 
-const swatches = [
-  { name: 'Primary Teal', hex: '#006D75' },
-  { name: 'Deep Ink', hex: '#002329' },
-  { name: 'Base White', hex: '#FFFFFF' },
-  { name: 'Tint 1', hex: '#EAF4F4' },
-  { name: 'Tint 2', hex: '#D3E7E8' },
-];
-const types = [
-  { label: 'Display / 46', sample: 'Loan Origination System', cls: 't-display' },
-  { label: 'Heading / 26', sample: 'Application Review', cls: 't-heading' },
-  { label: 'Body / 16', sample: 'Capture applicant and finance details', cls: 't-body' },
-  { label: 'Mono / Data', sample: 'APP-2024-00891', cls: 't-mono' },
-];
 const phones = [
   { src: 'lead-mobile-type', alt: 'Mobile step: choose a loan type such as Personal, Vehicle or Housing loan' },
   { src: 'lead-mobile-amount', alt: 'Mobile step: enter the loan amount with a field and a slider' },
@@ -25,31 +12,9 @@ const phones = [
 <section aria-label="Design" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
   <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
 
-    <SectionHead eyebrow="04 · Design" title="Style guide and final screens">A consistent, restrained system: one accent color, clear status states, and a type scale built for dense internal screens.</SectionHead>
+    <SectionHead eyebrow="04 · Design" title="Final screens">Laptop as the primary surface, mobile for the customer self-registration entry point.</SectionHead>
 
-    <div class="guide">
-      <ul class="swatches" aria-label="Colour palette">
-        {swatches.map((s) => (
-          <li class="sw">
-            <span class="sw__fill" style={`background:${s.hex}`}></span>
-            <span class="sw__info"><b>{s.name}</b><code>{s.hex}</code></span>
-          </li>
-        ))}
-      </ul>
-      <dl class="types" aria-label="Type scale">
-        {types.map((t) => (
-          <div class="type">
-            <dt>{t.label}</dt>
-            <dd class={t.cls}>{t.sample}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
 
-    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: clamp(8px, 2vw, 24px);">
-      <h3 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; letter-spacing: -0.02em; color: #251F19;">Final screens</h3>
-      <p style="margin: 0; max-width: 860px; font-size: 16px; line-height: 1.65; color: #68615A;">Laptop as the primary surface, mobile for the customer self-registration entry point.</p>
-    </div>
 
     <figure class="final">
       <figcaption class="final__cap"><b>Applications</b><span>Status and step tracking for every loan in flight</span></figcaption>
@@ -78,24 +43,6 @@ const phones = [
 </section>
 
 <style>
-.guide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px}
-@media (max-width: 900px){.guide{grid-template-columns:minmax(0,1fr)}}
-.swatches{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-@media (max-width: 560px){.swatches{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.sw{border-radius:var(--radius-card);overflow:hidden;background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column;min-height:180px}
-.sw__fill{display:block;flex:1;min-height:90px;border-bottom:1px solid #EBE8E4}
-.sw__info{padding:12px;display:flex;flex-direction:column;gap:2px;font-size:13px;color:#68615A}
-.sw__info b{font-weight:600;color:#251F19}
-.sw__info code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
-.types{margin:0;box-sizing:border-box;padding:clamp(16px,2vw,24px) clamp(20px,2.4vw,28px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column}
-.type{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid #EBE8E4}
-.type:first-child{border-top:0}
-.type dt{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
-.type dd{margin:0;color:#002329;min-width:0}
-.t-display{font-family:var(--font-display);font-weight:600;font-size:clamp(24px,2.6vw,34px);letter-spacing:-0.03em;line-height:1.1}
-.t-heading{font-family:var(--font-display);font-weight:600;font-size:clamp(20px,1.8vw,24px);letter-spacing:-0.02em}
-.t-body{font-size:16px}
-.t-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;font-weight:500}
 .final{margin:0;display:flex;flex-direction:column;gap:14px;min-width:0}
 .final__cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
 .final__cap b{font-family:var(--font-display);font-size:17px;font-weight:600;color:#251F19}
