@@ -1,0 +1,75 @@
+---
+import SectionHead from './SectionHead.astro';
+import Screen from './Screen.astro';
+
+const stages = [
+  { name: 'Application details', sub: ['Personal', 'Finance', 'Loan', 'Collateral & guarantor', 'Valuator'] },
+  { name: 'Follow-up' },
+  { name: 'Enrichment' },
+  { name: 'Ratio analysis' },
+  { name: 'Evaluation', sub: ['Credit', 'Legal', 'Risk', 'Security valuation', 'Scrutiny'] },
+  { name: 'Underwriting / consortium' },
+  { name: 'Additional info' },
+  { name: 'Loan assessment' },
+  { name: 'Loan approval' },
+  { name: 'Additional approval', cond: 'if checked' },
+  { name: 'Handoff' },
+  { name: 'Customer agreement' },
+  { name: 'Pre-disbursement T&C' },
+  { name: 'Disbursement' },
+  { name: 'Post-disbursement T&C', cond: 'if checked' },
+  { name: 'Kit delivery' },
+  { name: 'Post-disbursement documents' },
+];
+---
+<section id="los-application" aria-label="Loan Application" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+
+    <div class="split">
+      <div style="display: flex; flex-direction: column; gap: clamp(24px, 3vw, 32px);">
+        <SectionHead eyebrow="Loan Application" title="My involvement, not ownership">The Loan Application process is the core of the LOS: a long, multi-step journey from application entry through applicant info, finance, loan and collateral details, guarantor and valuator info, follow-up, and on through credit check, legal verification, risk analysis, security valuation, scrutiny, underwriting, assessment, approval, handoff, agreement, disbursement, and post-disbursement documentation.</SectionHead>
+
+        <aside class="disclose" aria-label="Scope disclosure">
+          <span class="disclose__tag">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h0M11 12h1v5h1"/></svg>
+            Scope disclosure
+          </span>
+          <p>I did not own the full application design. My involvement was analyzing the flow from the SRS, mapping it into a visual journey, understanding which fields are mandatory, conditional, or auto-populated, and participating in discussions on structuring steps, grouping fields, and reducing cognitive load. That analysis informed my work on Leads, Users, and Masters.</p>
+        </aside>
+      </div>
+
+      <Screen src="application-personal-details" w={1280} h={1200} alt="Application #36, Personal Details step: a stage rail on the left lists every step from Application Details to Post Disbursement Documents, with grouped form sections on the right and Save draft beside Save & next" />
+    </div>
+
+    <figure class="journey">
+      <figcaption class="journey__cap">The stages I mapped, in order</figcaption>
+      <ol class="journey__list">
+        {stages.map((s, i) => (
+          <li class:list={['stage', s.cond && 'stage--cond']}>
+            <span class="stage__no">{String(i + 1).padStart(2, '0')}</span>
+            <span class="stage__name">{s.name}{s.cond && <em> ({s.cond})</em>}</span>
+            {s.sub && <span class="stage__sub">{s.sub.join(' · ')}</span>}
+          </li>
+        ))}
+      </ol>
+    </figure>
+
+  </div>
+</section>
+
+<style>
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
+@media (max-width: 900px){.split{grid-template-columns:minmax(0,1fr)}}
+.disclose{box-sizing:border-box;padding:clamp(20px,2.4vw,28px);border-radius:var(--radius-card);background:#FFFFFF;border:1.5px dashed #C2BAB1;display:flex;flex-direction:column;gap:12px}
+.disclose__tag{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#68615A;background:#EEEDE6;padding:5px 12px;border-radius:999px}
+.disclose p{margin:0;font-size:16px;line-height:1.65;color:#3B342D}
+.journey{margin:0;box-sizing:border-box;padding:clamp(20px,3vw,36px);border-radius:var(--radius-card);background:#EAF4F4;border:1px solid #D3E7E8;display:flex;flex-direction:column;gap:18px}
+.journey__cap{font-family:var(--font-display);font-size:14px;font-weight:600;color:#002329}
+.journey__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.stage{box-sizing:border-box;padding:12px 14px;border-radius:10px;background:#FFFFFF;border:1px solid #D3E7E8;display:flex;flex-direction:column;gap:4px}
+.stage--cond{background:transparent;border:1.5px dashed #006D75}
+.stage__no{font-family:var(--font-display);font-size:12px;font-weight:600;color:var(--accent)}
+.stage__name{font-size:15px;font-weight:500;line-height:1.35;color:#002329}
+.stage__name em{font-style:normal;font-weight:400;color:#4C6367}
+.stage__sub{font-size:13px;line-height:1.45;color:#4C6367}
+</style>
