@@ -12,6 +12,8 @@ import Ideate from '../../components/case/los/Ideate.astro';
 import Resolution from '../../components/case/los/Resolution.astro';
 import Design from '../../components/case/los/Design.astro';
 import Focus from '../../components/case/los/Focus.astro';
+import Learned from '../../components/case/los/Learned.astro';
+import Reflection from '../../components/case/los/Reflection.astro';
 import { caseStudies } from '../../data/site';
 
 const study = caseStudies.find((c) => c.slug === 'los')!;
@@ -34,5 +36,7 @@ const study = caseStudies.find((c) => c.slug === 'los')!;
     <Resolution />
     <Design />
     <Focus />
+    <Learned />
+    <Reflection />
   </div>
 </CaseStudyLayout>
