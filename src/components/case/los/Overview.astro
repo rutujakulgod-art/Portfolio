@@ -26,6 +26,11 @@ const areas = [
     muted: true,
   },
 ];
+const facts = [
+  { label: 'My role', value: 'Junior UX designer: flow thinking, wireframes, UI patterns, working with product and business teams' },
+  { label: 'Source of truth', value: 'A vendor-prepared Software Requirements Specification (SRS), version 0.1' },
+  { label: 'Platform', value: 'Enterprise web and tablet, with a mobile-responsive customer self-registration entry point' },
+];
 ---
 <section aria-label="Overview" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
   <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
@@ -60,6 +65,15 @@ const areas = [
       ))}
     </ol>
 
+    <dl class="meta" aria-label="Project details">
+      {facts.map((f) => (
+        <div class="meta__row">
+          <dt>{f.label}</dt>
+          <dd>{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+
   </div>
 </section>
 
@@ -72,6 +86,12 @@ const areas = [
 .area__tag{font-family:var(--font-display);font-size:13px;font-weight:600;color:#68615A}
 .area__title{margin:0;font-family:var(--font-display);font-size:19px;font-weight:500;color:#251F19}
 .area__text{margin:0;font-size:15px;line-height:1.55;color:#68615A}
+.meta{margin:0;border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;overflow:hidden}
+.meta__row{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:18px clamp(20px,2.4vw,28px);border-top:1px solid #EBE8E4}
+.meta__row:first-child{border-top:0}
+.meta dt{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--accent)}
+.meta dd{margin:0;font-size:15px;line-height:1.55;color:#3B342D}
+@media (max-width: 640px){.meta__row{grid-template-columns:minmax(0,1fr);gap:4px}}
 .area--muted{background:transparent;border:1.5px dashed #C2BAB1}
 .area--muted .area__icon{background:#EEEDE6;color:#68615A}
 </style>

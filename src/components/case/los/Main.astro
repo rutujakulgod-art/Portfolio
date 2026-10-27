@@ -1,76 +1,100 @@
 ---
 import { m } from '../../../data/los-media';
 
-const facts = [
-  { label: 'My role', value: 'Junior UX designer: flow thinking, wireframes, UI patterns, working with product and business teams' },
-  { label: 'Source of truth', value: 'A vendor-prepared Software Requirements Specification (SRS), version 0.1' },
-  { label: 'Platform', value: 'Enterprise web and tablet, with a mobile-responsive customer self-registration entry point' },
-];
-
 const stats = [
-  { n: '17', label: 'Stages in the loan lifecycle', tone: 'white' },
-  { n: '49', label: 'Configurable master types', tone: 'tint' },
-  { n: '6+', label: 'Distinct internal roles', tone: 'white' },
-  { n: '12', label: 'Report types across the platform', tone: 'accent' },
+  { n: '17', label: 'Stages in the loan lifecycle' },
+  { n: '49', label: 'Configurable master types' },
+  { n: '6+', label: 'Distinct internal roles' },
+  { n: '12', label: 'Report types across the platform' },
 ];
 ---
-<div style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+<div style="box-sizing: border-box; width: 100%; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
 
-  <section aria-label="Introduction" class="los-hero" style="box-sizing: border-box; width: 100%; display: flex; flex-direction: column; color: #FFFFFF;">
+  <section aria-label="Introduction" class="hero">
+    <div class="hero__wrap">
+      <ul class="hero__tags rise" aria-label="Category">
+        <li>Fintech</li>
+        <li>Enterprise web</li>
+      </ul>
+      <h1 class="hero__title rise rise-1">From fragmented spec <span>to structured system</span></h1>
+      <p class="hero__sub rise rise-2">Designing a Loan Origination System for a bank: turning a dense, compliance-heavy SRS into usable flows, patterns, and screens. Junior UX contribution, focused on Leads, Users, and Masters.</p>
 
-    <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(64px, 8vw, 112px) var(--gutter) clamp(40px, 5vw, 64px); display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
-      <span class="rise" style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: #8FD3D8;">Fintech · Enterprise web</span>
-      <h1 class="rise" style="margin: 16px 0 0; max-width: 1120px; font-family: var(--font-display); font-weight: 500; font-size: clamp(36px, 4.6vw, 62px); line-height: 1.1; letter-spacing: -0.03em; color: #FFFFFF;">From fragmented spec to structured system</h1>
-      <p class="rise rise-2" style="margin: 22px 0 0; max-width: 680px; font-size: clamp(17px, 1.4vw, 19px); line-height: 1.65; color: rgba(255,255,255,0.82);">Designing a Loan Origination System for a bank: turning a dense, compliance-heavy SRS into usable flows, patterns, and screens. Junior UX contribution, focused on Leads, Users, and Masters.</p>
-    </div>
-
-    <div class="rise rise-3" style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter);">
-      <img src={m('applications-list')} width="1280" height="812" alt="Applications table with application number, customer, branch, loan product, assignee, step progress and status for each loan" style="display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid rgba(255,255,255,0.28); box-shadow: 0 30px 80px rgba(0,20,24,0.45); background: #FFFFFF;">
-    </div>
-
-    <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(32px, 4vw, 48px) var(--gutter) clamp(48px, 6vw, 80px);">
-      <dl class="hstrip" aria-label="Project details" style="margin: 0;">
-        {facts.map((f) => (
-          <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.22);">
-            <dt style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #FFFFFF;">{f.label}</dt>
-            <dd style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.45; color: rgba(255,255,255,0.82);">{f.value}</dd>
+      <div class="stage rise rise-3">
+        <figure class="laptop">
+          <div class="laptop__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="laptop__screen">
+            <img src={m('sign-in-desktop')} width="1280" height="800" alt="LOS sign-in screen on desktop: User ID and password fields beside a deep teal welcome panel">
           </div>
-        ))}
-      </dl>
+          <div class="laptop__hinge" aria-hidden="true"></div>
+        </figure>
+        <figure class="phone">
+          <img src={m('lead-mobile-category')} width="360" height="800" alt="Customer self-registration on mobile: 'Need Loan? We got you!' with a choice of Retail or Corporate loan">
+        </figure>
+      </div>
     </div>
   </section>
 
-  <section aria-label="At a glance" style="box-sizing: border-box; width: 100%; background: var(--surface-page);">
-    <div class="bento" style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter) 0;">
+  <section aria-label="At a glance" class="stats">
+    <dl class="stats__grid">
       {stats.map((s) => (
-        <div class:list={['stat', `stat--${s.tone}`]}>
-          <div class="stat__n">{s.n}</div>
-          <div class="stat__l">{s.label}</div>
+        <div class="stats__cell">
+          <dt class="stats__n">{s.n}</dt>
+          <dd class="stats__l">{s.label}</dd>
         </div>
       ))}
-    </div>
+    </dl>
   </section>
 
 </div>
 
 <style>
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#EAF4F4 0%,var(--surface-page) 60%);color:#002329}
+.hero__wrap{box-sizing:border-box;max-width:calc(var(--content-max) + 2 * var(--gutter));margin:0 auto;padding:clamp(56px,7vw,96px) var(--gutter) 0}
+.hero__tags{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.hero__tags li{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:#FFFFFF;border:1px solid #B7D8DA;padding:6px 14px;border-radius:999px}
+.hero__title{margin:0;max-width:900px;font-family:var(--font-display);font-weight:600;font-size:clamp(36px,4.6vw,62px);line-height:1.08;letter-spacing:-0.03em;color:#002329}
+.hero__title span{display:block;color:var(--accent)}
+.hero__sub{margin:20px 0 0;max-width:640px;font-size:clamp(17px,1.4vw,19px);line-height:1.65;color:#4C6367}
+
+/* Device stage: laptop on the left, phone overlapping on the right */
+.stage{position:relative;margin-top:clamp(36px,5vw,56px);padding-bottom:28px}
+.laptop{position:relative;width:min(1040px,86%);margin:0;border-radius:14px 14px 6px 6px;background:#0D2530;border:1px solid rgba(0,109,117,.18);box-shadow:0 4px 10px -4px rgba(0,35,41,.18),0 30px 60px -20px rgba(0,35,41,.35),0 60px 110px -40px rgba(0,35,41,.3);transition:transform .32s var(--ease-out)}
+.laptop__bar{display:flex;gap:6px;padding:12px 16px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);border-radius:14px 14px 0 0}
+.laptop__bar span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22)}
+.laptop__screen{position:relative;aspect-ratio:16/10;overflow:hidden;background:#FFFFFF}
+.laptop__screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.laptop__hinge{position:absolute;left:50%;bottom:-16px;transform:translateX(-50%);width:38%;height:16px;background:linear-gradient(180deg,#0D2530,#081920);border-radius:0 0 8px 8px}
+.phone{position:absolute;right:0;bottom:0;margin:0;width:clamp(190px,19vw,260px);aspect-ratio:9/18.6;padding:8px;box-sizing:border-box;background:#0D2530;border:1px solid rgba(0,109,117,.2);border-radius:38px;box-shadow:0 4px 10px -4px rgba(0,35,41,.18),0 26px 54px -18px rgba(0,35,41,.4);transition:transform .32s var(--ease-out)}
+.phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:30px}
+@media (hover:hover) and (pointer:fine){
+  .stage:hover .laptop{transform:translateY(-5px)}
+  .stage:hover .phone{transform:translateY(-7px)}
+}
+@media (max-width: 760px){
+  .laptop{width:100%}
+  .phone{width:38%;right:-4px;bottom:0;border-radius:26px;padding:6px}
+  .phone img{border-radius:20px}
+}
+
+/* Stats band */
+.stats{background:#002329}
+.stats__grid{box-sizing:border-box;max-width:calc(var(--content-max) + 2 * var(--gutter));margin:0 auto;padding:0 var(--gutter);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stats__cell{padding:clamp(28px,3vw,40px) clamp(16px,2vw,28px);border-right:1px solid rgba(255,255,255,.1)}
+.stats__cell:first-child{padding-left:0}
+.stats__cell:last-child{border-right:0}
+.stats__n{font-family:var(--font-display);font-weight:600;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.02em;color:#FFFFFF}
+.stats__l{margin:10px 0 0;font-size:14px;line-height:1.45;color:#8FD3D6}
+@media (max-width: 760px){
+  .stats__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats__cell{padding:24px 16px}
+  .stats__cell:nth-child(odd){padding-left:0}
+  .stats__cell:nth-child(2n){border-right:0}
+  .stats__cell:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.1)}
+}
+
 @media (prefers-reduced-motion: no-preference){
-.rise{opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.16,1,.3,1) forwards}
-.rise-2{animation-delay:.08s}.rise-3{animation-delay:.16s}
+.rise{opacity:0;transform:translateY(14px);animation:rise .62s var(--ease-out) forwards}
+.rise-1{animation-delay:.06s}.rise-2{animation-delay:.12s}.rise-3{animation-delay:.2s}
 @keyframes rise{to{opacity:1;transform:none}}
 }
-.los-hero{background:radial-gradient(120% 80% at 85% 0%, rgba(0,109,117,0.55) 0%, rgba(0,109,117,0) 60%), linear-gradient(180deg, #002329 0%, #00363D 100%)}
-.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-@media (max-width: 900px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width: 420px){.bento{gap:12px}}
-.hstrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-@media (max-width: 640px){.hstrip{grid-template-columns:minmax(0,1fr);gap:18px}}
-.stat{box-sizing:border-box;min-height:clamp(160px,14vw,200px);padding:clamp(20px,2.2vw,28px);border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;gap:32px;background:#FFFFFF;border:1px solid #EBE8E4}
-.stat__n{font-family:var(--font-display);font-weight:500;font-size:clamp(36px,3.6vw,52px);line-height:1;letter-spacing:-0.03em;color:var(--accent)}
-.stat__l{font-size:clamp(14px,1.1vw,16px);line-height:1.45;max-width:240px;color:#68615A}
-.stat--tint{background:#EAF4F4;border-color:#D3E7E8}
-.stat--tint .stat__l{color:#4F4740}
-.stat--accent{background:var(--accent);border-color:var(--accent)}
-.stat--accent .stat__n{color:#FFFFFF}
-.stat--accent .stat__l{color:rgba(255,255,255,0.86)}
 </style>
