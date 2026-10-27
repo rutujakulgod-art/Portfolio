@@ -10,8 +10,7 @@ import { caseStudies, url } from '../../data/site';
 
     <div class="wk__intro">
       <h2 id="work-title" class="eyebrow">Selected Work</h2>
-      <p class="wk__lede">Enterprise SaaS, design systems and data products, designed end to end from research to handoff.</p>
-      <p class="wk__note"><span aria-hidden="true"></span>Research led. Built to scale.</p>
+      <p class="wk__lede">Enterprise SaaS, fintech loan origination and design systems, from research to handoff.</p>
     </div>
 
     <ol class="wk__bento">
@@ -58,16 +57,6 @@ import { caseStudies, url } from '../../data/site';
     line-height: 1.55;
     color: var(--ink-muted);
   }
-  .wk__note {
-    margin: auto 0 0;
-    padding-top: 32px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--ink-muted);
-  }
-  .wk__note span { width: 6px; height: 6px; border-radius: 1px; background: var(--brand); }
 
   /* Bento */
   .wk__bento {
@@ -145,9 +134,7 @@ import { caseStudies, url } from '../../data/site';
 
   @media (max-width: 1000px) {
     .wk__grid { grid-template-columns: minmax(0, 1fr); }
-    .wk__note { margin-top: 0; padding-top: 4px; }
-  }
-  @media (max-width: 640px) {
+    @media (max-width: 640px) {
     .wk__bento { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
     .wk__item--tall { grid-row: auto; }
     /* On phones every screen sits below the text and arrow, bleeding off the right */
