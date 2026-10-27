@@ -63,6 +63,7 @@ export const caseStudies = [
     short: 'An end-to-end loan platform, from lead capture to disbursement.',
     image: 'media/los/card-los.webp',
     imageMobile: 'media/los/card-los-mobile.webp',
+    artLarge: true,
     imageSize: [1485, 612],
   },
 ] as const;
