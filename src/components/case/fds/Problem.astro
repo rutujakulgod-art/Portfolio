@@ -1,0 +1,106 @@
+---
+/**
+ * Challenge + goal. Follows the Recruitment Problem pattern (white problem card,
+ * accent goal card on a shared subgrid), then a 3×2 grid of the six system goals.
+ */
+const challenges = [
+  { t: 'Manual fixes, inconsistent output', d: 'Moving from Adobe Illustrator to Figma, the team adjusted components by hand, causing inconsistency and production delays.' },
+  { t: 'Fragmented, outdated templates', d: 'Files were scattered with no single source of truth. It was hard to tell which template was latest, and harder for new members to find it.' },
+  { t: 'No shared understanding', d: 'New to Figma, the team was unclear how to set up a library and reuse its components effectively.' },
+];
+
+const tiers = [
+  { t: 'Tokens at the base', d: 'Colour, typography and light/dark modes defined once, used everywhere.' },
+  { t: 'Components in the middle', d: 'UI atoms and components built on tokens, ready to drop into any file.' },
+  { t: 'Templates on top', d: 'Page templates the team starts from for every new news product.' },
+];
+
+const s = 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
+const goals = [
+  { t: 'Consistency', d: 'Establish a unified design language across all products.',
+    i: `<rect x="3.5" y="3.5" width="7" height="7" rx="1.5" ${s}/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5" ${s}/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5" ${s}/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5" ${s}/>` },
+  { t: 'Efficiency', d: 'Streamline the design-to-development workflow.',
+    i: `<path d="M13 2.5 5 13.5h6l-1 8 8-11h-6l1-8Z" ${s}/>` },
+  { t: 'Collaboration', d: 'Improve collaboration between designers and developers.',
+    i: `<circle cx="9" cy="8" r="3.2" ${s}/><circle cx="16.5" cy="9.5" r="2.6" ${s}/><path d="M3 19.5c.6-3.2 3-5 6-5s5.4 1.8 6 5" ${s}/><path d="M15.5 14.6c2.6-.3 4.8 1.2 5.5 4.4" ${s}/>` },
+  { t: 'Scalability', d: 'Create a scalable system that accommodates future growth.',
+    i: `<path d="m12 3.5 8.5 4.3L12 12 3.5 7.8 12 3.5Z" ${s}/><path d="m3.5 12 8.5 4.2 8.5-4.2" ${s}/><path d="m3.5 16.2 8.5 4.3 8.5-4.3" ${s}/>` },
+  { t: 'Reduce redundancy', d: 'Cut duplicate work and increase internal sharing.',
+    i: `<rect x="8.5" y="8.5" width="12" height="12" rx="2" ${s}/><path d="M15.5 5.5v-.5a1.5 1.5 0 0 0-1.5-1.5H5A1.5 1.5 0 0 0 3.5 5v9A1.5 1.5 0 0 0 5 15.5h.5" ${s}/><path d="M12 14.5h5" ${s}/>` },
+  { t: 'Speed of delivery', d: 'Move from idea to production faster.',
+    i: `<path d="M9 6.5h11.5M20.5 6.5 17 3M20.5 6.5 17 10" ${s}/><path d="M3.5 12.5h9M3.5 17.5h13" ${s}/>` },
+];
+---
+<section aria-label="Challenge and goal" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter);">
+
+    <div class="pg">
+      <article class="card" style="padding: clamp(28px, 4vw, 56px); border-radius: var(--radius-card); background: #FFFFFF; border: 1px solid #EBE8E4;">
+        <p style="margin: 0; font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">The challenge</p>
+        <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.12; letter-spacing: -0.025em; color: #251F19;">A newsroom on Figma, without a foundation</h2>
+        <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.65; color: #68615A;">The team had switched tools but kept Illustrator-era habits: every file rebuilt by hand, every designer working from a different version.</p>
+        <ul class="list">
+          {challenges.map((c) => (
+            <li style="border-top: 1px solid #EBE8E4;">
+              <h3 style="color: #251F19;">{c.t}</h3>
+              <p style="color: #68615A;">{c.d}</p>
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="card" style="padding: clamp(28px, 4vw, 56px); border-radius: var(--radius-card); background: var(--accent); color: #FFFFFF;">
+        <p style="margin: 0; font-family: var(--font-display); font-size: 15px; font-weight: 600; color: #A9BEDF;">The goal</p>
+        <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.12; letter-spacing: -0.025em; color: #FFFFFF;">One library every product starts from</h2>
+        <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.82);">A single, tokenised Figma library in three tiers, so the team builds from shared parts instead of copies.</p>
+        <ul class="list">
+          {tiers.map((c) => (
+            <li style="border-top: 1px solid rgba(255,255,255,0.18);">
+              <h3 style="color: #FFFFFF;">{c.t}</h3>
+              <p style="color: rgba(255,255,255,0.78);">{c.d}</p>
+            </li>
+          ))}
+        </ul>
+      </article>
+    </div>
+
+    <div class="goals-head">
+      <h3 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(22px, 2vw, 28px); line-height: 1.2; letter-spacing: -0.02em; color: #251F19;">Six things the system had to deliver</h3>
+    </div>
+    <ul class="goals">
+      {goals.map((g) => (
+        <li>
+          <span class="goals__ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" set:html={g.i} /></span>
+          <h4>{g.t}</h4>
+          <p>{g.d}</p>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+.pg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{box-sizing:border-box;display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:18px}
+.list{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column}
+.list li{display:flex;flex-direction:column;gap:6px;padding:20px 0}
+.list li:last-child{padding-bottom:0}
+.list h3{margin:0;font-family:var(--font-display);font-size:18px;font-weight:600}
+.list p{margin:0;font-size:15px;line-height:1.55}
+@media (max-width: 900px){.pg{grid-template-columns:minmax(0,1fr)}}
+
+.goals-head{margin:clamp(48px,6vw,80px) 0 20px}
+.goals{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.goals li{box-sizing:border-box;padding:clamp(20px,2.2vw,28px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column}
+.goals__ic{width:44px;height:44px;border-radius:10px;background:#E3EAF6;color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.goals h4{margin:0 0 6px;font-family:var(--font-display);font-size:18px;font-weight:600;color:#251F19}
+.goals p{margin:0;font-size:15px;line-height:1.55;color:#68615A}
+@media (max-width: 900px){.goals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 560px){
+  .goals{grid-template-columns:minmax(0,1fr);gap:12px}
+  .goals li{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:14px;align-items:start}
+  .goals__ic{width:40px;height:40px;margin:0;grid-row:span 2}
+  .goals h4{margin:2px 0 4px}
+}
+</style>
