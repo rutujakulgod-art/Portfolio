@@ -45,7 +45,7 @@ export const caseStudies = [
     slug: 'figma-design-system',
     title: 'Figma Design System',
     navLabel: 'Figma Design System',
-    accent: '#1E3A7B',
+    accent: '#0C2857',
     summary:
       'Architected the Figma design system and visual library for Singapore’s largest newsroom.',
     short: 'A scalable, tokenised Figma library for Singapore’s largest newsroom.',

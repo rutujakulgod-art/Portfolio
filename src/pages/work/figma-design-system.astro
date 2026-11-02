@@ -1,0 +1,16 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import Main from '../../components/case/fds/Main.astro';
+import { caseStudies } from '../../data/site';
+
+const study = caseStudies.find((c) => c.slug === 'figma-design-system')!;
+---
+<CaseStudyLayout
+  title="Figma Design System"
+  description="One shared design language for a fast-moving newsroom: a tokenised Figma library for The Straits Times digital team at SPH Media."
+  accent={study.accent}
+>
+  <div class="cs" style="--accent-hover: #17396F">
+    <Main />
+  </div>
+</CaseStudyLayout>
