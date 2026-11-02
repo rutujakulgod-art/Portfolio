@@ -3,6 +3,7 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import Main from '../../components/case/fds/Main.astro';
 import Problem from '../../components/case/fds/Problem.astro';
 import Research from '../../components/case/fds/Research.astro';
+import Process from '../../components/case/fds/Process.astro';
 import { caseStudies } from '../../data/site';
 
 const study = caseStudies.find((c) => c.slug === 'figma-design-system')!;
@@ -16,5 +17,6 @@ const study = caseStudies.find((c) => c.slug === 'figma-design-system')!;
     <Main />
     <Problem />
     <Research />
+    <Process />
   </div>
 </CaseStudyLayout>

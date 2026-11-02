@@ -1,0 +1,81 @@
+---
+/**
+ * Process: eight steps grouped into three phases, as a horizontal timeline.
+ * Phase widths follow their step count so every step column is the same width.
+ * Stacks into a vertical timeline below 900px.
+ */
+const phases = [
+  { n: 'Phase 1', name: 'Discover', color: '#8FA6CC', steps: [
+    'Align on why a design system matters to the team',
+    'Meet to analyse colour usage and uses',
+    'Present the old Adobe Illustrator template',
+  ] },
+  { n: 'Phase 2', name: 'Build and test', color: 'var(--accent)', steps: [
+    'Build the revised Figma library from feedback',
+    'Usability testing and feedback',
+  ] },
+  { n: 'Phase 3', name: 'Roll out', color: 'var(--accent-2)', steps: [
+    'Demo how to use the library with the team',
+    'Pitch fixes for patterns and components',
+    'Ship a template for the current live products',
+  ] },
+];
+let i = 0;
+---
+<section aria-labelledby="fds-process" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">Process</span>
+      <h2 id="fds-process" style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">From audit to a living template</h2>
+      <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">Eight steps that took the team from scattered Illustrator files to a shared Figma library, with the people using it involved at every stage.</p>
+    </div>
+
+    <ol class="tl" aria-label="Process phases">
+      {phases.map((p) => (
+        <li class="tl__ph" style={`--c: ${p.color}; --n: ${p.steps.length};`}>
+          <div class="tl__head">
+            <span class="tl__pn">{p.n}</span>
+            <h3 class="tl__name">{p.name}</h3>
+          </div>
+          <ol class="tl__steps" start={i + 1}>
+            {p.steps.map((s) => {
+              i += 1;
+              return (
+                <li class="tl__st">
+                  <span class="tl__dot" aria-hidden="true"></span>
+                  <span class="tl__num" aria-hidden="true">{String(i).padStart(2, '0')}</span>
+                  <p>{s}</p>
+                </li>
+              );
+            })}
+          </ol>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>
+
+<style>
+.tl{list-style:none;margin:0;padding:clamp(28px,3.4vw,44px) clamp(24px,3vw,40px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:grid;grid-template-columns:3fr 2fr 3fr}
+.tl__ph{display:flex;flex-direction:column;min-width:0}
+.tl__head{display:flex;flex-direction:column;gap:4px;padding:0 16px 18px 0}
+.tl__pn{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#68615A}
+.tl__name{margin:0;font-family:var(--font-display);font-size:20px;font-weight:500;letter-spacing:-0.01em;color:#251F19}
+.tl__steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border-top:3px solid var(--c)}
+.tl__ph + .tl__ph .tl__steps{margin-left:4px}
+.tl__st{position:relative;padding:26px 20px 0 0;display:flex;flex-direction:column;gap:8px}
+.tl__dot{position:absolute;left:0;top:-9px;width:15px;height:15px;border-radius:50%;background:#FFFFFF;border:3px solid var(--c);box-sizing:border-box}
+.tl__num{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--c)}
+.tl__ph:first-child .tl__num{color:#4F6A99}
+.tl__st p{margin:0;font-family:var(--font-display);font-size:16px;font-weight:500;line-height:1.4;color:#251F19}
+
+@media (max-width: 900px){
+  .tl{grid-template-columns:minmax(0,1fr);row-gap:28px}
+  .tl__head{padding:0 0 12px}
+  .tl__steps{grid-template-columns:minmax(0,1fr);border-top:0;border-left:3px solid var(--c);margin-left:6px !important;row-gap:20px;padding:4px 0 4px}
+  .tl__st{padding:0 0 0 24px;gap:4px}
+  .tl__dot{left:-9px;top:2px}
+}
+</style>
