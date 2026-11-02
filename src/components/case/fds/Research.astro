@@ -1,0 +1,131 @@
+---
+/**
+ * Research and planning. Follows the Recruitment Research pattern: header, then
+ * numbered track cards with a visual on top. Visuals are built in code; swap in
+ * real images later via m('file') from ../../../data/fds-media if wanted.
+ */
+---
+<section aria-labelledby="fds-research" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">Research and planning</span>
+      <h2 id="fds-research" style="margin: 0; max-width: 680px; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Understanding the team before building</h2>
+      <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">Before designing a single component, I listened to the people who would use the library, looked at how other newsrooms structure theirs, and gathered every template the team was already working from.</p>
+    </div>
+
+    <ol class="tracks" aria-label="Research tracks">
+
+      <!-- 01 Interviews -->
+      <li class="trk">
+        <div class="trk__vis" aria-hidden="true" style="background: linear-gradient(160deg, #D5E0F3 0%, #F2F5FB 100%);">
+          <div class="v-int">
+            <div class="v-int__who">
+              <span style="background:#0C2857;color:#fff">DS</span><span style="background:#E3EAF6;color:#0C2857">DV</span><span style="background:#FDE3DD;color:#B3260F">TM</span>
+              <em>Designers · Developers · Team</em>
+            </div>
+            <div class="v-note"><b>Pain point</b>Components rebuilt by hand in every file</div>
+            <div class="v-note"><b>Pain point</b>Which template is the latest one?</div>
+            <div class="v-note v-note--red"><b>Gap</b>How does a Figma library actually work?</div>
+          </div>
+        </div>
+        <div class="trk__txt">
+          <span class="trk__n">01</span>
+          <h3>User interviews</h3>
+          <p>Conversations with the team, developers and designers about requirements, pain points and issues with the existing design libraries.</p>
+        </div>
+      </li>
+
+      <!-- 02 Competitive analysis -->
+      <li class="trk">
+        <div class="trk__vis" aria-hidden="true" style="background: linear-gradient(200deg, #C8D6EE 0%, #EFF3FA 100%);">
+          <div class="v-cmp">
+            {[
+              ['#0C2857', '#EF4123', '#E3EAF6'],
+              ['#1B1B1F', '#C9A227', '#F1EFE9'],
+              ['#0F5C4A', '#E86B3A', '#E6F0EC'],
+            ].map((c, i) => (
+              <div class="v-ds" style={`transform: translateY(${i * 6}px) rotate(${(i - 1) * 3}deg);`}>
+                <span class="v-ds__lbl">Publication {String.fromCharCode(65 + i)}</span>
+                <div class="v-ds__sw">{c.map((x) => <i style={`background:${x}`}></i>)}</div>
+                <span class="v-ds__aa">Aa</span>
+                <span class="v-ds__ln" style="width:80%"></span><span class="v-ds__ln" style="width:55%"></span>
+                <span class="v-ds__btn" style={`background:${c[0]}`}></span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="trk__txt">
+          <span class="trk__n">02</span>
+          <h3>Competitive analysis</h3>
+          <p>A review of the design systems and libraries other media publications use, to see how they handle tokens, theming and templates.</p>
+        </div>
+      </li>
+
+      <!-- 03 Existing templates -->
+      <li class="trk">
+        <div class="trk__vis" aria-hidden="true" style="background: linear-gradient(160deg, #D9E2F2 0%, #F4F6FB 100%);">
+          <div class="v-files">
+            {[
+              ['Homepage_v3_final.ai', -7, 7, 12],
+              ['Article_template_NEW.ai', 5, 26, 30],
+              ['homepage_v4_FINAL2.ai', -3, 10, 50],
+              ['Newsletter_old_DONOTUSE.ai', 5, 20, 68],
+            ].map(([n, r, x, y]) => (
+              <div class="v-file" style={`left:${x}%;top:${y}%;transform:rotate(${r}deg)`}>
+                <span class="v-file__ai">Ai</span>
+                <span class="v-file__nm">{n}</span>
+              </div>
+            ))}
+            <span class="v-q">?</span>
+          </div>
+        </div>
+        <div class="trk__txt">
+          <span class="trk__n">03</span>
+          <h3>Existing templates</h3>
+          <p>Gathering the templates and mock-ups the team was already using, to see what to keep, merge or retire in the new library.</p>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<style>
+.tracks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width: 1000px){.tracks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 640px){.tracks{grid-template-columns:minmax(0,1fr)}}
+.trk{box-sizing:border-box;border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;overflow:hidden;display:flex;flex-direction:column}
+.trk__vis{position:relative;aspect-ratio:1/0.8;overflow:hidden;box-sizing:border-box}
+.trk__txt{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px}
+.trk__n{font-family:var(--font-display);font-size:13px;font-weight:600;color:#68615A}
+.trk h3{margin:0;font-family:var(--font-display);font-size:19px;font-weight:500;color:#251F19}
+.trk p{margin:0;font-size:15px;line-height:1.55;color:#68615A}
+
+/* 01 interviews */
+.v-int{position:absolute;inset:0;padding:0 9%;display:flex;flex-direction:column;justify-content:center;gap:9px}
+.v-int__who{display:flex;align-items:center;gap:0;margin-bottom:4px}
+.v-int__who span{width:30px;height:30px;border-radius:999px;border:2px solid #F2F5FB;margin-left:-6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:10px;font-weight:700}
+.v-int__who span:first-child{margin-left:0}
+.v-int__who em{font-style:normal;margin-left:10px;font-size:12px;color:#4F5B70}
+.v-note{box-sizing:border-box;padding:10px 14px;border-radius:10px;background:#FFFFFF;border:1px solid #D3DDEE;box-shadow:0 6px 18px rgba(12,40,87,.08);font-size:13px;line-height:1.4;color:#251F19;display:flex;flex-direction:column;gap:2px}
+.v-note b{font-family:var(--font-display);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0C2857}
+.v-note--red{border-color:#F6C9BE;background:#FFF6F3}
+.v-note--red b{color:#B3260F}
+
+/* 02 competitive */
+.v-cmp{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:4%;padding:0 6%}
+.v-ds{flex:1;max-width:120px;box-sizing:border-box;padding:12px;border-radius:12px;background:#FFFFFF;border:1px solid #D3DDEE;box-shadow:0 10px 24px rgba(12,40,87,.12);display:flex;flex-direction:column;gap:8px}
+.v-ds__lbl{font-family:var(--font-display);font-size:10px;font-weight:700;color:#4F5B70;white-space:nowrap}
+.v-ds__sw{display:flex;gap:4px}.v-ds__sw i{flex:1;height:20px;border-radius:4px;border:1px solid rgba(0,0,0,.05)}
+.v-ds__aa{font-family:Georgia,serif;font-size:24px;line-height:1;color:#251F19}
+.v-ds__ln{display:block;height:5px;border-radius:3px;background:#E3E7EE}
+.v-ds__btn{display:block;height:16px;width:60%;border-radius:4px;margin-top:2px}
+
+/* 03 files */
+.v-files{position:absolute;inset:0}
+.v-file{position:absolute;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 8px;border-radius:9px;background:#FFFFFF;border:1px solid #D3DDEE;box-shadow:0 8px 20px rgba(12,40,87,.12);white-space:nowrap}
+.v-file__ai{width:24px;height:24px;border-radius:5px;background:#2B1700;color:#FF9A00;font-family:var(--font-display);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.v-file__nm{font-size:12px;font-weight:500;color:#251F19}
+.v-q{position:absolute;right:9%;top:12%;width:34px;height:34px;border-radius:50%;background:var(--accent-2);color:#fff;font-family:var(--font-display);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(239,65,35,.35)}
+</style>
