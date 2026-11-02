@@ -1,16 +1,11 @@
 ---
 /**
- * Hero + at a glance. Follows the Recruitment SaaS Main pattern:
- * headline, large visual, project meta strip, then a four-card stat bento.
- * Set `heroImage` to the component-sheet file name once it is in
- * public/media/figma-design-system/; until then a placeholder frame shows.
+ * Hero + My role + at a glance.
+ * Hero recreates the case-study cover (navy, "UX case study" pill, serif title,
+ * stacked-library illustration) in live HTML so it stays sharp and readable at every width.
+ * My role uses the cover site's split pattern: project facts on the left, write-up on the right.
  */
-import { m } from '../../../data/fds-media';
-
-const heroImage: string | null = 'hero-library.webp';
-const heroSize = [1600, 900];
-
-const meta = [
+const facts = [
   { k: 'Company', v: 'SPH Media' },
   { k: 'Project timeline', v: '3 months' },
   { k: 'My role', v: 'UX Designer' },
@@ -19,42 +14,57 @@ const meta = [
 ---
 <div style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
 
-  <section aria-label="Introduction" class="fds-hero">
-    <div class="fds-hero__grid" aria-hidden="true"><div class="fds-hero__cols">{Array.from({ length: 12 }, () => <span />)}</div></div>
+  <!-- HERO -->
+  <section aria-labelledby="fds-title" class="fds-hero">
+    <span class="fds-hero__mono" aria-hidden="true">ST</span>
+    <div class="fds-hero__in">
+      <div class="fds-hero__copy">
+        <p class="fds-pill rise"><span aria-hidden="true"></span>UX case study</p>
+        <h1 id="fds-title" class="fds-title rise rise-2">Figma Design System<br /> for ST Digital News</h1>
+        <p class="fds-lede rise rise-3">Building a scalable, tokenised design library that brought consistency, speed and clarity to SPH Media’s fast-moving digital newsroom.</p>
+        <p class="fds-by rise rise-4">The Straits Times · SPH Media</p>
+      </div>
 
-    <div class="fds-hero__in" style="padding-top: clamp(64px, 8vw, 112px); padding-bottom: clamp(40px, 5vw, 64px); display: flex; flex-direction: column; align-items: flex-start;">
-      <p class="rise" style="margin: 0 0 20px; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 14px; font-weight: 600; letter-spacing: 0.01em; color: #A9BEDF;">
-        <span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; background: #EF4123;"></span>
-        Figma Design System · ST Digital News
-      </p>
-      <h1 class="rise rise-2 fds-h1" style="margin: 0; font-family: var(--font-display); font-weight: 500; line-height: 1.1; letter-spacing: -0.03em; color: #FFFFFF;">One shared design language for a fast&#8209;moving newsroom</h1>
-      <p class="rise rise-3" style="margin: 22px 0 0; max-width: none; text-wrap: pretty; font-size: clamp(17px, 1.4vw, 19px); line-height: 1.65; color: rgba(255,255,255,0.82);">A tokenised Figma library for The Straits Times digital team: from colour and type tokens to full page templates, in light and dark, so every news product starts from the same foundation.</p>
-    </div>
-
-    <div class="fds-hero__in rise rise-4">
-      {heroImage ? (
-        <img src={m(heroImage)} width={heroSize[0]} height={heroSize[1]} alt="The library’s three tiers side by side: colour, type and spacing tokens; buttons, chips, search, audio player, tabs and cards in light and dark; and a mobile news homepage template in both modes" style="display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid rgba(255,255,255,0.28); box-shadow: 0 30px 80px rgba(2,8,20,0.45); background: #FFFFFF;" />
-      ) : (
-        <div class="fds-ph" role="img" aria-label="Component sheet image to come" style={`aspect-ratio: ${heroSize[0]} / ${heroSize[1]};`}>
-          <span>Component sheet · image to come</span>
+      <div class="fds-stack rise rise-3" aria-hidden="true">
+        <div class="fds-stack__l fds-stack__l--3"></div>
+        <div class="fds-stack__l fds-stack__l--2"></div>
+        <div class="fds-stack__card">
+          <div class="fds-stack__a"></div>
+          <div class="fds-stack__b"></div>
+          <div class="fds-stack__c"></div>
+          <div class="fds-stack__d"></div>
         </div>
-      )}
-    </div>
-
-    <div class="fds-hero__in" style="padding-top: clamp(32px, 4vw, 48px); padding-bottom: clamp(48px, 6vw, 80px);">
-      <dl class="hstrip" aria-label="Project details" style="margin: 0;">
-        {meta.map((d) => (
-          <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.22);">
-            <dt style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #FFFFFF;">{d.k}</dt>
-            <dd style="margin: 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,0.82);">{d.v}</dd>
-          </div>
-        ))}
-      </dl>
+      </div>
     </div>
   </section>
 
+  <!-- MY ROLE -->
+  <section aria-labelledby="fds-role" style="box-sizing: border-box; width: 100%;">
+    <div style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter) 0;">
+      <div class="role">
+        <dl class="role__facts">
+          {facts.map((f) => (
+            <div>
+              <dt>{f.k}</dt>
+              <dd>{f.v}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="role__body">
+          <h2 id="fds-role">My role</h2>
+          <p>SPH Media’s digital design team manages multiple fast-tracked digital news projects under tight deadlines. The team needed a comprehensive design system that could bring consistency and efficiency to their work.</p>
+          <ol>
+            <li><span aria-hidden="true">1</span><p>Owned the creation of the Figma <strong>Design Library</strong> that the team could easily access and use as a template for upcoming digital news products.</p></li>
+            <li><span aria-hidden="true">2</span><p>Introduced the team to Figma features such as <strong>components, light/dark mode</strong> and building reusable templates.</p></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
   <section aria-label="At a glance" style="box-sizing: border-box; width: 100%; background: var(--surface-page);">
-    <div class="bento" style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter);">
+    <div class="bento" style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(40px, 5vw, 64px) var(--gutter) clamp(56px, 8vw, 104px);">
       <div class="tile" style="background: #FFFFFF; border: 1px solid #EBE8E4;">
         <div class="tile__n" style="color: var(--accent);">90%</div>
         <div class="tile__l" style="color: #68615A;">Efficiency gained by building from templates</div>
@@ -77,25 +87,63 @@ const meta = [
 </div>
 
 <style>
-/* Headline holds one line from tablet up; wraps naturally on phones */
-.fds-h1{font-size:clamp(34px,3.85vw,56px)}
-@media (min-width: 960px){.fds-h1{white-space:nowrap}}
 @media (prefers-reduced-motion: no-preference){
 .rise{opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.16,1,.3,1) forwards}
 .rise-2{animation-delay:.08s}.rise-3{animation-delay:.16s}.rise-4{animation-delay:.26s}
 @keyframes rise{to{opacity:1;transform:none}}
 }
-.fds-hero{position:relative;isolation:isolate;overflow:hidden;width:100%;display:flex;flex-direction:column;color:#FFFFFF;background:radial-gradient(120% 80% at 85% 0%, #17396F 0%, rgba(23,57,111,0) 60%), var(--accent)}
-.fds-hero__in{position:relative;box-sizing:border-box;width:100%;max-width:calc(var(--content-max) + 2 * var(--gutter));margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter)}
-/* Layout-grid motif: the 12-column desktop grid (4 on mobile) inside the content width, fading toward the bottom */
-.fds-hero__grid{position:absolute;inset:0;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.7) 40%,transparent 80%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.7) 40%,transparent 80%)}
-.fds-hero__cols{box-sizing:border-box;height:100%;max-width:calc(var(--content-max) + 2 * var(--gutter));margin:0 auto;padding:0 var(--gutter);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
-.fds-hero__cols span{background:rgba(255,255,255,0.035);border-left:1px solid rgba(255,255,255,0.05);border-right:1px solid rgba(255,255,255,0.05)}
-@media (max-width: 640px){.fds-hero__cols{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.fds-hero__cols span:nth-child(n+5){display:none}}
-.fds-ph{box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:center;border-radius:16px;border:1px dashed rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);font-family:var(--font-display);font-size:14px;font-weight:500;color:rgba(255,255,255,0.7)}
-.hstrip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-@media (max-width: 900px){.hstrip{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width: 480px){.hstrip{grid-template-columns:minmax(0,1fr);gap:18px}}
+
+/* ---------- Hero (cover) ---------- */
+.fds-hero{--serif:Georgia,'Times New Roman',serif;position:relative;isolation:isolate;overflow:hidden;width:100%;color:#FFFFFF;
+  background:radial-gradient(90% 120% at 100% 0%, #21498A 0%, rgba(33,73,138,0) 60%), linear-gradient(160deg, #1A4182 0%, #133570 45%, var(--accent) 100%)}
+.fds-hero__mono{position:absolute;z-index:-1;left:-0.06em;top:-0.22em;font-family:var(--serif);font-size:clamp(220px,30vw,460px);line-height:1;letter-spacing:-0.02em;color:rgba(255,255,255,0.05);pointer-events:none;user-select:none}
+.fds-hero__in{box-sizing:border-box;max-width:calc(var(--content-max) + 2 * var(--gutter));margin:0 auto;padding:clamp(72px,9vw,128px) var(--gutter) clamp(64px,8vw,112px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:center;gap:clamp(32px,5vw,72px)}
+.fds-hero__copy{display:flex;flex-direction:column;align-items:flex-start}
+.fds-pill{margin:0 0 clamp(24px,2.6vw,36px);display:inline-flex;align-items:center;gap:10px;height:36px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.5);font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FFFFFF}
+.fds-pill span{width:7px;height:7px;border-radius:50%;background:#EF4123}
+.fds-title{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.6vw,66px);line-height:1.12;letter-spacing:-0.01em;color:#FFFFFF}
+.fds-lede{margin:clamp(22px,2.4vw,32px) 0 0;max-width:560px;font-size:clamp(16px,1.3vw,19px);line-height:1.7;color:rgba(255,255,255,0.84)}
+.fds-by{margin:clamp(40px,5vw,72px) 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(14px,1.1vw,16px);color:rgba(255,255,255,0.55)}
+
+/* Stacked library illustration */
+.fds-stack{position:relative;justify-self:end;width:min(92%,420px);aspect-ratio:1/1.02;margin-right:2%}
+.fds-stack > *{position:absolute;border-radius:clamp(14px,1.6vw,22px)}
+.fds-stack__l--3{inset:0 20% 30% 6%;transform:rotate(9deg);background:rgba(64,106,176,0.55)}
+.fds-stack__l--2{inset:7% 13% 23% 11%;transform:rotate(9deg);background:#123576;box-shadow:0 20px 50px rgba(2,10,30,.35)}
+.fds-stack__card{inset:21% 4% 5% 17%;transform:rotate(9deg);background:#FFFFFF;box-shadow:0 30px 70px rgba(2,10,30,.45);overflow:hidden}
+.fds-stack__card > div{position:absolute;border-radius:clamp(6px,.8vw,10px)}
+.fds-stack__a{left:10%;top:13%;width:52%;height:3%;border-radius:2px !important;background:#0C2857}
+.fds-stack__b{left:10%;top:14%;width:78%;height:46%;background:#D7DDE6}
+.fds-stack__c{left:44%;top:51%;width:24%;height:16%;background:#EEF1F6;box-shadow:0 4px 12px rgba(12,40,87,.12)}
+.fds-stack__d{left:6%;top:54%;width:30%;height:18%;background:#0C2857}
+
+@media (max-width: 860px){
+  .fds-hero__in{grid-template-columns:minmax(0,1fr)}
+  .fds-stack{justify-self:center;width:min(78%,340px);margin-top:8px}
+  .fds-by{margin-top:32px}
+}
+
+/* ---------- My role ---------- */
+.role{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:#FFFFFF}
+.role__facts{margin:0;padding:clamp(28px,3.4vw,44px) clamp(24px,3vw,40px);background:#F3F5F9;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:clamp(22px,2.4vw,30px)}
+.role__facts div{display:flex;flex-direction:column;gap:8px}
+.role__facts dt{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#C0291B}
+.role__facts dd{margin:0;font-family:var(--font-display);font-size:17px;font-weight:500;line-height:1.4;color:var(--accent)}
+.role__body{padding:clamp(28px,3.4vw,44px) clamp(24px,4vw,56px)}
+.role__body h2{margin:0 0 18px;font-family:var(--font-display);font-weight:500;font-size:clamp(26px,2.4vw,34px);line-height:1.15;letter-spacing:-0.02em;color:var(--accent)}
+.role__body > p{margin:0;max-width:720px;font-size:clamp(16px,1.25vw,18px);line-height:1.7;color:#4F4740}
+.role__body ol{list-style:none;margin:clamp(24px,2.6vw,32px) 0 0;padding:0;display:flex;flex-direction:column;gap:18px;max-width:720px}
+.role__body li{display:flex;gap:14px;align-items:flex-start}
+.role__body li span{flex-shrink:0;width:24px;height:24px;margin-top:2px;border-radius:var(--radius-chip);background:#E3EAF6;color:var(--accent);font-family:var(--font-display);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.role__body li p{margin:0;font-size:clamp(15px,1.15vw,17px);line-height:1.65;color:#4F4740}
+.role__body strong{font-weight:600;color:var(--accent)}
+@media (max-width: 760px){
+  .role{grid-template-columns:minmax(0,1fr)}
+  .role__facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 20px;border-right:0;border-bottom:1px solid var(--line)}
+}
+@media (max-width: 380px){.role__facts{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- At a glance ---------- */
 .bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 @media (max-width: 900px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width: 420px){.bento{gap:12px}}
