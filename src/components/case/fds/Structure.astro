@@ -1,0 +1,188 @@
+---
+/**
+ * Structure overview (three tiers) + LV 0 design tokens.
+ * Placeholders: section-accent hex codes (accents[].hex = null) and typeface
+ * specimen images (type[].img = null). Fill them in and the placeholders disappear.
+ */
+import { m } from '../../../data/fds-media';
+
+const tiers = [
+  { lv: 'LV 2', t: 'Mockup / Template', d: 'Structured page layouts built from components, following ST’s UX patterns.', bg: '#FFFFFF', fg: '#251F19', sub: '#68615A', bd: '#D2DCEE', w: '62%' },
+  { lv: 'LV 1', t: 'Components & UI atoms', d: 'Buttons, inputs, chips and toggles, combined into players, menus and cards.', bg: '#E3EAF6', fg: 'var(--accent)', sub: '#3E4E6A', bd: '#D2DCEE', w: '81%' },
+  { lv: 'LV 0', t: 'Design tokens', d: 'Colours, typography and colour themes, named once and reused everywhere.', bg: 'var(--accent)', fg: '#FFFFFF', sub: 'rgba(255,255,255,0.8)', bd: 'transparent', w: '100%' },
+];
+
+const colours = [
+  { n: 'Main text', hex: '#000000' },
+  { n: 'ST Blue', hex: '#0C2857' },
+  { n: 'Highlight', hex: '#EF4123' },
+  { n: 'Links', hex: '#12239A' },
+  { n: 'Premium', hex: '#73FAFB', light: true },
+];
+
+const accents: { n: string; hex: string | null }[] = [
+  { n: 'Sport', hex: null },
+  { n: 'Life', hex: null },
+  { n: 'Nature', hex: null },
+  { n: 'Highlight', hex: null },
+  { n: 'International', hex: null },
+  { n: 'Business', hex: null },
+];
+
+const type: { n: string; role: string; img: string | null }[] = [
+  { n: 'Selane', role: 'Serif · headlines', img: null },
+  { n: 'Curator', role: 'Sans-serif · body and UI', img: null },
+];
+
+const themes = [
+  { t: 'Header', l: '#0C2857', d: '#FFFFFF' },
+  { t: 'Links', l: '#12239A', d: '#12239A' },
+  { t: 'Background', l: '#FFFFFF', d: '#30353E' },
+  { t: 'Premium', l: '#73FAFB', d: '#73FAFB' },
+];
+---
+<section aria-labelledby="fds-structure" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
+
+    <div class="st-top">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">Structure</span>
+        <h2 id="fds-structure" style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Three tiers, one source of truth</h2>
+        <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.65; color: #68615A;">Each tier builds on the one below it. Change a token at the base and every component and template above it updates with it.</p>
+      </div>
+
+      <ol class="tiers" aria-label="Library tiers">
+        {tiers.map((t) => (
+          <li style={`--w:${t.w}; background:${t.bg}; border:1px solid ${t.bd};`}>
+            <span class="tiers__lv" style={`color:${t.sub}`}>{t.lv}</span>
+            <div>
+              <h3 style={`color:${t.fg}`}>{t.t}</h3>
+              <p style={`color:${t.sub}`}>{t.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <!-- LV 0 tokens -->
+    <div class="tok">
+      <div class="tok__hd">
+        <span class="tok__lv">LV 0</span>
+        <h3>Design tokens</h3>
+        <p>Colour and type values stored as named tokens, so styling stays consistent and reads the same for designers and developers.</p>
+      </div>
+
+      <div class="panel panel--col">
+        <h4 class="ph">Main colours</h4>
+        <ul class="sw" aria-label="Main colours">
+          {colours.map((c) => (
+            <li>
+              <span class="sw__chip" style={`background:${c.hex};${c.light ? 'box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);' : ''}`}></span>
+              <span class="sw__n">{c.n}</span>
+              <span class="sw__h">{c.hex}</span>
+            </li>
+          ))}
+        </ul>
+        <h4 class="ph" style="margin-top: 28px;">Section accents</h4>
+        <ul class="acc" aria-label="Section accents">
+          {accents.map((a) => (
+            <li class={a.hex ? '' : 'acc--pending'}>
+              <span class="acc__dot" style={a.hex ? `background:${a.hex}` : ''}></span>
+              {a.n}{a.hex && <span class="acc__h">{a.hex}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="tok__row">
+        <div class="panel">
+          <h4 class="ph">Typography</h4>
+          <ul class="tf" aria-label="Typefaces">
+            {type.map((f) => (
+              <li>
+                {f.img ? (
+                  <img src={m(f.img)} alt={`${f.n} type specimen`} loading="lazy" />
+                ) : (
+                  <div class="tf__ph" role="img" aria-label={`${f.n} specimen to come`}>Specimen image to come</div>
+                )}
+                <span class="tf__n">{f.n}</span>
+                <span class="tf__r">{f.role}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h4 class="ph">Light / dark theme</h4>
+          <table class="th">
+            <thead><tr><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th></tr></thead>
+            <tbody>
+              {themes.map((r) => (
+                <tr>
+                  <th scope="row">{r.t}</th>
+                  <td><span class="th__sw" style={`background:${r.l}`}></span>{r.l.slice(1)}</td>
+                  <td><span class="th__sw" style={`background:${r.d}`}></span>{r.d.slice(1)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="th__note">Paired values let every component switch theme automatically.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.st-top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:center}
+@media (max-width: 900px){.st-top{grid-template-columns:minmax(0,1fr)}}
+
+/* Tier pyramid: narrowest on top */
+.tiers{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.tiers li{box-sizing:border-box;width:var(--w);border-radius:var(--radius-card);padding:18px 22px;display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;align-items:start}
+.tiers__lv{font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:.04em;padding-top:2px}
+.tiers h3{margin:0 0 4px;font-family:var(--font-display);font-size:18px;font-weight:600}
+.tiers p{margin:0;font-size:14px;line-height:1.5}
+@media (max-width: 560px){.tiers li{width:100%;grid-template-columns:minmax(0,1fr);gap:4px}}
+
+/* Tokens */
+.tok{display:flex;flex-direction:column;gap:16px}
+.tok__hd{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.tok__lv{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--accent-2)}
+.tok__hd h3{margin:0;font-family:var(--font-display);font-size:clamp(24px,2.2vw,30px);font-weight:500;letter-spacing:-0.02em;color:#251F19}
+.tok__hd p{margin:0;max-width:720px;font-size:16px;line-height:1.6;color:#68615A}
+.tok__row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width: 900px){.tok__row{grid-template-columns:minmax(0,1fr)}}
+.panel{box-sizing:border-box;padding:clamp(22px,2.6vw,32px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;min-width:0}
+.ph{margin:0 0 16px;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#68615A}
+
+.sw{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.sw li{display:flex;flex-direction:column;gap:4px}
+.sw__chip{display:block;aspect-ratio:16/10;border-radius:10px;margin-bottom:8px}
+.sw__n{font-family:var(--font-display);font-size:15px;font-weight:600;color:#251F19}
+.sw__h{font-size:13px;color:#68615A;font-variant-numeric:tabular-nums}
+@media (max-width: 760px){.sw{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width: 420px){.sw{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.acc{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.acc li{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px 0 10px;border-radius:999px;background:#F3F5F9;border:1px solid #E3E7EE;font-family:var(--font-display);font-size:14px;font-weight:500;color:#251F19}
+.acc__dot{width:14px;height:14px;border-radius:50%}
+.acc--pending .acc__dot{background:repeating-linear-gradient(45deg,#C9D1DE 0 3px,#EEF1F6 3px 6px)}
+.acc__h{font-size:12px;color:#68615A;font-weight:400}
+
+.tf{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tf li{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tf img,.tf__ph{display:block;width:100%;aspect-ratio:4/3;border-radius:10px;margin-bottom:10px;object-fit:cover}
+.tf__ph{box-sizing:border-box;display:flex;align-items:center;justify-content:center;border:1px dashed #C9D1DE;background:#F6F8FB;font-size:12px;font-weight:500;color:#7A8597;text-align:center;padding:12px}
+.tf__n{font-family:var(--font-display);font-size:16px;font-weight:600;color:#251F19}
+.tf__r{font-size:13px;color:#68615A}
+
+.th{width:100%;border-collapse:collapse;font-size:14px}
+.th th,.th td{text-align:left;padding:11px 0;border-bottom:1px solid #EBE8E4}
+.th thead th{padding-top:0;font-family:var(--font-display);font-size:12px;font-weight:600;color:#68615A}
+.th tbody th{font-family:var(--font-display);font-weight:600;color:#251F19}
+.th td{color:#4F4740;font-variant-numeric:tabular-nums}
+.th__sw{display:inline-block;vertical-align:-4px;width:18px;height:18px;border-radius:5px;margin-right:10px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+.th__note{margin:14px 0 0;font-size:13px;line-height:1.5;color:#68615A}
+</style>
