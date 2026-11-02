@@ -4,13 +4,14 @@
  * numbered track cards with a visual on top. Visuals are built in code; swap in
  * real images later via m('file') from ../../../data/fds-media if wanted.
  */
+import { m } from '../../../data/fds-media';
 ---
 <section aria-labelledby="fds-research" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
   <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
 
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">Research and planning</span>
-      <h2 id="fds-research" style="margin: 0; max-width: 680px; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Understanding the team before building</h2>
+      <h2 id="fds-research" class="r-h2" style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Understanding the team before building</h2>
       <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">Before designing a single component, I listened to the people who would use the library, looked at how other newsrooms structure theirs, and gathered every template the team was already working from.</p>
     </div>
 
@@ -38,22 +39,8 @@
 
       <!-- 02 Competitive analysis -->
       <li class="trk">
-        <div class="trk__vis" aria-hidden="true" style="background: linear-gradient(200deg, #C8D6EE 0%, #EFF3FA 100%);">
-          <div class="v-cmp">
-            {[
-              ['#0C2857', '#EF4123', '#E3EAF6'],
-              ['#1B1B1F', '#C9A227', '#F1EFE9'],
-              ['#0F5C4A', '#E86B3A', '#E6F0EC'],
-            ].map((c, i) => (
-              <div class="v-ds" style={`transform: translateY(${i * 6}px) rotate(${(i - 1) * 3}deg);`}>
-                <span class="v-ds__lbl">Publication {String.fromCharCode(65 + i)}</span>
-                <div class="v-ds__sw">{c.map((x) => <i style={`background:${x}`}></i>)}</div>
-                <span class="v-ds__aa">Aa</span>
-                <span class="v-ds__ln" style="width:80%"></span><span class="v-ds__ln" style="width:55%"></span>
-                <span class="v-ds__btn" style={`background:${c[0]}`}></span>
-              </div>
-            ))}
-          </div>
+        <div class="trk__vis" style="background: #E4E8EF;">
+          <img src={m('research-competitive.webp')} width="719" height="1080" loading="lazy" alt="Reference design-system sheets from the competitive analysis: button states, a type scale, outline icons and dialogs" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;" />
         </div>
         <div class="trk__txt">
           <span class="trk__n">02</span>
@@ -92,6 +79,7 @@
 </section>
 
 <style>
+@media (min-width: 960px){.r-h2{white-space:nowrap}}
 .tracks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media (max-width: 1000px){.tracks{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width: 640px){.tracks{grid-template-columns:minmax(0,1fr)}}
@@ -112,15 +100,6 @@
 .v-note b{font-family:var(--font-display);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0C2857}
 .v-note--red{border-color:#F6C9BE;background:#FFF6F3}
 .v-note--red b{color:#B3260F}
-
-/* 02 competitive */
-.v-cmp{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:4%;padding:0 6%}
-.v-ds{flex:1;max-width:120px;box-sizing:border-box;padding:12px;border-radius:12px;background:#FFFFFF;border:1px solid #D3DDEE;box-shadow:0 10px 24px rgba(12,40,87,.12);display:flex;flex-direction:column;gap:8px}
-.v-ds__lbl{font-family:var(--font-display);font-size:10px;font-weight:700;color:#4F5B70;white-space:nowrap}
-.v-ds__sw{display:flex;gap:4px}.v-ds__sw i{flex:1;height:20px;border-radius:4px;border:1px solid rgba(0,0,0,.05)}
-.v-ds__aa{font-family:Georgia,serif;font-size:24px;line-height:1;color:#251F19}
-.v-ds__ln{display:block;height:5px;border-radius:3px;background:#E3E7EE}
-.v-ds__btn{display:block;height:16px;width:60%;border-radius:4px;margin-top:2px}
 
 /* 03 files */
 .v-files{position:absolute;inset:0}
