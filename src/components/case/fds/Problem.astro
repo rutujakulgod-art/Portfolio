@@ -36,13 +36,13 @@ const goals = [
 
     <div class="pg">
       <article class="card" style="padding: clamp(28px, 4vw, 56px); border-radius: var(--radius-card); background: #FFFFFF; border: 1px solid #EBE8E4;">
-        <p style="margin: 0; font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--brand);">The challenge</p>
+        <p style="margin: 0; font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">The challenge</p>
         <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.12; letter-spacing: -0.025em; color: #251F19;">A newsroom on Figma, without a foundation</h2>
         <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.65; color: #68615A;">The team had switched tools but kept Illustrator-era habits: every file rebuilt by hand, every designer working from a different version.</p>
         <ul class="list">
           {challenges.map((c) => (
             <li style="border-top: 1px solid #EBE8E4;">
-              <h3 style="color: #251F19;">{c.t}</h3>
+              <h3 style="color: #251F19;"><span class="mk" aria-hidden="true"></span>{c.t}</h3>
               <p style="color: #68615A;">{c.d}</p>
             </li>
           ))}
@@ -50,13 +50,13 @@ const goals = [
       </article>
 
       <article class="card" style="padding: clamp(28px, 4vw, 56px); border-radius: var(--radius-card); background: var(--accent); color: #FFFFFF;">
-        <p style="margin: 0; font-family: var(--font-display); font-size: 15px; font-weight: 600; color: #A9BEDF;">The goal</p>
+        <p style="margin: 0; font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">The goal</p>
         <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.12; letter-spacing: -0.025em; color: #FFFFFF;">One library every product starts from</h2>
         <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.82);">A single, tokenised Figma library in three tiers, so the team builds from shared parts instead of copies.</p>
         <ul class="list">
           {tiers.map((c) => (
             <li style="border-top: 1px solid rgba(255,255,255,0.18);">
-              <h3 style="color: #FFFFFF;">{c.t}</h3>
+              <h3 style="color: #FFFFFF;"><span class="mk" aria-hidden="true"></span>{c.t}</h3>
               <p style="color: rgba(255,255,255,0.78);">{c.d}</p>
             </li>
           ))}
@@ -82,12 +82,14 @@ const goals = [
 
 <style>
 .pg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.card{box-sizing:border-box;display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:18px}
-.list{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column}
+/* Each card spans 6 shared rows (eyebrow, heading, intro, 3 items) so the items line up across both cards */
+.card{box-sizing:border-box;display:grid;grid-template-rows:subgrid;grid-row:span 6;row-gap:18px}
+.list{list-style:none;margin:14px 0 0;padding:0;grid-row:span 3;display:grid;grid-template-rows:subgrid;row-gap:0}
 .list li{display:flex;flex-direction:column;gap:6px;padding:20px 0}
 .list li:last-child{padding-bottom:0}
-.list h3{margin:0;font-family:var(--font-display);font-size:18px;font-weight:600}
+.list h3{margin:0;display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:18px;font-weight:600}
 .list p{margin:0;font-size:15px;line-height:1.55}
+.mk{flex-shrink:0;width:8px;height:8px;border-radius:2px;background:var(--accent-2)}
 @media (max-width: 900px){.pg{grid-template-columns:minmax(0,1fr)}}
 
 .goals-head{margin:clamp(48px,6vw,80px) 0 20px}
