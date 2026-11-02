@@ -19,7 +19,6 @@ const facts = [
     <span class="fds-hero__mono" aria-hidden="true">ST</span>
     <div class="fds-hero__in">
       <div class="fds-hero__copy">
-        <p class="fds-pill rise"><span aria-hidden="true"></span>UX case study</p>
         <h1 id="fds-title" class="fds-title rise rise-2">Figma Design System<br /> for ST Digital News</h1>
         <p class="fds-lede rise rise-3">Building a scalable, tokenised design library that brought consistency, speed and clarity to SPH Media’s fast-moving digital newsroom.</p>
         <p class="fds-by rise rise-4">The Straits Times · SPH Media</p>
@@ -99,8 +98,6 @@ const facts = [
 .fds-hero__mono{position:absolute;z-index:-1;left:-0.06em;top:-0.22em;font-family:var(--serif);font-size:clamp(220px,30vw,460px);line-height:1;letter-spacing:-0.02em;color:rgba(255,255,255,0.05);pointer-events:none;user-select:none}
 .fds-hero__in{box-sizing:border-box;max-width:calc(var(--content-max) + 2 * var(--gutter));margin:0 auto;padding:clamp(72px,9vw,128px) var(--gutter) clamp(64px,8vw,112px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:center;gap:clamp(32px,5vw,72px)}
 .fds-hero__copy{display:flex;flex-direction:column;align-items:flex-start}
-.fds-pill{margin:0 0 clamp(24px,2.6vw,36px);display:inline-flex;align-items:center;gap:10px;height:36px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.5);font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FFFFFF}
-.fds-pill span{width:7px;height:7px;border-radius:50%;background:#EF4123}
 .fds-title{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.6vw,66px);line-height:1.12;letter-spacing:-0.01em;color:#FFFFFF}
 .fds-lede{margin:clamp(22px,2.4vw,32px) 0 0;max-width:560px;font-size:clamp(16px,1.3vw,19px);line-height:1.7;color:rgba(255,255,255,0.84)}
 .fds-by{margin:clamp(40px,5vw,72px) 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(14px,1.1vw,16px);color:rgba(255,255,255,0.55)}
@@ -129,10 +126,10 @@ const facts = [
 .role__facts div{display:flex;flex-direction:column;gap:8px}
 .role__facts dt{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#C0291B}
 .role__facts dd{margin:0;font-family:var(--font-display);font-size:17px;font-weight:500;line-height:1.4;color:var(--accent)}
-.role__body{padding:clamp(28px,3.4vw,44px) clamp(24px,4vw,56px)}
+.role__body{padding:clamp(28px,3.4vw,44px) clamp(24px,3vw,40px) clamp(28px,3.4vw,44px) clamp(24px,4vw,56px)}
 .role__body h2{margin:0 0 18px;font-family:var(--font-display);font-weight:500;font-size:clamp(26px,2.4vw,34px);line-height:1.15;letter-spacing:-0.02em;color:var(--accent)}
-.role__body > p{margin:0;max-width:720px;font-size:clamp(16px,1.25vw,18px);line-height:1.7;color:#4F4740}
-.role__body ol{list-style:none;margin:clamp(24px,2.6vw,32px) 0 0;padding:0;display:flex;flex-direction:column;gap:18px;max-width:720px}
+.role__body > p{margin:0;font-size:clamp(16px,1.25vw,18px);line-height:1.7;color:#4F4740}
+.role__body ol{list-style:none;margin:clamp(24px,2.6vw,32px) 0 0;padding:0;display:flex;flex-direction:column;gap:18px}
 .role__body li{display:flex;gap:14px;align-items:flex-start}
 .role__body li span{flex-shrink:0;width:24px;height:24px;margin-top:2px;border-radius:var(--radius-chip);background:#E3EAF6;color:var(--accent);font-family:var(--font-display);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
 .role__body li p{margin:0;font-size:clamp(15px,1.15vw,17px);line-height:1.65;color:#4F4740}
