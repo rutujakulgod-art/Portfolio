@@ -5,6 +5,7 @@ import Problem from '../../components/case/fds/Problem.astro';
 import Research from '../../components/case/fds/Research.astro';
 import Process from '../../components/case/fds/Process.astro';
 import Structure from '../../components/case/fds/Structure.astro';
+import Library from '../../components/case/fds/Library.astro';
 import { caseStudies } from '../../data/site';
 
 const study = caseStudies.find((c) => c.slug === 'figma-design-system')!;
@@ -20,5 +21,6 @@ const study = caseStudies.find((c) => c.slug === 'figma-design-system')!;
     <Research />
     <Process />
     <Structure />
+    <Library />
   </div>
 </CaseStudyLayout>
