@@ -36,18 +36,14 @@ const tags: Record<string, string[]> = {
 
             <div class="wk__vis" aria-hidden="true">
               {c.slug === 'recruitment-saas' && (
-                <div class="wk__stage wk__stage--saas"><img class="wk__img wk__img--saas" src={url('media/work-saas-screens.webp')} width="1391" height="1823" alt="" loading="lazy" decoding="async" /></div>
+                <div class="wk__stage wk__stage--saas">
+                  <img class="wk__scr wk__scr--back" src={url('media/work-saas-back.webp')} width="1000" height="488" alt="" loading="lazy" decoding="async" />
+                  <img class="wk__scr wk__scr--front" src={url('media/work-saas-front.webp')} width="1000" height="506" alt="" loading="lazy" decoding="async" />
+                </div>
               )}
 
               {c.slug === 'figma-design-system' && (
-                <div class="ds">
-                  <span class="ds__p ds__p--sw" style="left:6%;top:10%"><i style="background:#0C2857"></i><b>ST Blue</b><em>#0C2857</em></span>
-                  <span class="ds__p ds__p--sw" style="left:52%;top:6%"><i style="background:#EF4123"></i><b>Highlight</b><em>#EF4123</em></span>
-                  <span class="ds__p ds__p--btn" style="left:12%;top:42%"><span class="ds__btn">Subscribe</span><span class="ds__btn ds__btn--o">Log in</span></span>
-                  <span class="ds__p ds__p--tg" style="left:58%;top:40%"><b>Dark mode</b><span class="ds__tgl"><i></i></span></span>
-                  <span class="ds__p ds__p--type" style="left:4%;top:72%"><span class="ds__aa">Aa</span><span><b>Selane</b><em>Serif · Headlines</em></span></span>
-                  <span class="ds__p ds__p--chips" style="left:44%;top:76%"><span><i style="background:#FA8303"></i>Sport</span><span><i style="background:#1EA2F6"></i>World</span><span><i style="background:#7CEF4C"></i>Business</span></span>
-                </div>
+                <div class="wk__stage wk__stage--fds"><img class="wk__img wk__img--fds" src={url(c.image)} width={c.imageSize[0]} height={c.imageSize[1]} alt="" loading="lazy" decoding="async" /></div>
               )}
 
               {c.slug === 'los' && (
@@ -99,38 +95,19 @@ const tags: Record<string, string[]> = {
   .wk__item--recruitment-saas .wk__card { flex-direction: row; min-height: clamp(400px, 34vw, 480px); }
   .wk__item--recruitment-saas .wk__txt { flex: 0 0 auto; width: min(44%, 460px); justify-content: center; }
   .wk__stage { position: absolute; overflow: hidden; border-radius: 18px 18px 0 0; }
-  .wk__stage--saas { inset: clamp(20px, 2.4vw, 32px) clamp(20px, 2.4vw, 32px) 0 0; background: #F8FAFB; }
-  .wk__img--saas { left: 50%; top: 6%; width: min(620px, 92%); margin-left: calc(min(620px, 92%) / -2); }
-  .wk__card:hover .wk__img--saas { transform: translateY(-8px); }
+  .wk__stage--saas { inset: clamp(20px, 2.4vw, 32px) clamp(20px, 2.4vw, 32px) 0 0; background: radial-gradient(90% 120% at 100% 0%, #1D4A85 0%, rgba(29,74,133,0) 60%), var(--card-accent); }
+  .wk__scr { position: absolute; display: block; height: auto; max-width: none; border-radius: 10px; box-shadow: 0 24px 50px rgba(2, 10, 30, 0.45); pointer-events: none; transition: transform .6s var(--ease-out); }
+  .wk__scr--back { right: -6%; top: 9%; width: 78%; opacity: .92; }
+  .wk__scr--front { left: 7%; top: 34%; width: 80%; }
+  .wk__card:hover .wk__scr--back { transform: translateY(-5px); }
+  .wk__card:hover .wk__scr--front { transform: translateY(-10px); }
+  .wk__stage--fds { inset: 0 clamp(20px, 2.4vw, 32px); background: #0F3069; }
+  .wk__img--fds { left: 0; top: 0; width: 100%; }
 
   /* 03 LOS: wide screen bleeding off right and bottom */
   .wk__stage--los { inset: 0 clamp(20px, 2.4vw, 32px); background: #F1F8F8; }
   .wk__img--los { left: 6%; top: 10%; width: 118%; }
 
-  /* 02 FDS: floating library pieces */
-  .ds { position: absolute; inset: 0 clamp(20px, 2.4vw, 32px); overflow: hidden; border-radius: 18px 18px 0 0; background: #EEF2F8; }
-  .ds__p { position: absolute; display: inline-flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E8ECF3; box-shadow: 0 10px 28px rgba(12, 40, 87, 0.10); white-space: nowrap; transition: transform .6s var(--ease-out); }
-  .wk__card:hover .ds__p:nth-child(odd) { transform: translateY(-6px); }
-  .wk__card:hover .ds__p:nth-child(even) { transform: translateY(4px); }
-  .ds__p b { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #0C2857; }
-  .ds__p em { font-style: normal; font-size: 12px; color: #68615A; }
-  .ds__p--sw i { width: 30px; height: 30px; border-radius: 8px; }
-  .ds__p--sw { flex-wrap: nowrap; }
-  .ds__p--sw b + em { margin-left: -4px; }
-  .ds__btn { padding: 7px 14px; border-radius: 999px; background: #0C2857; color: #fff; font-size: 12px; font-weight: 600; }
-  .ds__btn--o { background: #fff; color: #0C2857; border: 1px solid #0C2857; }
-  .ds__tgl { position: relative; width: 36px; height: 20px; border-radius: 999px; background: #0C2857; }
-  .ds__tgl i { position: absolute; right: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
-  .ds__p--type { padding: 10px 16px 10px 12px; }
-  .ds__aa { font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1; color: #0C2857; }
-  .ds__p--type > span:last-child { display: flex; flex-direction: column; gap: 2px; }
-  .ds__p--chips { gap: 6px; padding: 10px; }
-  .ds__p--chips span { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #F3F5F9; font-size: 12px; color: #251F19; }
-  .ds__p--chips i { width: 8px; height: 8px; border-radius: 50%; }
-
-  @media (max-width: 1100px) {
-    .ds__p--chips span:last-child { display: none; }
-  }
   @media (max-width: 860px) {
     .wk__bento { grid-template-columns: minmax(0, 1fr); }
     .wk__item--recruitment-saas .wk__card { flex-direction: column; }
@@ -138,20 +115,16 @@ const tags: Record<string, string[]> = {
     .wk__card { min-height: 0; }
     .wk__vis { flex: 0 0 auto; height: clamp(240px, 62vw, 340px); }
     .wk__stage--saas { inset: 0 clamp(20px, 2.4vw, 32px); }
-    .wk__img--saas { width: 92%; margin-left: -46%; top: 18px; }
     .wk__img--los { width: 150%; top: 18px; }
+  }
+  @media (max-width: 860px) {
+    .wk__item--figma-design-system .wk__vis { height: auto; min-height: 0; }
+    .wk__stage--fds { position: relative; inset: auto; margin: 0 clamp(20px, 2.4vw, 32px); }
+    .wk__img--fds { position: relative; }
+    .wk__scr--front { top: 30%; width: 86%; }
   }
   @media (max-width: 860px) {
     .wk__item--los .wk__vis { height: clamp(200px, 56vw, 300px); }
     .wk__img--los { width: 165%; }
-  }
-  /* Phones: the library pieces flow in a wrapped cluster instead of fixed positions */
-  @media (max-width: 560px) {
-    .wk__item--figma-design-system .wk__vis { height: auto; }
-    .ds { position: relative; inset: auto; margin: 0 clamp(20px, 2.4vw, 32px); display: flex; flex-wrap: wrap; align-content: flex-start; gap: 10px; padding: 20px 16px 24px; }
-    .ds__p { position: static; padding: 9px 11px; gap: 8px; }
-    .ds__p--sw i { width: 22px; height: 22px; }
-    .ds__p--sw em { display: none; }
-    .ds__p--chips span:last-child { display: inline-flex; }
   }
 </style>
