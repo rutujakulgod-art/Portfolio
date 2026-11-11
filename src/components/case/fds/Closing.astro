@@ -1,0 +1,115 @@
+---
+/**
+ * Impact (big numbers with context), Reflection (quote band + three learnings)
+ * and a link to the next case study.
+ */
+import { caseStudies, url } from '../../../data/site';
+
+const next = caseStudies.find((c) => c.slug === 'los')!;
+
+const stats = [
+  { n: '90%', t: 'Efficiency gained', d: 'Designers start each story from a template and library components instead of rebuilding layouts by hand.' },
+  { n: '75%', t: 'Time saved on file upkeep', d: 'One source of truth replaced scattered Illustrator files, so nobody hunts for the latest version.' },
+  { n: '30%', t: 'More accurate handoff', d: 'Named tokens and shared components mean developers build with the same values designers use.' },
+];
+
+const learnings = [
+  { k: 'Establishing', t: 'Start from tokens', d: 'Getting colour, type and light/dark modes right first made every component and template above them cheaper to build and easier to change.' },
+  { k: 'Adopting', t: 'Teaching is part of the build', d: 'Demos, written guidelines and pairing on real stories did more for adoption than any single component.' },
+  { k: 'Maintaining', t: 'A library needs an owner and a loop', d: 'Figma components, variables and modes make updates easy; a shared request process makes sure they actually happen.' },
+];
+---
+<div style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+
+  <!-- IMPACT -->
+  <section aria-labelledby="fds-impact" style="box-sizing: border-box; width: 100%;">
+    <div style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">Impact</span>
+        <h2 id="fds-impact" style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Faster stories, fewer mismatches</h2>
+        <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">Designers spend less time keeping things consistent, and engineers get clearer alignment with fewer bugs to chase.</p>
+      </div>
+
+      <ul class="imp">
+        {stats.map((s, i) => (
+          <li class={i === 0 ? 'imp--navy' : ''}>
+            <span class="imp__n">{s.n}</span>
+            <div>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section aria-labelledby="fds-reflection" style="box-sizing: border-box; width: 100%;">
+    <div style="box-sizing: border-box; width: 100%; background: var(--accent);">
+      <figure style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(72px, 10vw, 140px) var(--gutter); display: flex; flex-direction: column; gap: 28px;">
+        <span id="fds-reflection" style="font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--accent-2);">Reflection</span>
+        <blockquote style="margin: 0; padding: 0;">
+          <p style="margin: 0; max-width: 1080px; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 4vw, 56px); line-height: 1.15; letter-spacing: -0.03em; color: #FFFFFF;">&#8220;A design system is a product, not a file. Building it was the easy part; getting a newsroom to reach for it every day was the real work.&#8221;</p>
+        </blockquote>
+      </figure>
+    </div>
+
+    <div style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter) 0; display: flex; flex-direction: column; gap: 20px;">
+      <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 2.8vw, 38px); line-height: 1.15; letter-spacing: -0.025em; color: #251F19;">Learnings</h2>
+      <ol class="lrn" aria-label="Learnings">
+        {learnings.map((l, i) => (
+          <li>
+            <span class="lrn__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="lrn__k">{l.k}</span>
+            <h3>{l.t}</h3>
+            <p>{l.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <nav aria-label="Next case study" style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter);">
+    <a class="nxt" href={url(`work/${next.slug}/`)}>
+      <span class="nxt__k">Next case study</span>
+      <span class="nxt__t">{next.title}</span>
+      <span class="nxt__d">{next.short}</span>
+      <span class="nxt__a" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </nav>
+
+</div>
+
+<style>
+.imp{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width: 900px){.imp{grid-template-columns:minmax(0,1fr)}}
+.imp li{box-sizing:border-box;padding:clamp(24px,2.8vw,36px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column;gap:clamp(28px,4vw,56px)}
+.imp li.imp--navy{background:var(--accent);border-color:var(--accent)}
+.imp__n{font-family:var(--font-display);font-weight:500;font-size:clamp(56px,6vw,88px);line-height:1;letter-spacing:-0.04em;color:var(--accent)}
+.imp--navy .imp__n{color:#FFFFFF}
+.imp h3{margin:0 0 8px;font-family:var(--font-display);font-size:19px;font-weight:600;color:#251F19}
+.imp--navy h3{color:#FFFFFF}
+.imp p{margin:0;font-size:15px;line-height:1.6;color:#68615A}
+.imp--navy p{color:rgba(255,255,255,.8)}
+@media (max-width: 900px){.imp li{flex-direction:row;align-items:flex-start;gap:24px}.imp__n{min-width:2.4em}}
+@media (max-width: 480px){.imp li{flex-direction:column;gap:16px}}
+
+.lrn{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width: 900px){.lrn{grid-template-columns:minmax(0,1fr)}}
+.lrn li{box-sizing:border-box;padding:24px 0 0;border-top:2px solid var(--accent);display:flex;flex-direction:column;gap:6px}
+.lrn__n{font-family:var(--font-display);font-size:13px;font-weight:600;color:#68615A}
+.lrn__k{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2);margin-top:8px}
+.lrn h3{margin:0;font-family:var(--font-display);font-size:clamp(19px,1.6vw,22px);font-weight:500;letter-spacing:-0.01em;color:#251F19}
+.lrn p{margin:4px 0 0;font-size:16px;line-height:1.6;color:#4F4740}
+
+.nxt{position:relative;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;padding:clamp(28px,3.4vw,44px) clamp(80px,9vw,120px) clamp(28px,3.4vw,44px) clamp(24px,3vw,40px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;color:#251F19;text-decoration:none;transition:border-color .2s ease, box-shadow .2s ease}
+.nxt:hover{border-color:#C9D6EC;box-shadow:0 14px 36px rgba(12,40,87,.10)}
+.nxt:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.nxt__k{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#68615A}
+.nxt__t{font-family:var(--font-display);font-size:clamp(26px,2.6vw,36px);font-weight:500;letter-spacing:-0.025em;color:var(--accent)}
+.nxt__d{font-size:16px;line-height:1.6;color:#68615A}
+.nxt__a{position:absolute;right:clamp(24px,3vw,40px);top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;transition:transform .2s ease}
+@media (hover:hover){.nxt:hover .nxt__a{transform:translateY(-50%) translateX(4px)}}
+</style>
