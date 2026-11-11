@@ -1,12 +1,19 @@
 ---
 /**
- * Selected Work: intro column on the left, bento of case-study cards on the right.
- * The first case study is the tall card; the other two stack beside it.
+ * Selected Work: a bento of case-study cards (full-width card, then two halves).
+ * Each card: number, title, description and tags top-left, with a visual that
+ * bleeds off the card's bottom/right edge.
  */
 import { caseStudies, url } from '../../data/site';
+
+const tags: Record<string, string[]> = {
+  'recruitment-saas': ['B2B SaaS', 'Five user roles', 'UX strategy'],
+  'figma-design-system': ['Design system', 'Figma', 'SPH Media'],
+  los: ['Fintech', 'Web and mobile', 'Banking'],
+};
 ---
 <section class="section wk" id="work" aria-labelledby="work-title">
-  <div class="wrap wk__grid">
+  <div class="wrap">
 
     <div class="wk__intro">
       <h2 id="work-title" class="eyebrow">Selected Work</h2>
@@ -15,19 +22,38 @@ import { caseStudies, url } from '../../data/site';
 
     <ol class="wk__bento">
       {caseStudies.map((c, i) => (
-        <li class:list={['wk__item', i === 0 && 'wk__item--tall']}>
-          <a class="wk__card" href={url(`work/${c.slug}/`)}>
-            <span class="wk__num">{String(i + 1).padStart(2, '0')}</span>
-            <h3 class="wk__title">{c.title}</h3>
-            <p class="wk__desc">{c.short}</p>
-            <span class="wk__arrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 10 4M5 4h5v5" /></svg>
-            </span>
-            <span class="visually-hidden">View case study</span>
-            <picture>
-              {'imageMobile' in c && <source media="(max-width: 640px)" srcset={url(c.imageMobile)} />}
-              <img class:list={['wk__art', 'artLarge' in c && 'wk__art--large']} src={url(c.image)} width={c.imageSize[0]} height={c.imageSize[1]} alt="" loading="lazy" decoding="async" />
-            </picture>
+        <li class:list={['wk__item', `wk__item--${c.slug}`]}>
+          <a class="wk__card" href={url(`work/${c.slug}/`)} style={`--card-accent:${c.accent}`}>
+            <div class="wk__txt">
+              <span class="wk__num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="wk__title">{c.title}</h3>
+              <p class="wk__desc">{c.short}</p>
+              <ul class="wk__tags" aria-label="Tags">{(tags[c.slug] ?? []).map((t) => <li>{t}</li>)}</ul>
+              <span class="wk__cta">View case study
+                <span class="wk__arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7.5 3.5 11 7l-3.5 3.5" /></svg></span>
+              </span>
+            </div>
+
+            <div class="wk__vis" aria-hidden="true">
+              {c.slug === 'recruitment-saas' && (
+                <div class="wk__stage wk__stage--saas"><img class="wk__img wk__img--saas" src={url('media/work-saas-screens.webp')} width="1391" height="1823" alt="" loading="lazy" decoding="async" /></div>
+              )}
+
+              {c.slug === 'figma-design-system' && (
+                <div class="ds">
+                  <span class="ds__p ds__p--sw" style="left:6%;top:10%"><i style="background:#0C2857"></i><b>ST Blue</b><em>#0C2857</em></span>
+                  <span class="ds__p ds__p--sw" style="left:52%;top:6%"><i style="background:#EF4123"></i><b>Highlight</b><em>#EF4123</em></span>
+                  <span class="ds__p ds__p--btn" style="left:12%;top:42%"><span class="ds__btn">Subscribe</span><span class="ds__btn ds__btn--o">Log in</span></span>
+                  <span class="ds__p ds__p--tg" style="left:58%;top:40%"><b>Dark mode</b><span class="ds__tgl"><i></i></span></span>
+                  <span class="ds__p ds__p--type" style="left:4%;top:72%"><span class="ds__aa">Aa</span><span><b>Selane</b><em>Serif · Headlines</em></span></span>
+                  <span class="ds__p ds__p--chips" style="left:44%;top:76%"><span><i style="background:#FA8303"></i>Sport</span><span><i style="background:#1EA2F6"></i>World</span><span><i style="background:#7CEF4C"></i>Business</span></span>
+                </div>
+              )}
+
+              {c.slug === 'los' && (
+                <div class="wk__stage wk__stage--los"><img class="wk__img wk__img--los" src={url(c.image)} width={c.imageSize[0]} height={c.imageSize[1]} alt="" loading="lazy" decoding="async" /></div>
+              )}
+            </div>
           </a>
         </li>
       ))}
@@ -37,120 +63,95 @@ import { caseStudies, url } from '../../data/site';
 </section>
 
 <style>
-  .wk__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-    gap: clamp(32px, 4vw, 64px);
-    align-items: stretch;
-  }
+  .wk__intro { display: flex; flex-direction: column; gap: 18px; margin-bottom: clamp(32px, 4vw, 48px); }
+  .wk__lede { margin: 0; max-width: 560px; font-size: 17px; line-height: 1.55; color: var(--ink-muted); }
 
-  /* Intro column */
-  .wk__intro {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    padding: 24px 0 8px;
-    min-width: 0;
-  }
-  .wk__lede {
-    margin: 0;
-    max-width: 380px;
-    font-size: 17px;
-    line-height: 1.55;
-    color: var(--ink-muted);
-  }
-
-  /* Bento */
-  .wk__bento {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(clamp(300px, 26vw, 360px), auto));
-    gap: 16px;
-  }
+  .wk__bento { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .wk__item { min-width: 0; display: flex; }
-  .wk__item--tall { grid-row: span 2; }
+  .wk__item--recruitment-saas { grid-column: 1 / -1; }
 
   .wk__card {
-    position: relative;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 28px 28px 24px;
-    border-radius: var(--radius-card);
-    background: #FBFAF7;
-    border: 1px solid var(--line);
-    color: var(--ink);
-    text-decoration: none;
-    overflow: hidden;
-    isolation: isolate;
-    transition: border-color .25s ease, box-shadow .25s ease;
+    position: relative; flex: 1; display: flex; flex-direction: column;
+    min-height: clamp(440px, 36vw, 520px);
+    border-radius: 24px; background: #FFFFFF; border: 1px solid var(--line);
+    color: var(--ink); text-decoration: none; overflow: hidden; isolation: isolate;
+    transition: border-color .25s ease, box-shadow .3s ease;
   }
-  .wk__card:hover { border-color: var(--line-strong); box-shadow: 0 10px 30px rgba(37, 31, 25, 0.06); }
+  .wk__card:hover { border-color: var(--line-strong); box-shadow: 0 18px 44px rgba(37, 31, 25, 0.08); }
   .wk__card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
+  .wk__txt { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(28px, 3vw, 44px); max-width: 460px; }
   .wk__num { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--brand); }
-  .wk__title {
-    margin: 14px 0 0;
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: clamp(22px, 1.8vw, 26px);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-  }
-  .wk__desc { margin: 12px 0 0; max-width: 260px; font-size: 14px; line-height: 1.55; color: var(--ink-muted); }
-  .wk__arrow {
-    margin-top: 22px;
-    width: 40px;
-    height: 40px;
-    border-radius: 999px;
-    border: 1px solid var(--line-strong);
-    background: rgba(255, 255, 255, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ink);
-    transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .35s var(--ease-out);
-  }
-  .wk__card:hover .wk__arrow { background: var(--brand-ink); border-color: var(--brand-ink); color: #fff; transform: rotate(45deg); }
+  .wk__title { margin: 12px 0 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.12; letter-spacing: -0.02em; }
+  .wk__desc { margin: 12px 0 0; max-width: 360px; font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+  .wk__tags { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .wk__tags li { padding: 5px 10px; border-radius: 999px; background: #F4F2EE; font-size: 12px; font-weight: 500; color: var(--ink-soft); }
+  .wk__cta { margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink); }
+  .wk__arrow { width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line-strong); display: flex; align-items: center; justify-content: center; transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .35s var(--ease-out); }
+  .wk__card:hover .wk__arrow { background: var(--card-accent); border-color: var(--card-accent); color: #fff; transform: translateX(3px); }
 
-  .wk__card picture { display: contents; }
+  /* Visual area */
+  .wk__vis { position: relative; flex: 1; min-height: 220px; }
+  .wk__img { position: absolute; display: block; height: auto; max-width: none; pointer-events: none; transition: transform .6s var(--ease-out); }
+  .wk__card:hover .wk__img { transform: translateY(-8px); }
 
-  /* Case-study screen bleeds off the bottom-right corner */
-  .wk__art {
-    position: absolute;
-    z-index: -1;
-    left: 34%;
-    bottom: -14%;
-    width: 92%;
-    height: auto;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-    box-shadow: 0 18px 40px rgba(37, 31, 25, 0.14);
-    pointer-events: none;
-    transition: transform .6s var(--ease-out);
+  /* 01 full-width: text left, screens on the right bleeding off the bottom */
+  .wk__item--recruitment-saas .wk__card { flex-direction: row; min-height: clamp(400px, 34vw, 480px); }
+  .wk__item--recruitment-saas .wk__txt { flex: 0 0 auto; width: min(44%, 460px); justify-content: center; }
+  .wk__stage { position: absolute; overflow: hidden; border-radius: 18px 18px 0 0; }
+  .wk__stage--saas { inset: clamp(20px, 2.4vw, 32px) clamp(20px, 2.4vw, 32px) 0 0; background: #F8FAFB; }
+  .wk__img--saas { left: 50%; top: 6%; width: min(620px, 92%); margin-left: calc(min(620px, 92%) / -2); }
+  .wk__card:hover .wk__img--saas { transform: translateY(-8px); }
+
+  /* 03 LOS: wide screen bleeding off right and bottom */
+  .wk__stage--los { inset: 0 clamp(20px, 2.4vw, 32px); background: #F1F8F8; }
+  .wk__img--los { left: 6%; top: 10%; width: 118%; }
+
+  /* 02 FDS: floating library pieces */
+  .ds { position: absolute; inset: 0 clamp(20px, 2.4vw, 32px); overflow: hidden; border-radius: 18px 18px 0 0; background: #EEF2F8; }
+  .ds__p { position: absolute; display: inline-flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E8ECF3; box-shadow: 0 10px 28px rgba(12, 40, 87, 0.10); white-space: nowrap; transition: transform .6s var(--ease-out); }
+  .wk__card:hover .ds__p:nth-child(odd) { transform: translateY(-6px); }
+  .wk__card:hover .ds__p:nth-child(even) { transform: translateY(4px); }
+  .ds__p b { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #0C2857; }
+  .ds__p em { font-style: normal; font-size: 12px; color: #68615A; }
+  .ds__p--sw i { width: 30px; height: 30px; border-radius: 8px; }
+  .ds__p--sw { flex-wrap: nowrap; }
+  .ds__p--sw b + em { margin-left: -4px; }
+  .ds__btn { padding: 7px 14px; border-radius: 999px; background: #0C2857; color: #fff; font-size: 12px; font-weight: 600; }
+  .ds__btn--o { background: #fff; color: #0C2857; border: 1px solid #0C2857; }
+  .ds__tgl { position: relative; width: 36px; height: 20px; border-radius: 999px; background: #0C2857; }
+  .ds__tgl i { position: absolute; right: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+  .ds__p--type { padding: 10px 16px 10px 12px; }
+  .ds__aa { font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1; color: #0C2857; }
+  .ds__p--type > span:last-child { display: flex; flex-direction: column; gap: 2px; }
+  .ds__p--chips { gap: 6px; padding: 10px; }
+  .ds__p--chips span { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #F3F5F9; font-size: 12px; color: #251F19; }
+  .ds__p--chips i { width: 8px; height: 8px; border-radius: 50%; }
+
+  @media (max-width: 1100px) {
+    .ds__p--chips span:last-child { display: none; }
   }
-  .wk__item--tall .wk__art { left: 28px; top: 236px; bottom: auto; width: calc(100% - 28px); height: auto; max-width: none; border-radius: 10px 0 0 10px; border-right: 0; }
-  .wk__card:hover .wk__art { transform: translateY(-8px); }
-  /* Larger screen image: starts beside the arrow and bleeds off the right and bottom */
-  .wk__art--large { left: 96px; top: 212px; bottom: auto; width: calc((100% - 96px) / 0.7); max-width: none; border-radius: 10px 0 0 0; }
-
-  @media (max-width: 1000px) {
-    .wk__grid { grid-template-columns: minmax(0, 1fr); }
-    @media (max-width: 640px) {
-    .wk__bento { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
-    .wk__item--tall { grid-row: auto; }
-    /* On phones every card gets the same image frame: equal height, cropped from the top left, bleeding off the right and bottom */
-    .wk__card, .wk__item--tall .wk__card { min-height: 0; padding-bottom: 0; }
-    .wk__art, .wk__item--tall .wk__art {
-      position: relative; z-index: 0; top: auto; left: auto; bottom: auto;
-      margin: 28px -28px 0 0; width: calc(100% + 28px); max-width: none;
-      height: 240px; object-fit: cover; object-position: left top;
-      border-radius: 10px 0 0 0; border-right: 0; border-bottom: 0;
-    }
+  @media (max-width: 860px) {
+    .wk__bento { grid-template-columns: minmax(0, 1fr); }
+    .wk__item--recruitment-saas .wk__card { flex-direction: column; }
+    .wk__item--recruitment-saas .wk__txt { width: auto; }
+    .wk__card { min-height: 0; }
+    .wk__vis { flex: 0 0 auto; height: clamp(240px, 62vw, 340px); }
+    .wk__stage--saas { inset: 0 clamp(20px, 2.4vw, 32px); }
+    .wk__img--saas { width: 92%; margin-left: -46%; top: 18px; }
+    .wk__img--los { width: 150%; top: 18px; }
+  }
+  @media (max-width: 860px) {
+    .wk__item--los .wk__vis { height: clamp(200px, 56vw, 300px); }
+    .wk__img--los { width: 165%; }
+  }
+  /* Phones: the library pieces flow in a wrapped cluster instead of fixed positions */
+  @media (max-width: 560px) {
+    .wk__item--figma-design-system .wk__vis { height: auto; }
+    .ds { position: relative; inset: auto; margin: 0 clamp(20px, 2.4vw, 32px); display: flex; flex-wrap: wrap; align-content: flex-start; gap: 10px; padding: 20px 16px 24px; }
+    .ds__p { position: static; padding: 9px 11px; gap: 8px; }
+    .ds__p--sw i { width: 22px; height: 22px; }
+    .ds__p--sw em { display: none; }
+    .ds__p--chips span:last-child { display: inline-flex; }
   }
 </style>
