@@ -1,0 +1,14 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import Main from '../../components/case/ecommerce/Main.astro';
+import { ACCENT, ACCENT_HOVER } from '../../data/ecommerce-media';
+---
+<CaseStudyLayout
+  title="CityMusic E-commerce"
+  description="Helping musicians find the right instrument online: an e-commerce redesign for City Music Singapore focused on wayfinding and information visibility."
+  accent={ACCENT}
+>
+  <div class="cs" style={`--accent-hover: ${ACCENT_HOVER}`}>
+    <Main />
+  </div>
+</CaseStudyLayout>
