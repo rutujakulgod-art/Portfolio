@@ -1,25 +1,24 @@
 ---
 /**
  * LV 1 components, LV 2 templates and the layout grid.
- * Screenshot slots: set img on comps[] / templates[] (files in public/media/figma-design-system/)
- * and the dashed placeholders are replaced by the images.
+ * Component sheets and the article template are the user's screenshots.
  */
 import { m } from '../../../data/fds-media';
 
 type Shot = { label: string; img: string | null; w?: number; h?: number; alt?: string };
 
-const atoms = ['Buttons', 'Inputs', 'Chips', 'Toggles'];
-const comps = ['Players', 'Menus', 'Cards'];
+const atoms = ['Buttons', 'Chips and tabs', 'Checkboxes', 'Tooltips', 'Timers', 'Progress indicators'];
+const comps = ['Drop-down menus', 'Search box', 'Sliders', 'Modal dialogs'];
 
 const variants: Shot[] = [
-  { label: 'Light', img: null },
-  { label: 'Dark', img: null },
+  { label: 'Light', img: 'comp-light.webp', w: 480, h: 793, alt: 'Component sheet in light mode: drop-down menus, buttons, search box, chips and tabs, tooltips, timers, progress indicators, sliders and modal dialogs' },
+  { label: 'Dark', img: 'comp-dark.webp', w: 482, h: 793, alt: 'The same component sheet in dark mode' },
 ];
 
-const templates: Shot[] = [
-  { label: 'Homepage', img: null },
-  { label: 'Article', img: null },
-  { label: 'Section page', img: null },
+const tplPoints = [
+  { t: 'Built only from library parts', d: 'Header, headline, body text, charts, image galleries and captions all come from LV 1 components.' },
+  { t: 'Light and dark from one file', d: 'Switching the mode swaps every token, so the dark version needs no extra design work.' },
+  { t: 'A starting point, not a blank page', d: 'Designers duplicate the template and drop in the story, instead of rebuilding the layout each time.' },
 ];
 ---
 <section aria-labelledby="fds-library" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
@@ -36,7 +35,7 @@ const templates: Shot[] = [
       <div class="hd">
         <span class="lv">LV 1</span>
         <h3>Components and UI atoms</h3>
-        <p>Small atoms combine into the larger components a news product is made of. Every one is built on tokens, so each has a light and a dark variant from the start.</p>
+        <p>Small atoms combine into the larger interactive components a news story needs. Every one is built on tokens, so each has a light and a dark variant from the start.</p>
       </div>
 
       <div class="kinds">
@@ -69,20 +68,23 @@ const templates: Shot[] = [
       <div class="hd">
         <span class="lv">LV 2</span>
         <h3>Mockups and templates</h3>
-        <p>Page templates assembled from components and following ST’s UX patterns. The team starts every new product from one of these instead of a blank file.</p>
+        <p>Page templates assembled from components and following ST’s UX patterns. The team starts each new story from a template instead of a blank file.</p>
       </div>
-      <ul class="tpl" aria-label="Templates">
-        {templates.map((t) => (
-          <li>
-            {t.img ? (
-              <img src={m(t.img)} width={t.w} height={t.h} alt={t.alt ?? `${t.label} template`} loading="lazy" />
-            ) : (
-              <div class="slot slot--tall" role="img" aria-label={`${t.label} template screenshot to come`}>Template screenshot to come</div>
-            )}
-            <span class="tpl__n">{t.label}</span>
-          </li>
-        ))}
-      </ul>
+      <div class="tpl panel">
+        <figure class="tpl__fig">
+          <img src={m('tpl-article.webp')} width="287" height="702" alt="Desktop article template in light mode beside the same page in dark mode: hero image, headline, body text, a data chart and photo galleries" loading="lazy" />
+          <figcaption><span>Light</span><span>Dark</span></figcaption>
+        </figure>
+        <div class="tpl__txt">
+          <span class="tpl__k">Desktop article template</span>
+          <h4>One long-form story page, in both modes</h4>
+          <ul class="tpl__pts">
+            {tplPoints.map((p) => (
+              <li><span class="mk" aria-hidden="true"></span><div><b>{p.t}</b><p>{p.d}</p></div></li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
 
     <!-- Layout grid -->
@@ -154,13 +156,21 @@ const templates: Shot[] = [
 .var--dark .var__lb{color:rgba(255,255,255,.75)}
 .var--dark .var__dot{background:#30353E;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
 .var--dark .slot{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.6)}
-.var img,.tpl img{display:block;width:100%;height:auto;border-radius:10px}
+.var img{display:block;width:100%;max-width:480px;height:auto;margin:0 auto;border-radius:10px}
 
-.tpl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-@media (max-width: 900px){.tpl{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width: 560px){.tpl{grid-template-columns:minmax(0,1fr)}}
-.tpl li{box-sizing:border-box;padding:clamp(14px,1.6vw,18px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column;gap:12px;min-width:0}
-.tpl__n{font-family:var(--font-display);font-size:16px;font-weight:600;color:#251F19;padding:0 4px 4px}
+.tpl{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center;background:#F3F5F9;border-color:#E3E7EE}
+@media (max-width: 760px){.tpl{grid-template-columns:minmax(0,1fr)}}
+.tpl__fig{margin:0;justify-self:center;width:min(100%,340px);display:flex;flex-direction:column;gap:10px}
+.tpl__fig img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 14px 36px rgba(12,40,87,.14)}
+.tpl__fig figcaption{display:grid;grid-template-columns:1fr 1fr;text-align:center;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#68615A}
+.tpl__txt{display:flex;flex-direction:column;gap:12px;max-width:520px}
+.tpl__k{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#68615A}
+.tpl__txt h4{margin:0 0 6px;font-family:var(--font-display);font-size:clamp(20px,1.8vw,24px);font-weight:500;letter-spacing:-0.01em;color:var(--accent)}
+.tpl__pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tpl__pts li{display:flex;gap:12px;padding:16px 0;border-top:1px solid #DDE3EC}
+.tpl__pts .mk{flex-shrink:0;width:8px;height:8px;margin-top:7px;border-radius:2px;background:var(--accent-2)}
+.tpl__pts b{display:block;margin-bottom:4px;font-family:var(--font-display);font-size:16px;font-weight:600;color:#251F19}
+.tpl__pts p{margin:0;font-size:15px;line-height:1.55;color:#68615A}
 
 /* Layout grid frames */
 .grid{display:grid;grid-template-columns:minmax(0,3.2fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end;background:#F3F5F9;border-color:#E3E7EE}
