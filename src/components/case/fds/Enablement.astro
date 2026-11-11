@@ -1,0 +1,196 @@
+---
+/**
+ * Enablement: how the team learned and adopted the library.
+ * Three track cards (pattern from Research) with code-built visuals,
+ * then a feedback-loop strip. Swap a visual for a real image with m('file') if wanted.
+ */
+const loop = [
+  { t: 'Spot an issue', d: 'Designers flag gaps or bugs while working on real stories.' },
+  { t: 'Log it', d: 'Requests go into one shared Notion board.' },
+  { t: 'Fix in the library', d: 'Components are updated once, at the source.' },
+  { t: 'Publish the update', d: 'Every file using the library pulls in the change.' },
+];
+---
+<section aria-labelledby="fds-enable" style="box-sizing: border-box; width: 100%; background: var(--surface-page); color: #251F19; font-family: var(--font-text); -webkit-font-smoothing: antialiased;">
+  <div style="box-sizing: border-box; width: 100%; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter); display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px);">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">Enablement</span>
+      <h2 id="fds-enable" class="e-h2" style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">A library only works if people use it</h2>
+      <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">The team was new to Figma libraries, so the rollout was as much about teaching as building. I ran demos, wrote the guidelines and sat with designers on their own files until working from the library became the default.</p>
+    </div>
+
+    <ol class="tracks" aria-label="Enablement activities">
+
+      <!-- 01 Demos -->
+      <li class="trk">
+        <div class="trk__vis" aria-hidden="true" style="background: linear-gradient(160deg, #D5E0F3 0%, #F2F5FB 100%);">
+          <div class="v-demo">
+            <div class="v-demo__bar"><span class="v-live"><i></i>Live</span><span class="v-demo__t">ST Design Library · Demo</span></div>
+            <div class="v-demo__cv">
+              <div class="v-demo__side"><b></b><b></b><b></b><b></b><b></b></div>
+              <div class="v-demo__frame">
+                <span class="v-btn v-btn--d">Button</span><span class="v-btn">Button</span>
+                <span class="v-chip"><i style="background:#FA8303"></i>Sport</span><span class="v-chip"><i style="background:#1EA2F6"></i>World</span>
+                <span class="v-tgl"><i></i></span>
+              </div>
+            </div>
+            <div class="v-ppl"><span style="background:#0C2857">RK</span><span style="background:#E3EAF6;color:#0C2857">DS</span><span style="background:#FDE3DD;color:#B3260F">DV</span><span style="background:#F3F5F9;color:#4F5B70">+6</span></div>
+          </div>
+        </div>
+        <div class="trk__txt">
+          <span class="trk__n">01</span>
+          <h3>Live demo sessions</h3>
+          <p>Walkthroughs with designers and developers on how the tiers fit together: using components, switching light and dark mode, and starting from a template.</p>
+        </div>
+      </li>
+
+      <!-- 02 Guidelines -->
+      <li class="trk">
+        <div class="trk__vis" aria-hidden="true" style="background: linear-gradient(160deg, #E4E8EF 0%, #F6F7FA 100%);">
+          <div class="v-doc">
+            <span class="v-doc__ic">ST</span>
+            <b class="v-doc__h">How to use the ST library</b>
+            <span class="v-doc__s">Guidelines · Updated weekly</span>
+            <ul>
+              <li><i class="ok"></i>Enable the library in your file</li>
+              <li><i class="ok"></i>Use tokens, never raw hex</li>
+              <li><i class="ok"></i>Start from a template</li>
+              <li><i></i>Request a new component</li>
+            </ul>
+            <div class="v-doc__tg"><span>▸</span>Light and dark mode</div>
+            <div class="v-doc__tg"><span>▸</span>Naming conventions</div>
+          </div>
+        </div>
+        <div class="trk__txt">
+          <span class="trk__n">02</span>
+          <h3>Usage guidelines</h3>
+          <p>A Notion guide covering how to enable the library, use tokens, name layers and request changes, so answers didn’t depend on asking me.</p>
+        </div>
+      </li>
+
+      <!-- 03 Onboarding -->
+      <li class="trk">
+        <div class="trk__vis" aria-hidden="true" style="background: linear-gradient(160deg, #D9E2F2 0%, #F4F6FB 100%);">
+          <div class="v-pair">
+            <div class="v-pair__assets">
+              <span class="v-pair__k">Assets</span>
+              <b>Timeline</b><b class="on">Audio player</b><b>Paywall</b><b>Newsletter</b>
+            </div>
+            <div class="v-pair__page">
+              <span class="v-pair__l v-pair__l--h"></span>
+              <span class="v-pair__l"></span><span class="v-pair__l v-pair__l--s"></span>
+              <div class="v-pair__drop"><span class="v-pair__play"></span><span class="v-pair__wave"></span></div>
+              <span class="v-pair__l"></span>
+            </div>
+            <span class="v-cur" style="left:52%;top:34%;--c:#0C2857"><svg viewBox="0 0 12 12" width="14" height="14"><path d="M1 1l9 4-4 1.2L4.8 10z" fill="currentColor"/></svg><em>Rutuja</em></span>
+            <span class="v-cur" style="left:74%;top:64%;--c:#EF4123"><svg viewBox="0 0 12 12" width="14" height="14"><path d="M1 1l9 4-4 1.2L4.8 10z" fill="currentColor"/></svg><em>Designer</em></span>
+          </div>
+        </div>
+        <div class="trk__txt">
+          <span class="trk__n">03</span>
+          <h3>Hands-on onboarding</h3>
+          <p>Pairing with designers on live stories, swapping detached copies for library components and building the habit inside real deadlines.</p>
+        </div>
+      </li>
+
+    </ol>
+
+    <!-- Feedback loop -->
+    <div class="loop">
+      <div class="loop__hd">
+        <span class="loop__k">Feedback loop</span>
+        <h3>Keeping the library alive after launch</h3>
+      </div>
+      <ol class="loop__st">
+        {loop.map((l, i) => (
+          <li>
+            <span class="loop__n">{String(i + 1).padStart(2, '0')}</span>
+            <b>{l.t}</b>
+            <p>{l.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<style>
+@media (min-width: 960px){.e-h2{white-space:nowrap}}
+.tracks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width: 1000px){.tracks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 640px){.tracks{grid-template-columns:minmax(0,1fr)}}
+.trk{box-sizing:border-box;border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;overflow:hidden;display:flex;flex-direction:column}
+.trk__vis{position:relative;aspect-ratio:1/0.8;overflow:hidden;box-sizing:border-box}
+.trk__txt{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px}
+.trk__n{font-family:var(--font-display);font-size:13px;font-weight:600;color:#68615A}
+.trk h3{margin:0;font-family:var(--font-display);font-size:19px;font-weight:500;color:#251F19}
+.trk p{margin:0;font-size:15px;line-height:1.55;color:#68615A}
+
+/* 01 demo window */
+.v-demo{position:absolute;inset:11% 8% 14%;border-radius:10px;background:#FFFFFF;border:1px solid #D3DDEE;box-shadow:0 12px 30px rgba(12,40,87,.14);overflow:hidden;display:flex;flex-direction:column}
+.v-demo__bar{display:flex;align-items:center;gap:10px;padding:8px 10px;background:#0C2857}
+.v-live{display:inline-flex;align-items:center;gap:5px;padding:2px 7px;border-radius:999px;background:var(--accent-2);color:#fff;font-family:var(--font-display);font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.v-live i{width:5px;height:5px;border-radius:50%;background:#fff}
+.v-demo__t{font-size:10.5px;color:rgba(255,255,255,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v-demo__cv{flex:1;display:grid;grid-template-columns:22% 1fr;background:#F3F5F9}
+.v-demo__side{display:flex;flex-direction:column;gap:6px;padding:10px 8px;background:#FFFFFF;border-right:1px solid #E3E7EE}
+.v-demo__side b{display:block;height:5px;border-radius:3px;background:#E3E7EE}
+.v-demo__side b:nth-child(2){background:#C9D6EC;width:80%}
+.v-demo__frame{margin:12px;border-radius:6px;background:#FFFFFF;border:1px dashed #9AB0D6;padding:10px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:7px}
+.v-btn{padding:4px 10px;border-radius:999px;border:1px solid #0C2857;font-size:10px;font-weight:600;color:#0C2857}
+.v-btn--d{background:#0C2857;color:#fff}
+.v-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;background:#F3F5F9;border:1px solid #E3E7EE;font-size:10px;color:#251F19}
+.v-chip i{width:7px;height:7px;border-radius:50%}
+.v-tgl{width:26px;height:15px;border-radius:999px;background:#0C2857;position:relative}
+.v-tgl i{position:absolute;right:2px;top:2px;width:11px;height:11px;border-radius:50%;background:#fff}
+.v-ppl{position:absolute;right:8px;bottom:8px;display:flex}
+.v-ppl span{width:22px;height:22px;margin-left:-5px;border-radius:50%;border:2px solid #fff;color:#fff;font-family:var(--font-display);font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* 02 Notion-style doc */
+.v-doc{position:absolute;inset:9% 12% 0;padding:18px 18px 0;border-radius:10px 10px 0 0;background:#FFFFFF;border:1px solid #DDE3EC;border-bottom:0;box-shadow:0 12px 30px rgba(12,40,87,.10);display:flex;flex-direction:column;gap:6px}
+.v-doc__ic{width:26px;height:26px;border-radius:6px;background:#0C2857;color:#fff;font-family:Georgia,serif;font-size:12px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.v-doc__h{font-family:var(--font-display);font-size:15px;font-weight:700;color:#251F19}
+.v-doc__s{font-size:10.5px;color:#7A8597;margin-bottom:6px}
+.v-doc ul{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-direction:column;gap:6px}
+.v-doc li{display:flex;align-items:center;gap:7px;font-size:11.5px;color:#251F19}
+.v-doc li i{flex-shrink:0;width:11px;height:11px;border-radius:3px;border:1.5px solid #9AA5B8;box-sizing:border-box}
+.v-doc li i.ok{background:#0C2857;border-color:#0C2857;position:relative}
+.v-doc li i.ok::after{content:'';position:absolute;left:2.5px;top:0.5px;width:3px;height:5.5px;border:solid #fff;border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.v-doc__tg{display:flex;gap:6px;font-size:11.5px;font-weight:600;color:#3E4E6A}
+.v-doc__tg span{color:#9AA5B8}
+
+/* 03 pairing */
+.v-pair{position:absolute;inset:12% 8% 14%;display:grid;grid-template-columns:36% 1fr;border-radius:10px;overflow:hidden;background:#FFFFFF;border:1px solid #D3DDEE;box-shadow:0 12px 30px rgba(12,40,87,.14)}
+.v-pair__assets{display:flex;flex-direction:column;gap:5px;padding:10px 8px;border-right:1px solid #E3E7EE;background:#FAFBFD}
+.v-pair__k{font-family:var(--font-display);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7A8597;margin-bottom:2px}
+.v-pair__assets b{font-size:10px;font-weight:500;color:#251F19;padding:4px 6px;border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v-pair__assets b.on{background:#E3EAF6;color:#0C2857;font-weight:600}
+.v-pair__page{padding:12px;display:flex;flex-direction:column;gap:6px}
+.v-pair__l{display:block;height:5px;border-radius:3px;background:#E3E7EE}
+.v-pair__l--h{height:8px;width:70%;background:#C9D6EC}
+.v-pair__l--s{width:60%}
+.v-pair__drop{display:flex;align-items:center;gap:8px;padding:8px;border-radius:6px;border:1.5px solid var(--accent-2);background:#FFF6F3;margin:2px 0}
+.v-pair__play{flex-shrink:0;width:16px;height:16px;border-radius:50%;background:#0C2857}
+.v-pair__wave{flex:1;height:10px;background:repeating-linear-gradient(90deg,#9AB0D6 0 2px,transparent 2px 4px);border-radius:2px}
+.v-cur{position:absolute;display:flex;align-items:flex-start;color:var(--c)}
+.v-cur em{font-style:normal;margin:10px 0 0 -2px;padding:2px 6px;border-radius:4px;background:var(--c);color:#fff;font-size:9.5px;font-weight:600}
+
+/* Feedback loop */
+.loop{box-sizing:border-box;padding:clamp(24px,3vw,40px);border-radius:var(--radius-card);background:var(--accent);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr);gap:clamp(24px,4vw,56px);align-items:center}
+@media (max-width: 900px){.loop{grid-template-columns:minmax(0,1fr)}}
+.loop__hd{display:flex;flex-direction:column;gap:8px}
+.loop__k{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2)}
+.loop__hd h3{margin:0;font-family:var(--font-display);font-size:clamp(22px,2vw,28px);font-weight:500;line-height:1.2;letter-spacing:-0.02em}
+.loop__st{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:none}
+@media (max-width: 760px){.loop__st{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 420px){.loop__st{grid-template-columns:minmax(0,1fr)}}
+.loop__st li{position:relative;padding:16px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);display:flex;flex-direction:column;gap:6px}
+.loop__n{font-family:var(--font-display);font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+.loop__st b{font-family:var(--font-display);font-size:16px;font-weight:600}
+.loop__st p{margin:0;font-size:14px;line-height:1.5;color:rgba(255,255,255,.78)}
+@media (min-width: 761px){
+  .loop__st li:not(:last-child)::after{content:'';position:absolute;right:-10px;top:50%;width:8px;height:8px;border-top:1.5px solid rgba(255,255,255,.5);border-right:1.5px solid rgba(255,255,255,.5);transform:translateY(-50%) rotate(45deg)}
+}
+</style>
