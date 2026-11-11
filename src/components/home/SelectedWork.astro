@@ -37,8 +37,7 @@ const tags: Record<string, string[]> = {
             <div class="wk__vis" aria-hidden="true">
               {c.slug === 'recruitment-saas' && (
                 <div class="wk__stage wk__stage--saas">
-                  <img class="wk__scr wk__scr--back" src={url('media/work-saas-back.webp')} width="1000" height="488" alt="" loading="lazy" decoding="async" />
-                  <img class="wk__scr wk__scr--front" src={url('media/work-saas-front.webp')} width="1000" height="506" alt="" loading="lazy" decoding="async" />
+                  <img class="wk__img wk__img--saas" src={url('media/work-saas-cut.webp')} width="1292" height="1331" alt="" loading="lazy" decoding="async" />
                 </div>
               )}
 
@@ -96,11 +95,8 @@ const tags: Record<string, string[]> = {
   .wk__item--recruitment-saas .wk__txt { flex: 0 0 auto; width: min(44%, 460px); justify-content: center; }
   .wk__stage { position: absolute; overflow: hidden; border-radius: 18px 18px 0 0; }
   .wk__stage--saas { inset: clamp(20px, 2.4vw, 32px) clamp(20px, 2.4vw, 32px) 0 0; background: radial-gradient(90% 120% at 100% 0%, #1D4A85 0%, rgba(29,74,133,0) 60%), var(--card-accent); }
-  .wk__scr { position: absolute; display: block; height: auto; max-width: none; border-radius: 10px; box-shadow: 0 24px 50px rgba(2, 10, 30, 0.45); pointer-events: none; transition: transform .6s var(--ease-out); }
-  .wk__scr--back { right: -6%; top: 9%; width: 78%; opacity: .92; }
-  .wk__scr--front { left: 7%; top: 34%; width: 80%; }
-  .wk__card:hover .wk__scr--back { transform: translateY(-5px); }
-  .wk__card:hover .wk__scr--front { transform: translateY(-10px); }
+  .wk__img--saas { left: 50%; top: 7%; width: min(600px, 88%); transform: translateX(-50%); filter: drop-shadow(0 24px 40px rgba(2, 10, 30, 0.45)); }
+  .wk__card:hover .wk__img--saas { transform: translateX(-50%) translateY(-8px); }
   .wk__stage--fds { inset: 0 clamp(20px, 2.4vw, 32px); background: #0F3069; }
   .wk__img--fds { left: 0; top: 0; width: 100%; }
 
@@ -121,7 +117,7 @@ const tags: Record<string, string[]> = {
     .wk__item--figma-design-system .wk__vis { height: auto; min-height: 0; }
     .wk__stage--fds { position: relative; inset: auto; margin: 0 clamp(20px, 2.4vw, 32px); }
     .wk__img--fds { position: relative; }
-    .wk__scr--front { top: 30%; width: 86%; }
+    .wk__img--saas { top: 18px; width: 86%; }
   }
   @media (max-width: 860px) {
     .wk__item--los .wk__vis { height: clamp(200px, 56vw, 300px); }
