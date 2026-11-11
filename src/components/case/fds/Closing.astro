@@ -1,11 +1,7 @@
 ---
 /**
- * Impact (big numbers with context), Reflection (quote band + three learnings)
- * and a link to the next case study.
+ * Impact (big numbers with context) and Reflection (three learnings).
  */
-import { caseStudies, url } from '../../../data/site';
-
-const next = caseStudies.find((c) => c.slug === 'los')!;
 
 const stats = [
   { n: '90%', t: 'Efficiency gained', d: 'Designers start each story from a template and library components instead of rebuilding layouts by hand.' },
@@ -46,17 +42,9 @@ const learnings = [
 
   <!-- REFLECTION -->
   <section aria-labelledby="fds-reflection" style="box-sizing: border-box; width: 100%;">
-    <div style="box-sizing: border-box; width: 100%; background: var(--accent);">
-      <figure style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(72px, 10vw, 140px) var(--gutter); display: flex; flex-direction: column; gap: 28px;">
-        <span id="fds-reflection" style="font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--accent-2);">Reflection</span>
-        <blockquote style="margin: 0; padding: 0;">
-          <p style="margin: 0; max-width: 1080px; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 4vw, 56px); line-height: 1.15; letter-spacing: -0.03em; color: #FFFFFF;">&#8220;A design system is a product, not a file. Building it was the easy part; getting a newsroom to reach for it every day was the real work.&#8221;</p>
-        </blockquote>
-      </figure>
-    </div>
-
-    <div style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter) 0; display: flex; flex-direction: column; gap: 20px;">
-      <h2 style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 2.8vw, 38px); line-height: 1.15; letter-spacing: -0.025em; color: #251F19;">Learnings</h2>
+    <div style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter) clamp(56px, 8vw, 104px); display: flex; flex-direction: column; gap: 20px;">
+      <span id="fds-reflection" style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">Reflection</span>
+      <h2 style="margin: 0 0 16px; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">What I learned</h2>
       <ol class="lrn" aria-label="Learnings">
         {learnings.map((l, i) => (
           <li>
@@ -69,16 +57,6 @@ const learnings = [
       </ol>
     </div>
   </section>
-
-  <!-- NEXT -->
-  <nav aria-label="Next case study" style="box-sizing: border-box; max-width: calc(var(--content-max) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--gutter);">
-    <a class="nxt" href={url(`work/${next.slug}/`)}>
-      <span class="nxt__k">Next case study</span>
-      <span class="nxt__t">{next.title}</span>
-      <span class="nxt__d">{next.short}</span>
-      <span class="nxt__a" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
-  </nav>
 
 </div>
 
@@ -104,12 +82,4 @@ const learnings = [
 .lrn h3{margin:0;font-family:var(--font-display);font-size:clamp(19px,1.6vw,22px);font-weight:500;letter-spacing:-0.01em;color:#251F19}
 .lrn p{margin:4px 0 0;font-size:16px;line-height:1.6;color:#4F4740}
 
-.nxt{position:relative;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;padding:clamp(28px,3.4vw,44px) clamp(80px,9vw,120px) clamp(28px,3.4vw,44px) clamp(24px,3vw,40px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;color:#251F19;text-decoration:none;transition:border-color .2s ease, box-shadow .2s ease}
-.nxt:hover{border-color:#C9D6EC;box-shadow:0 14px 36px rgba(12,40,87,.10)}
-.nxt:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.nxt__k{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#68615A}
-.nxt__t{font-family:var(--font-display);font-size:clamp(26px,2.6vw,36px);font-weight:500;letter-spacing:-0.025em;color:var(--accent)}
-.nxt__d{font-size:16px;line-height:1.6;color:#68615A}
-.nxt__a{position:absolute;right:clamp(24px,3vw,40px);top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;transition:transform .2s ease}
-@media (hover:hover){.nxt:hover .nxt__a{transform:translateY(-50%) translateX(4px)}}
 </style>
