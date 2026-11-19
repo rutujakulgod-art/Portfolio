@@ -68,18 +68,9 @@ const tplPoints = [
       <div class="hd">
         <span class="lv">LV 2</span>
         <h3>Mockups and templates</h3>
-        <p>Page templates assembled from components and following ST’s UX patterns. The team starts each new story from a template instead of a blank file.</p>
+        <p class="hd__one">Page templates built from components and ST’s UX patterns, so every new story starts from a template, not a blank file.</p>
       </div>
       <div class="tpl panel">
-        <figure class="tpl__fig">
-          <figcaption><span>Light</span><span>Dark</span></figcaption>
-          <div class="tpl__scroll">
-          <div class="tpl__pair">
-            <img src={m('tpl-article-light.webp')} width="900" height="3941" alt="Desktop article template in light mode: timeline, bullet list, map, newsletter, audio, more-articles and paywall components" loading="lazy" />
-            <img src={m('tpl-article-dark.webp')} width="900" height="3946" alt="The same article template in dark mode" loading="lazy" />
-          </div>
-          </div>
-        </figure>
         <div class="tpl__txt">
           <span class="tpl__k">Desktop article template</span>
           <h4>One long-form story page, in both modes</h4>
@@ -89,6 +80,15 @@ const tplPoints = [
             ))}
           </ul>
         </div>
+        <figure class="tpl__fig">
+          <figcaption><span>Light</span><span>Dark</span></figcaption>
+          <div class="tpl__scroll">
+          <div class="tpl__pair">
+            <img src={m('tpl-article-light.webp')} width="900" height="3941" alt="Desktop article template in light mode: timeline, bullet list, map, newsletter, audio, more-articles and paywall components" loading="lazy" />
+            <img src={m('tpl-article-dark.webp')} width="900" height="3946" alt="The same article template in dark mode" loading="lazy" />
+          </div>
+          </div>
+        </figure>
       </div>
     </div>
 
@@ -163,18 +163,17 @@ const tplPoints = [
 .var--dark .slot{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.6)}
 .var img{display:block;width:100%;max-width:480px;height:auto;margin:0 auto;border-radius:10px}
 
-.tpl{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start;background:#F3F5F9;border-color:#E3E7EE}
-@media (max-width: 760px){.tpl{grid-template-columns:minmax(0,1fr)}}
-.tpl__fig{margin:0;width:100%;display:flex;flex-direction:column;gap:10px;min-width:0}
+.tpl{display:flex;flex-direction:column;gap:clamp(32px,4vw,48px);background:#F3F5F9;border-color:#E3E7EE}
+.tpl__fig{margin:0 auto;width:100%;max-width:1080px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .tpl__scroll{min-width:0}
 .tpl__pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.8vw,24px)}
 .tpl__fig img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 14px 36px rgba(12,40,87,.14)}
 .tpl__fig figcaption{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(12px,1.8vw,24px);text-align:center;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#68615A}
-.tpl__txt{display:flex;flex-direction:column;gap:12px;max-width:520px;padding-top:28px}
-@media (max-width: 760px){.tpl__txt{padding-top:0}}
+.tpl__txt{display:flex;flex-direction:column;gap:12px}
 .tpl__k{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#68615A}
 .tpl__txt h4{margin:0 0 6px;font-family:var(--font-display);font-size:clamp(20px,1.8vw,24px);font-weight:500;letter-spacing:-0.01em;color:var(--accent)}
-.tpl__pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tpl__pts{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(20px,3vw,40px)}
+@media (max-width: 900px){.tpl__pts{grid-template-columns:minmax(0,1fr)}}
 .tpl__pts li{display:flex;gap:12px;padding:16px 0;border-top:1px solid #DDE3EC}
 .tpl__pts .mk{flex-shrink:0;width:8px;height:8px;margin-top:7px;border-radius:2px;background:var(--accent-2)}
 .tpl__pts b{display:block;margin-bottom:4px;font-family:var(--font-display);font-size:16px;font-weight:600;color:#251F19}
@@ -204,4 +203,5 @@ const tplPoints = [
 .fr figcaption{display:flex;flex-direction:column;gap:2px}
 .fr figcaption b{font-family:var(--font-display);font-size:16px;font-weight:600;color:#251F19}
 .fr figcaption span{font-size:14px;color:#68615A}
+@media (min-width: 1100px){.hd p.hd__one{max-width:none;white-space:nowrap}}
 </style>
