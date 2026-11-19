@@ -97,7 +97,7 @@ const tplPoints = [
       <div class="hd">
         <span class="lv">Layout grid</span>
         <h3>One grid, two breakpoints</h3>
-        <p>Fixed frame widths and margins give designers and developers the same measurements to build to.</p>
+        <p class="hd__one">Fixed frame widths and margins give designers and developers the same measurements to build to.</p>
       </div>
 
       <div class="grid panel">
@@ -180,7 +180,7 @@ const tplPoints = [
 .tpl__pts p{margin:0;font-size:15px;line-height:1.55;color:#68615A}
 
 /* Layout grid frames */
-.grid{display:grid;grid-template-columns:minmax(0,3.2fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:end;background:#F3F5F9;border-color:#E3E7EE}
+.grid{display:grid;grid-template-columns:minmax(0,3.2fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:stretch;background:#F3F5F9;border-color:#E3E7EE}
 @media (max-width: 760px){.grid{grid-template-columns:minmax(0,1fr)}.fr--m{max-width:220px}}
 .fr{margin:0;display:flex;flex-direction:column;gap:14px;min-width:0}
 .fr__box{position:relative;box-sizing:border-box;border-radius:10px;background:#FFFFFF;border:1px solid #D2DCEE;overflow:hidden;box-shadow:0 10px 30px rgba(12,40,87,.08);
@@ -188,8 +188,9 @@ const tplPoints = [
   --pad:max(10px, calc(var(--mg) / var(--fw) * 100%))}
 .fr--d .fr__box{aspect-ratio:1440/860}
 .fr--m .fr__box{aspect-ratio:375/760}
-.fr__bar{position:absolute;top:0;left:0;right:0;display:block;height:9%;background:var(--accent)}
-.fr__in{position:absolute;top:9%;bottom:0;left:0;right:0;margin:0 var(--pad);padding:7% 0;box-sizing:border-box;display:grid;gap:6%;align-content:start;
+@media (min-width: 761px){.fr--m .fr__box{aspect-ratio:auto;flex:1}}
+.fr__bar{position:absolute;top:0;left:0;right:0;display:block;height:clamp(28px,3.4vw,46px);background:var(--accent)}
+.fr__in{position:absolute;top:clamp(28px,3.4vw,46px);bottom:0;left:0;right:0;margin:0 var(--pad);padding:7% 0;box-sizing:border-box;display:grid;gap:6%;align-content:start;
 }
 .fr--d .fr__in{grid-template-columns:repeat(3,minmax(0,1fr));gap:5% 3%}
 .fr--m .fr__in{grid-template-columns:minmax(0,1fr);gap:4%}
@@ -197,7 +198,7 @@ const tplPoints = [
 .b--hero{grid-column:1/-1;aspect-ratio:auto;height:clamp(60px,11vw,150px);background:#D2DCEE}
 .fr--m .b--hero{height:auto;aspect-ratio:4/3}
 .b--w{aspect-ratio:3/1}
-.fr__mg{position:absolute;top:9%;bottom:0;width:var(--pad);box-sizing:border-box;background:rgba(239,65,35,.12);display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.04em;color:#B3260F}
+.fr__mg{position:absolute;top:clamp(28px,3.4vw,46px);bottom:0;width:var(--pad);box-sizing:border-box;background:rgba(239,65,35,.12);display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.04em;color:#B3260F}
 .fr__mg--l{left:0;border-right:1px dashed rgba(239,65,35,.55)}
 .fr__mg--r{right:0;border-left:1px dashed rgba(239,65,35,.55)}
 .fr figcaption{display:flex;flex-direction:column;gap:2px}
