@@ -23,7 +23,7 @@ const learnings = [
       <div style="display: flex; flex-direction: column; gap: 18px;">
         <span style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--accent-2);">Impact</span>
         <h2 id="fds-impact" style="margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.12; letter-spacing: -0.03em; color: #251F19;">Faster stories, fewer mismatches</h2>
-        <p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.65; color: #68615A;">Designers spend less time keeping things consistent, and engineers get clearer alignment with fewer bugs to chase.</p>
+        <p class="one" style="margin: 0; font-size: 17px; line-height: 1.65; color: #68615A;">Designers spend less time keeping things consistent, and engineers get clearer alignment with fewer bugs to chase.</p>
       </div>
 
       <ul class="imp">
@@ -61,6 +61,8 @@ const learnings = [
 </div>
 
 <style>
+.one{max-width:860px}
+@media (min-width: 1100px){.one{max-width:none;white-space:nowrap}}
 .imp{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media (max-width: 900px){.imp{grid-template-columns:minmax(0,1fr)}}
 .imp li{box-sizing:border-box;padding:clamp(24px,2.8vw,36px);border-radius:var(--radius-card);background:#FFFFFF;border:1px solid #EBE8E4;display:flex;flex-direction:column;gap:clamp(28px,4vw,56px)}
